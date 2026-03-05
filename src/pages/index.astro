@@ -12,10 +12,26 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>Dobrodošli na hodi.ba</h1>
-			<p>Web stranica u izradi.</p>
+		<main class="hero">
+			<img src="/logo.svg" alt="Hodi!" class="hero-logo" />
+			<p>Dobrodošli!</p>
 		</main>
+		<style>
+			.hero {
+				text-align: center;
+				padding: 4em 1em;
+			}
+			.hero-logo {
+				max-width: 320px;
+				width: 100%;
+				height: auto;
+				margin-bottom: 1em;
+			}
+			.hero p {
+				font-size: 1.4em;
+				color: rgb(var(--gray));
+			}
+		</style>
 		<Footer />
 	</body>
 </html>

@@ -27,11 +27,12 @@ import { SITE_TITLE } from '../consts';
 	}
 	h2 { margin: 0; font-size: 1em; }
 	h2 a, h2 a.active { text-decoration: none; }
+	.logo { height: 40px; width: auto; vertical-align: middle; }
 </style>
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<h2><a href="/"><img src="/logo.svg" alt="Hodi!" class="logo" /></a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Početna</HeaderLink>
 			<HeaderLink href="/about">O nama</HeaderLink>
