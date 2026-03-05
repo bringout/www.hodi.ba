@@ -6,4 +6,4 @@ pubDate: 'Mar 05 2026'
 
 Dobrodošli na novu web stranicu hodi.ba!
 
-Ovo je prvi blog post. Stranica je u izradi.
+O ideji hodi.ba pročitajte na [bring.out.ba](https://www.bring.out.ba/blog/hodi/).
