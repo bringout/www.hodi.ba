@@ -57,6 +57,14 @@ Nakon odobrenja, dobićete email sa linkom za pristup (važi 30 dana).
 
 Učitajte PDF dokument i kliknite "Verificiraj potpis". Servis prikazuje detaljne rezultate za svaki potpis.
 
+#### Primjer: IDDEEA potpis
+
+![IDDEEA verifikacija](/kep-iddeea-success.png)
+
+#### Primjer: BHP potpis
+
+![BHP verifikacija](/kep-bhp-success.png)
+
 ## Šta servis provjerava
 
 Za svaki potpis u dokumentu, servis provjerava:
