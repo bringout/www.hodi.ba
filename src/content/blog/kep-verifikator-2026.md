@@ -41,17 +41,17 @@ Popunite formu sa imenom, organizacijom i email adresom.
 
 ![Registracija](/kep-16-04-24.png)
 
-### 2. Pristupni link
+### 2. Odobrenje pristupa od strane administratora hodi.ba
 
-Administrator prima obavijest o zahtjevu i odobrava ili odbija pristup. Nakon odobrenja, dobićete email sa linkom za pristup (važi 30 dana).
-
-![Email sa linkom](/kep-17-25-40.png)
-
-### 3. Odobrenje pristupa
-
-Ovako izgleda stranica kada administrator odobri zahtjev.
+Administrator prima obavijest o zahtjevu i odobrava ili odbija pristup.
 
 ![Odobrenje](/kep-17-22-28.png)
+
+### 3. Pristupni link
+
+Nakon odobrenja, korisnik dobija email sa linkom za pristup (važi 30 dana). Klikom na pristupni link korisnik može početi koristiti servis.
+
+![Email sa linkom](/kep-17-25-40.png)
 
 ### 4. Verifikacija potpisa
 
