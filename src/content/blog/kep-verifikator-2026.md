@@ -65,6 +65,8 @@ Učitajte PDF dokument i kliknite "Verificiraj potpis". Servis prikazuje detaljn
 
 ![BHP verifikacija](/kep-bhp-success.png)
 
+Kod BHP potpisa, provjera `non_repudiation` ima status **WARN** (upozorenje, narandžasta boja) umjesto PASS. To znači da BHP certifikat nema `nonRepudiation` (content commitment) atribut u Key Usage ekstenziji. Ovaj atribut označava da potpisnik ne može naknadno poricati da je potpisao dokument. Bez njega, potpis ima kriptografsku validnost, ali u strožijem tumačenju Zakona o elektronskom potpisu BiH, mogao bi se osporiti pred sudom. Trenutno je ova provjera konfigurisana kao upozorenje — dokument se i dalje smatra validnim KEP-om, ali korisnik treba biti svjestan ovog ograničenja BHP certifikata.
+
 ## Šta servis provjerava
 
 Za svaki potpis u dokumentu, servis provjerava:
