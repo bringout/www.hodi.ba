@@ -112,8 +112,6 @@ Ukoliko administrator odbije zahtjev, korisnik dobija obavijest i ne može se po
 
 ![Odbijeni zahtjev](/kep-17-20-32.png)
 
-![Poruka o odbijanju](/kep-17-21-05.png)
-
 ## Napomena
 
 Generisano od strane Claude 🤖
