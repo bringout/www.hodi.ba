@@ -41,17 +41,17 @@ Popunite formu sa imenom, organizacijom i email adresom.
 
 ![Registracija](/kep-16-04-24.png)
 
-### 2. Odobrenje pristupa
+### 2. Pristupni link
 
-Administrator prima obavijest i odobrava ili odbija zahtjev.
-
-![Odobrenje](/kep-17-22-28.png)
-
-### 3. Pristupni link
-
-Nakon odobrenja, dobićete email sa linkom za pristup (važi 30 dana).
+Administrator prima obavijest o zahtjevu i odobrava ili odbija pristup. Nakon odobrenja, dobićete email sa linkom za pristup (važi 30 dana).
 
 ![Email sa linkom](/kep-17-25-40.png)
+
+### 3. Odobrenje pristupa
+
+Ovako izgleda stranica kada administrator odobri zahtjev.
+
+![Odobrenje](/kep-17-22-28.png)
 
 ### 4. Verifikacija potpisa
 
