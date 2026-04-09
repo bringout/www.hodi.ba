@@ -53,9 +53,15 @@ Nakon odobrenja, korisnik dobija email sa linkom za pristup (važi 30 dana). Kli
 
 ![Email sa linkom](/kep-17-25-40.png)
 
-### 4. Verifikacija potpisa
+### 4. Pristup servisu
 
-Učitajte PDF dokument i kliknite "Verificiraj potpis". Servis prikazuje detaljne rezultate za svaki potpis.
+Kliknite na "Odaberi fajl", odaberite PDF ili XML fajl, nakon toga pokrenite verifikaciju sa "Verifikuj potpis".
+
+![Pristup servisu](/kep-pristup-servisu.png)
+
+### 5. Rezultati verifikacije
+
+Servis prikazuje detaljne rezultate za svaki potpis u dokumentu.
 
 #### Primjer: IDDEEA potpis
 
