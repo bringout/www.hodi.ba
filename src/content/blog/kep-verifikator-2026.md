@@ -2,7 +2,7 @@
 title: 'Bosanski KEP verifikator — provjera kvalifikovanog elektronskog potpisa'
 description: 'Online servis za provjeru kvalifikovanog elektronskog potpisa (KEP) na PDF dokumentima — podrška za IDDEEA, UIO i BHP certifikate'
 pubDate: '2026-04-09T18:02:00'
-heroImage: '/kep-verifikator-hero.png'
+heroImage: '/kep-17-29-32.png'
 ---
 
 Predstavljamo **Bosanski KEP verifikator** — online servis za provjeru kvalifikovanih elektronskih potpisa na PDF dokumentima.
@@ -35,10 +35,27 @@ JP BH Pošta d.o.o. — certifikaciono tijelo koje izdaje elektronske certifikat
 
 ## Kako koristiti servis
 
-1. Otvorite [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba)
-2. Registrujte se sa imenom, emailom i organizacijom
-3. Nakon odobrenja, dobićete link za pristup na email
-4. Učitajte PDF dokument i kliknite "Verificiraj potpis"
+### 1. Registracija
+
+Popunite formu sa imenom, organizacijom i email adresom.
+
+![Registracija](/kep-16-04-24.png)
+
+### 2. Odobrenje pristupa
+
+Administrator prima obavijest i odobrava ili odbija zahtjev.
+
+![Odobrenje](/kep-17-22-28.png)
+
+### 3. Pristupni link
+
+Nakon odobrenja, dobićete email sa linkom za pristup (važi 30 dana).
+
+![Email sa linkom](/kep-17-25-40.png)
+
+### 4. Verifikacija potpisa
+
+Učitajte PDF dokument i kliknite "Verificiraj potpis". Servis prikazuje detaljne rezultate za svaki potpis.
 
 ## Šta servis provjerava
 
@@ -57,9 +74,17 @@ Za svaki potpis u dokumentu, servis provjerava:
 
 Pored osnovnih podataka o potpisniku, servis prikazuje i:
 
-- **JIB / ID organizacije** — identifikacioni broj firme (npr. 4303070620003)
+- **JIB / ID organizacije** — identifikacioni broj firme
 - **Mjesto** — lokacija potpisnika
 - **Organizacija** — naziv firme ili institucije
+
+## Odbijeni zahtjevi
+
+Ukoliko administrator odbije zahtjev, korisnik dobija obavijest i ne može se ponovo registrovati sa istim emailom.
+
+![Odbijeni zahtjev](/kep-17-20-32.png)
+
+![Poruka o odbijanju](/kep-17-21-05.png)
 
 ## Napomena
 
