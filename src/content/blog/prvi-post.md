@@ -2,6 +2,7 @@
 title: 'Dobrodošli na hodi.ba'
 description: 'Prvi blog post na hodi.ba'
 pubDate: 'Mar 05 2026'
+heroImage: '/hodi-logo.webp'
 ---
 
 Dobrodošli na novu web stranicu hodi.ba!
