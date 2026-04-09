@@ -5,7 +5,7 @@ pubDate: '2026-04-09T18:02:00'
 heroImage: '/kep-17-29-32.png'
 ---
 
-Predstavljamo **Bosanski KEP verifikator** — online servis za provjeru kvalifikovanih elektronskih potpisa na PDF dokumentima.
+Predstavljamo **Bosanski KEP verifikator** — online servis za provjeru kvalifikovanih elektronskih potpisa na PDF i XML dokumentima.
 
 Servis je dostupan na: [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba)
 
@@ -60,6 +60,12 @@ Učitajte PDF dokument i kliknite "Verificiraj potpis". Servis prikazuje detaljn
 #### Primjer: IDDEEA potpis
 
 ![IDDEEA verifikacija](/kep-iddeea-success.png)
+
+#### Primjer: UIO XML potpis
+
+Servis podržava i XML dokumente sa XAdES potpisima, kao što su PDV prijave iz UIO sistema.
+
+![UIO XML verifikacija](/kep-uio-xml-success.png)
 
 #### Primjer: BHP potpis
 
