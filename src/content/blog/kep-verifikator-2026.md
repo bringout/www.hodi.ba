@@ -55,9 +55,15 @@ Nakon odobrenja, korisnik dobija email sa linkom za pristup (važi 30 dana). Kli
 
 ### 4. Pristup servisu
 
-Kliknite na "Odaberi fajl", odaberite PDF ili XML fajl, nakon toga pokrenite verifikaciju sa "Verifikuj potpis".
+Kliknite na područje "Odaberi fajl — niste još odabrali fajl za verifikaciju":
 
-![Pristup servisu](/kep-pristup-servisu.png)
+![Odaberi fajl](/kep-pristup-servisu.png)
+
+Nakon odabira fajla, naziv fajla se prikazuje u polju:
+
+![Fajl odabran](/kep-fajl-odabran.png)
+
+Kliknite dugme "Verifikuj potpis" za pokretanje verifikacije.
 
 ### 5. Rezultati verifikacije
 
