@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Hetzner Robot firewall SSH lockdown — a gate labeled :22 with four labeled keys passing through from allowed sources and red X-marked intruders bouncing off">
+  <title>Hetzner Robot firewall — SSH lockdown na portu 22</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#d07f1a"/>
+      <stop offset="55%" stop-color="#6e3b0a"/>
+      <stop offset="100%" stop-color="#2a1202"/>
+    </radialGradient>
+    <linearGradient id="gateFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid (same rhythm as other hero svgs) -->
+  <g fill="#ffffff" fill-opacity="0.05">
+    <circle cx="60" cy="60" r="2"/>
+    <circle cx="180" cy="60" r="2"/>
+    <circle cx="300" cy="60" r="2"/>
+    <circle cx="420" cy="60" r="2"/>
+    <circle cx="540" cy="60" r="2"/>
+    <circle cx="660" cy="60" r="2"/>
+    <circle cx="780" cy="60" r="2"/>
+    <circle cx="900" cy="60" r="2"/>
+    <circle cx="1020" cy="60" r="2"/>
+    <circle cx="1140" cy="60" r="2"/>
+    <circle cx="60" cy="180" r="2"/>
+    <circle cx="180" cy="180" r="2"/>
+    <circle cx="300" cy="180" r="2"/>
+    <circle cx="900" cy="180" r="2"/>
+    <circle cx="1020" cy="180" r="2"/>
+    <circle cx="1140" cy="180" r="2"/>
+    <circle cx="60" cy="300" r="2"/>
+    <circle cx="180" cy="300" r="2"/>
+    <circle cx="1020" cy="300" r="2"/>
+    <circle cx="1140" cy="300" r="2"/>
+    <circle cx="60" cy="450" r="2"/>
+    <circle cx="180" cy="450" r="2"/>
+    <circle cx="300" cy="450" r="2"/>
+    <circle cx="900" cy="450" r="2"/>
+    <circle cx="1020" cy="450" r="2"/>
+    <circle cx="1140" cy="450" r="2"/>
+    <circle cx="60" cy="570" r="2"/>
+    <circle cx="180" cy="570" r="2"/>
+    <circle cx="300" cy="570" r="2"/>
+    <circle cx="420" cy="570" r="2"/>
+    <circle cx="540" cy="570" r="2"/>
+    <circle cx="660" cy="570" r="2"/>
+    <circle cx="780" cy="570" r="2"/>
+    <circle cx="900" cy="570" r="2"/>
+    <circle cx="1020" cy="570" r="2"/>
+    <circle cx="1140" cy="570" r="2"/>
+  </g>
+
+  <!-- title -->
+  <text x="600" y="92" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="40" font-weight="700" fill="#ffffff" letter-spacing="1">
+    Hetzner Robot firewall
+  </text>
+  <text x="600" y="122" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="400" fill="#ffffff" fill-opacity="0.78" letter-spacing="2">
+    SSH :22 lockdown — 4 bastiona unutra, ostalo vani
+  </text>
+
+  <!-- central gate (shield-like rect with :22 label) -->
+  <g transform="translate(600 360)">
+    <!-- gate posts (vertical stripes) -->
+    <rect x="-110" y="-100" width="220" height="200" rx="14" ry="14"
+          fill="url(#gateFill)" stroke="#ffd27a" stroke-width="4"/>
+    <!-- inner panel -->
+    <rect x="-90" y="-80" width="180" height="160" rx="8" ry="8"
+          fill="rgba(0,0,0,0.25)" stroke="#ffd27a" stroke-width="1.5" stroke-opacity="0.6"/>
+    <!-- :22 big label -->
+    <text x="0" y="-18" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+          font-size="22" font-weight="600" fill="#ffd27a" fill-opacity="0.9" letter-spacing="2">
+      SSH
+    </text>
+    <text x="0" y="34" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+          font-size="76" font-weight="800" fill="#ffffff" letter-spacing="2">
+      :22
+    </text>
+    <text x="0" y="66" text-anchor="middle"
+          font-family="monospace"
+          font-size="12" font-weight="500" fill="#ffd27a" fill-opacity="0.75">
+      hetzner-1
+    </text>
+    <!-- gate lock icon bottom -->
+    <g transform="translate(0 90)" stroke="#ffd27a" stroke-width="3" fill="none">
+      <rect x="-12" y="0" width="24" height="18" rx="2" fill="#ffd27a" fill-opacity="0.25"/>
+      <path d="M -7 0 L -7 -8 A 7 7 0 0 1 7 -8 L 7 0" fill="none"/>
+    </g>
+  </g>
+
+  <!-- 4 allowed keys approaching from left -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <!-- smtp-sa-1 -->
+    <g transform="translate(170 230)">
+      <rect x="0" y="0" width="160" height="40" rx="6" ry="6"
+            fill="#1d7a3e" fill-opacity="0.25" stroke="#7fdca0" stroke-width="2"/>
+      <circle cx="20" cy="20" r="9" fill="none" stroke="#7fdca0" stroke-width="2.5"/>
+      <circle cx="20" cy="20" r="3" fill="#7fdca0"/>
+      <line x1="29" y1="20" x2="46" y2="20" stroke="#7fdca0" stroke-width="2.5"/>
+      <text x="58" y="18" font-size="13" font-weight="600" fill="#ffffff">smtp-sa-1</text>
+      <text x="58" y="32" font-family="monospace" font-size="10" fill="#7fdca0">77.78.xxx.xxx</text>
+    </g>
+    <!-- smtp-sa-2 -->
+    <g transform="translate(170 290)">
+      <rect x="0" y="0" width="160" height="40" rx="6" ry="6"
+            fill="#1d7a3e" fill-opacity="0.25" stroke="#7fdca0" stroke-width="2"/>
+      <circle cx="20" cy="20" r="9" fill="none" stroke="#7fdca0" stroke-width="2.5"/>
+      <circle cx="20" cy="20" r="3" fill="#7fdca0"/>
+      <line x1="29" y1="20" x2="46" y2="20" stroke="#7fdca0" stroke-width="2.5"/>
+      <text x="58" y="18" font-size="13" font-weight="600" fill="#ffffff">smtp-sa-2</text>
+      <text x="58" y="32" font-family="monospace" font-size="10" fill="#7fdca0">77.78.xxx.xxx</text>
+    </g>
+    <!-- awslight-fra -->
+    <g transform="translate(170 390)">
+      <rect x="0" y="0" width="160" height="40" rx="6" ry="6"
+            fill="#1d7a3e" fill-opacity="0.25" stroke="#7fdca0" stroke-width="2"/>
+      <circle cx="20" cy="20" r="9" fill="none" stroke="#7fdca0" stroke-width="2.5"/>
+      <circle cx="20" cy="20" r="3" fill="#7fdca0"/>
+      <line x1="29" y1="20" x2="46" y2="20" stroke="#7fdca0" stroke-width="2.5"/>
+      <text x="58" y="18" font-size="13" font-weight="600" fill="#ffffff">awslight-fra</text>
+      <text x="58" y="32" font-family="monospace" font-size="10" fill="#7fdca0">52.58.xxx.xxx</text>
+    </g>
+    <!-- awslight-par -->
+    <g transform="translate(170 450)">
+      <rect x="0" y="0" width="160" height="40" rx="6" ry="6"
+            fill="#1d7a3e" fill-opacity="0.25" stroke="#7fdca0" stroke-width="2"/>
+      <circle cx="20" cy="20" r="9" fill="none" stroke="#7fdca0" stroke-width="2.5"/>
+      <circle cx="20" cy="20" r="3" fill="#7fdca0"/>
+      <line x1="29" y1="20" x2="46" y2="20" stroke="#7fdca0" stroke-width="2.5"/>
+      <text x="58" y="18" font-size="13" font-weight="600" fill="#ffffff">awslight-par</text>
+      <text x="58" y="32" font-family="monospace" font-size="10" fill="#7fdca0">13.37.xxx.xxx</text>
+    </g>
+  </g>
+
+  <!-- green arrows from allowed hosts into the gate -->
+  <g stroke="#7fdca0" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M 330 250 C 420 270 440 310 490 320" stroke-dasharray="6 5"/>
+    <path d="M 482 313 L 494 320 L 484 327"/>
+    <path d="M 330 310 C 420 320 440 330 490 340" stroke-dasharray="6 5"/>
+    <path d="M 482 333 L 494 340 L 484 347"/>
+    <path d="M 330 410 C 420 400 440 390 490 380" stroke-dasharray="6 5"/>
+    <path d="M 482 373 L 494 380 L 484 387"/>
+    <path d="M 330 470 C 420 440 440 420 490 400" stroke-dasharray="6 5"/>
+    <path d="M 482 393 L 494 400 L 484 407"/>
+  </g>
+
+  <!-- intruders on the right, bouncing off the gate (red X) -->
+  <g stroke="#ff6b6b" stroke-width="3.5" stroke-linecap="round">
+    <!-- intruder 1 -->
+    <g transform="translate(960 200)">
+      <line x1="-10" y1="-10" x2="10" y2="10"/>
+      <line x1="10" y1="-10" x2="-10" y2="10"/>
+    </g>
+    <!-- intruder 2 -->
+    <g transform="translate(1020 290)">
+      <line x1="-10" y1="-10" x2="10" y2="10"/>
+      <line x1="10" y1="-10" x2="-10" y2="10"/>
+    </g>
+    <!-- intruder 3 -->
+    <g transform="translate(990 380)">
+      <line x1="-10" y1="-10" x2="10" y2="10"/>
+      <line x1="10" y1="-10" x2="-10" y2="10"/>
+    </g>
+    <!-- intruder 4 -->
+    <g transform="translate(1040 470)">
+      <line x1="-10" y1="-10" x2="10" y2="10"/>
+      <line x1="10" y1="-10" x2="-10" y2="10"/>
+    </g>
+  </g>
+  <!-- dashed red paths showing blocked attempts heading towards gate and stopping -->
+  <g stroke="#ff6b6b" stroke-width="2" fill="none" stroke-linecap="round" stroke-opacity="0.55">
+    <path d="M 950 200 C 870 220 800 280 720 320" stroke-dasharray="5 6"/>
+    <path d="M 1010 290 C 900 310 830 330 720 340" stroke-dasharray="5 6"/>
+    <path d="M 980 380 C 880 380 820 380 720 380" stroke-dasharray="5 6"/>
+    <path d="M 1030 470 C 920 450 830 420 720 400" stroke-dasharray="5 6"/>
+  </g>
+  <!-- bounce indicator near gate (small arcs) -->
+  <g stroke="#ff6b6b" stroke-width="2" fill="none" stroke-linecap="round" stroke-opacity="0.7">
+    <path d="M 720 316 A 8 8 0 0 1 720 332"/>
+    <path d="M 720 336 A 8 8 0 0 1 720 352"/>
+    <path d="M 720 376 A 8 8 0 0 1 720 392"/>
+    <path d="M 720 396 A 8 8 0 0 1 720 412"/>
+  </g>
+  <!-- "blocked" label near the intruders -->
+  <text x="995" y="530" text-anchor="middle"
+        font-family="monospace" font-size="12" fill="#ff6b6b" fill-opacity="0.85">
+    discard
+  </text>
+
+  <!-- "allowed" label near the keys -->
+  <text x="250" y="530" text-anchor="middle"
+        font-family="monospace" font-size="12" fill="#7fdca0" fill-opacity="0.9">
+    accept dport 22 tcp
+  </text>
+
+  <!-- bottom caption -->
+  <text x="600" y="585" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="14" font-weight="400" fill="#ffffff" fill-opacity="0.72">
+    edge firewall (Robot) + host firewall (NixOS) — dvije linije odbrane
+  </text>
+</svg>
