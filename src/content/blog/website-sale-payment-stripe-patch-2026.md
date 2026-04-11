@@ -206,20 +206,6 @@ Ispravni patterni su:
 
 Za `website_payment`, opcija 2 je najbolja: Stripe **je** opcionalan, import je korišten samo za jedan izračunati Boolean, i fallback na `False` je matematički ispravan.
 
-## Status bosanske eCommerce lokalizacije nakon ovog patch-a
-
-Sa `website_sale` sada spreman za instalaciju na našim bosanskim Hodi instancama, sljedeći koraci su:
-
-- ✅ **Patch primijenjen**: `website_payment` više ne blokira instalaciju
-- ✅ **`website_sale` instaliran**: full e-commerce stack je spreman na `bringout-test`
-- ⏳ **Payment acquirer integracija**: Monri Pay By Link (REST + webhook) je već build-an kao paralelni napor — pogledajte naredne postove
-- ⏳ **BAM valuta testing**: verifikovati da konverzije rade ispravno za BAM kao base i BAM prikazane cijene
-- ⏳ **PDV integracija**: povezati `website_sale` toka sa `l10n_ba_pdv` modulom za pravilno izdavanje faktura
-- ⏳ **Bosanski UI prijevod**: `bs.po` fajlovi za `website_sale`, `portal`, `portal_rating`, ...
-- ⏳ **End-to-end test**: realan kupac → katalog → cart → checkout → plaćanje kartom kroz sandbox → potvrda narudžbe → faktura
-
-Ovaj patch je bio **najmanja ali najvažnija prepreka** — bez njega ništa od ostalog nije imalo smisla započeti.
-
 ## Linkovi
 
 - **Commit diff**: [`git.hodi.ba/oca/oca-ocb-website` commit `18aac06`](https://git.hodi.ba/oca/oca-ocb-website/commit/18aac0667fea416b32983f052d93e5406dff551f)
