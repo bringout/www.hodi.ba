@@ -109,14 +109,7 @@ Napravili smo `profile/hetzner/scripts/hetzner_setup_firewall.py` — stdlib-onl
 
 ## Skripta
 
-Razgovara sa Robot web-service API-jem preko HTTP Basic Auth-a. Kredencijali se čitaju iz `pass` store-a:
-
-```bash
-pass show hetzner/ws-user       # na primjer: #ws+xxxxxxxx
-pass show hetzner/ws-password   # generisano pri kreiranju WS usera u Robotu
-```
-
-Robot API koristi jedan URL za GET (očitavanje trenutnog stanja) i jedan za POST (primjena novog rulesetа) — oba na `https://robot-ws.your-server.de/firewall/{server_number}`. Server number smo otkrili kroz `GET /server` koji vraća sve servere u računu i izabire onaj koji se poklapa sa IP-jem `hetzner-1`-a.
+Razgovara sa Robot web-service API-jem preko HTTP Basic Auth-a. Robot API koristi jedan URL za GET (očitavanje trenutnog stanja) i jedan za POST (primjena novog rulesetа) — oba na `https://robot-ws.your-server.de/firewall/{server_number}`. Server number smo otkrili kroz `GET /server` koji vraća sve servere u računu i izabire onaj koji se poklapa sa IP-jem `hetzner-1`-a.
 
 Subkomande:
 
