@@ -1,5 +1,5 @@
 ---
-title: 'Patch za website_sale: omogućavanje e-commerce modula bez payment_stripe ovisnosti'
+title: 'Bosanska lokalizacija "Odoo" open-source platforme: Patch za website_sale: omogućavanje e-commerce modula bez payment_stripe ovisnosti'
 description: 'Bosanska lokalizacija "Odoo" open-source platforme — eCommerce. Kako smo riješili unconditional import koji je blokirao instalaciju website_sale na Odoo konfiguracijama bez payment_stripe modula.'
 pubDate: '2026-04-11T18:00:00'
 heroImage: '/website-sale-patch-hero.svg'
