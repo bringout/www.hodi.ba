@@ -1,6 +1,6 @@
 ---
-title: 'Hetzner Robot firewall: SSH lockdown na hetzner-1 kroz reproducibilan Python skript'
-description: 'Kako smo zatvorili SSH na port 22 samo za četiri bastion hosta kroz edge-firewall Hetzner Robota, i napisali reusable skript koji radi backup + diff + apply + rollback kroz Robot web-service API.'
+title: 'Hetzner Robot firewall: SSH lockdown na hetzner-1 kroz reproducibilnu Python skriptu'
+description: 'Kako smo zatvorili SSH na port 22 samo za četiri bastion hosta kroz edge-firewall Hetzner Robota, i napisali reusable skriptu koja radi backup + diff + apply + rollback kroz Robot web-service API.'
 pubDate: '2026-04-11T18:00:00'
 heroImage: '/hetzner-firewall-hero.svg'
 ---
@@ -64,7 +64,7 @@ Nekoliko suptilnosti koje smo naučili na nogama:
 4. **`filter_ipv6=true`** je zadržan namerno. Da smo ga isključili, IPv6 bi u cijelosti zaobilazio Robot firewall i IPv6 SSH bi ostao otvoren svima. Zadržavanjem filtera na pravilo 7 (`drop other ssh`) se primjenjuje i na IPv6, jer nema postavljen `ip_version`. Mrežni "back door" je zatvoren.
 5. **ICMPv6 (pravilo 2) mora biti eksplicitno dopušten.** U suprotnom IPv6 Neighbor Discovery i Path MTU Discovery mogu tiho prestati raditi. Ovo je uobičajen razlog zašto ljudi koji isključe Robot firewall ostanu bez IPv6 konekcije.
 
-## Zašto reusable skript, a ne klikanje po browseru
+## Zašto reusable skripta, a ne klikanje po browseru
 
 Robot web panel je sasvim sposoban da se uđe u firewall stranicu i klikne kroz formu. Prvi put smo tako i htjeli. Problemi koji se brzo pojave:
 
@@ -73,11 +73,11 @@ Robot web panel je sasvim sposoban da se uđe u firewall stranicu i klikne kroz 
 - **Nema rollback-a.** Ako nešto pođe krivo i izgubiš pristup, moraš ponovo ručno upisati stari ruleset — ali bez memorije šta je tačno bio stari ruleset prije tvoje promjene.
 - **Nije reproducibilno.** Ruleset živi kao UI stanje u Hetzner panelu, ne kao fajl u repu koji se može code-review-ati.
 
-Napravili smo `profile/hetzner/scripts/hetzner_setup_firewall.py` — stdlib-only Python skript (oko 600 linija) koji rješava sve četiri stavke.
+Napravili smo `profile/hetzner/scripts/hetzner_setup_firewall.py` — stdlib-only Python skriptu (oko 600 linija) koja rješava sve četiri stavke.
 
 ## Skript
 
-Skript razgovara sa Robot web-service API-jem preko HTTP Basic Auth-a. Kredencijali se čitaju iz `pass` store-a:
+Skripta razgovara sa Robot web-service API-jem preko HTTP Basic Auth-a. Kredencijali se čitaju iz `pass` store-a:
 
 ```bash
 pass show hetzner/ws-user       # na primjer: #ws+xxxxxxxx
@@ -108,9 +108,9 @@ python3 scripts/hetzner_setup_firewall.py rollback
 python3 scripts/hetzner_setup_firewall.py apply moj-ruleset.json
 ```
 
-### Shta skript radi prije apply-a
+### Šta skripta radi prije apply-a
 
-Svaki `apply` / `ssh-lockdown` poziv automatski radi sljedeće **prije** nego što bilo šta pošalje na Robot API:
+Svaki `apply` / `ssh-lockdown` poziv automatski radi sljedeće **prije** nego što skripta bilo šta pošalje na Robot API:
 
 1. **Fetch current config** — `GET /firewall/{n}` → parsiranje JSON-a.
 2. **Ispiši trenutno stanje** — human-readable tabela.
@@ -119,7 +119,7 @@ Svaki `apply` / `ssh-lockdown` poziv automatski radi sljedeće **prije** nego š
 5. **Pitaj za potvrdu** — jednostavni `input()` sa `yes/NO` default-om, osim ako nije prosljeđen `--yes`.
 6. **Backup** — zapiše trenutni config kao `/tmp/hetzner_firewall_backup_YYYYMMDD_HHMMSS.json` *prije* POST-a. Ako nešto kasnije pođe krivo, rollback koristi ovaj fajl.
 7. **POST novi config** — `application/x-www-form-urlencoded` sa `rules[input][N][...]` ključevima.
-8. **Poll status** — Robot primjena je asinhrona, status prolazi kroz `pending` → `in process` → `active` tokom 30–90 sekundi; skript poll-uje svakih 5s do 4 minute.
+8. **Poll status** — Robot primjena je asinhrona, status prolazi kroz `pending` → `in process` → `active` tokom 30–90 sekundi; skripta poll-uje svakih 5s do 4 minute.
 9. **Ispiši final state** — potvrda da je ruleset aktivan.
 
 ### Snippet: backup + POST
@@ -193,7 +193,7 @@ python3 scripts/hetzner_setup_firewall.py rollback
 
 Što će uzeti najnoviji `/tmp/hetzner_firewall_backup_*.json`, prikazati diff, tražiti potvrdu, i vratiti raniji ruleset (čime će stariji "Allow all" ponovo biti aktivan).
 
-## Šta nije u skriptu
+## Šta nije u skripti
 
 Nekoliko svjesno ostavljenih stvari izvan skoupa:
 
