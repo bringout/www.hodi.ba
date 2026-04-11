@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Bosnian eCommerce localization: shopping cart with a wrench patching a broken connection, surrounded by product boxes and a green check badge confirming the fix">
+  <title>Bosanska lokalizacija Odoo eCommerce — website_sale patch</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0b3872"/>
+      <stop offset="55%" stop-color="#001d42"/>
+      <stop offset="100%" stop-color="#000820"/>
+    </radialGradient>
+    <linearGradient id="cartFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid -->
+  <g fill="#ffffff" fill-opacity="0.05">
+    <circle cx="60" cy="60" r="2"/>
+    <circle cx="180" cy="60" r="2"/>
+    <circle cx="300" cy="60" r="2"/>
+    <circle cx="420" cy="60" r="2"/>
+    <circle cx="540" cy="60" r="2"/>
+    <circle cx="660" cy="60" r="2"/>
+    <circle cx="780" cy="60" r="2"/>
+    <circle cx="900" cy="60" r="2"/>
+    <circle cx="1020" cy="60" r="2"/>
+    <circle cx="1140" cy="60" r="2"/>
+    <circle cx="60" cy="180" r="2"/>
+    <circle cx="180" cy="180" r="2"/>
+    <circle cx="300" cy="180" r="2"/>
+    <circle cx="900" cy="180" r="2"/>
+    <circle cx="1020" cy="180" r="2"/>
+    <circle cx="1140" cy="180" r="2"/>
+    <circle cx="60" cy="300" r="2"/>
+    <circle cx="180" cy="300" r="2"/>
+    <circle cx="1020" cy="300" r="2"/>
+    <circle cx="1140" cy="300" r="2"/>
+    <circle cx="60" cy="450" r="2"/>
+    <circle cx="180" cy="450" r="2"/>
+    <circle cx="300" cy="450" r="2"/>
+    <circle cx="900" cy="450" r="2"/>
+    <circle cx="1020" cy="450" r="2"/>
+    <circle cx="1140" cy="450" r="2"/>
+    <circle cx="60" cy="570" r="2"/>
+    <circle cx="180" cy="570" r="2"/>
+    <circle cx="300" cy="570" r="2"/>
+    <circle cx="420" cy="570" r="2"/>
+    <circle cx="540" cy="570" r="2"/>
+    <circle cx="660" cy="570" r="2"/>
+    <circle cx="780" cy="570" r="2"/>
+    <circle cx="900" cy="570" r="2"/>
+    <circle cx="1020" cy="570" r="2"/>
+    <circle cx="1140" cy="570" r="2"/>
+  </g>
+
+  <!-- floating product boxes around the cart (representing catalog items) -->
+  <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="2" fill="url(#cartFill)">
+    <!-- top-left box -->
+    <rect x="220" y="220" width="70" height="70" rx="6"/>
+    <line x1="220" y1="245" x2="290" y2="245" stroke-opacity="0.5"/>
+    <!-- top-right box -->
+    <rect x="920" y="220" width="70" height="70" rx="6"/>
+    <line x1="920" y1="245" x2="990" y2="245" stroke-opacity="0.5"/>
+    <!-- bottom-left box -->
+    <rect x="220" y="420" width="70" height="70" rx="6"/>
+    <line x1="220" y1="445" x2="290" y2="445" stroke-opacity="0.5"/>
+    <!-- bottom-right box -->
+    <rect x="920" y="420" width="70" height="70" rx="6"/>
+    <line x1="920" y1="445" x2="990" y2="445" stroke-opacity="0.5"/>
+  </g>
+
+  <!-- connection arrows from product boxes toward the cart -->
+  <g stroke="#66d9a6" stroke-opacity="0.45" stroke-width="2" fill="none" stroke-linecap="round">
+    <line x1="295" y1="255" x2="475" y2="320"/>
+    <line x1="295" y1="455" x2="475" y2="395"/>
+    <line x1="915" y1="255" x2="735" y2="320"/>
+    <line x1="915" y1="455" x2="735" y2="395"/>
+  </g>
+
+  <!-- central shopping cart (SVG path drawn around translate(600 360)) -->
+  <g transform="translate(600 360)" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- handle (small line at upper left leading down to cart rim) -->
+    <line x1="-155" y1="-85" x2="-115" y2="-85"/>
+    <line x1="-115" y1="-85" x2="-90" y2="-30"/>
+    <!-- cart body: open top trapezoid shape -->
+    <path d="M -90 -30 L 115 -30 L 95 60 L -60 60 Z" fill="url(#cartFill)"/>
+    <!-- cart internal dividers to imply content -->
+    <line x1="-55" y1="-5" x2="90" y2="-5" stroke-opacity="0.5"/>
+    <line x1="-50" y1="28" x2="85" y2="28" stroke-opacity="0.5"/>
+    <!-- wheels -->
+    <circle cx="-45" cy="95" r="14" fill="#001d42"/>
+    <circle cx="80" cy="95" r="14" fill="#001d42"/>
+  </g>
+
+  <!-- wrench "patch" icon overlapping the cart (top right) -->
+  <g transform="translate(720 275) rotate(35)" fill="none" stroke="#ffb84d" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <!-- wrench head (open jaw) -->
+    <path d="M -32 -32 L -12 -32 L -12 -18 L -26 -4 L -12 10 L -12 28 L -32 28 C -52 28 -62 16 -62 -2 C -62 -20 -52 -32 -32 -32 Z"/>
+    <!-- wrench shaft -->
+    <line x1="-12" y1="4" x2="42" y2="58"/>
+    <line x1="-12" y1="-4" x2="50" y2="50"/>
+    <!-- handle tip -->
+    <circle cx="46" cy="54" r="6" fill="#ffb84d"/>
+  </g>
+
+  <!-- green checkmark badge (bottom-right of cart, indicating "patched / fixed") -->
+  <g transform="translate(720 440)">
+    <circle r="34" fill="#0b3872" stroke="#66d9a6" stroke-width="4"/>
+    <path d="M -15 2 L -4 13 L 17 -11"
+          fill="none"
+          stroke="#66d9a6"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </g>
+
+  <!-- title text at top -->
+  <text x="600" y="70" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="32" font-weight="700" fill="#ffffff" letter-spacing="1">
+    Bosanska lokalizacija Odoo eCommerce
+  </text>
+  <text x="600" y="100" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="400" fill="#ffffff" fill-opacity="0.7" letter-spacing="2">
+    website_sale patch — payment_stripe optional import
+  </text>
+
+  <!-- small project label at bottom center -->
+  <text x="600" y="600" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="14" font-weight="400" fill="#ffffff" fill-opacity="0.45" letter-spacing="3">
+    bring.out × hodi.ba
+  </text>
+</svg>
