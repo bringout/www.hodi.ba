@@ -30,6 +30,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.hero p {
 				font-size: 1.4em;
 				color: rgb(var(--gray));
+				margin: 0;
+			}
+			@media (max-width: 768px) {
+				.hero { padding: 2em 1em 2.5em; }
+				.hero-logo { max-width: 240px; }
+				.hero p { font-size: 1.25em; }
 			}
 		</style>
 		<Footer />
