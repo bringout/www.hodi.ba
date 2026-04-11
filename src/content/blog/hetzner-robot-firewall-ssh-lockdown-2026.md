@@ -230,24 +230,6 @@ python3 scripts/hetzner_setup_firewall.py rollback
 
 Što će uzeti najnoviji `/tmp/hetzner_firewall_backup_*.json`, prikazati diff, tražiti potvrdu, i vratiti raniji ruleset (čime će stariji "Allow all" ponovo biti aktivan).
 
-## Šta nije u skripti
-
-Nekoliko svjesno ostavljenih stvari izvan skoupa:
-
-- **Ne upravlja OS-level iptables.** To radi NixOS konfiguracija u `infra-hodi`. Robot firewall je samo edge, OS firewall je host — ta dva su namjerno razdvojena.
-- **Ne gleda u Hetzner Cloud firewall.** Hetzner ima tri različita "firewall" proizvoda (Robot za dedicated, Cloud Firewall za VPS, nflabs za custom networks). Skript se bavi samo Robot-om jer `hetzner-1` je dedicated auction server.
-- **Nema deklarativni Terraform/Pulumi provider.** Za ovoliko hostova i ovu veličinu tima (jedan-dva admina) to je previše overhead-a. Backup-diff-apply-rollback obrazac je dovoljan.
-- **Nema automatskog CI health-check-a poslije apply-a.** Skript poll-uje dok Robot ne kaže `active`, ali ne pokušava stvarno otvoriti SSH sesiju iz dozvoljenog izvora kao finalnu verifikaciju. To možemo dodati kasnije ako se pokaže potrebnim.
-
-## Lekcije
-
-1. **Ne vjeruj "browser UI je dovoljan" intuiciji za firewall operacije.** Browser je OK za inspekciju; za bilo kakvu promjenu želiš diff + backup + rollback. Napisati tooling je skoro uvijek jeftinije nego čistiti posljedice jednog pogrešnog klika.
-2. **Stateless firewall zahtijeva eksplicitni `established` rule.** Ovo je klasičan subtle bug: sve radi u testu, a onda primijeniš ruleset na produkciju i sjedeći SSH se smrzne. Uvijek rule #0.
-3. **Pandur za drugu napravu (host-level) je koristan.** Ako neko slučajno izbriše SSH lockdown na Robot nivou, OS-level iptables i dalje drži stvari pod kontrolom (port 22 je otvoren svima, ali `fail2ban` i dalje filtrira brute force pokušaje). Dvije linije odbrane su jeftine.
-4. **"Privremene" vrijednosti u javnim repoima/blog postovima obično ostaju.** Zato IP adrese izvornih bastiona u ovom postu nisu prikazane u punom obliku — to su operativni detalji koji nemaju razloga biti zauvijek indeksirani u Google-u. Isti obrazac važi i za [post o LLDAP-u](/blog/lldap-patroni-boot-race-2026.md/) koji smo anonimizirali istoga dana.
-
-Commit sa skriptom: [`profile/hetzner@768298f`](https://github.com/bringout/).
-
 ## Napomena
 
 Generisano od strane Claude 🤖
