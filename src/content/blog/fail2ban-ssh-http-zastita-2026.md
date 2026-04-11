@@ -2,6 +2,7 @@
 title: 'fail2ban zaštita: SSH i HTTP na našoj infrastrukturi'
 description: 'Kako smo konfigurisali fail2ban na dva nivoa — SSH brute force na fizičkom serveru, HTTP bot skeneri na reverse proxy VM-u, sa custom filterom za "secret file hunter" napade'
 pubDate: '2026-04-11T16:00:00'
+heroImage: '/fail2ban-hero.svg'
 ---
 
 Ovaj post je treći u seriji nastaloj nakon [incident reporta od 11. aprila 2026.](/blog/incident-report-nic-hang-2026.md/). Prva dva posta objašnjavaju sami incident i [network fix](/blog/e1000e-offloads-nixos-2026.md/) koji smo primijenili. Ovdje opisujemo drugu polovinu odgovora na incident — fail2ban zaštitu koju smo istog dana instalirali na perimetru naše infrastrukture.
@@ -28,7 +29,7 @@ Naša javna infrastruktura je raspoređena kao dva nivoa:
                   port 80/443 — DNAT → router-7 VM
                          │
                          ▼
-                  router-7 VM (192.168.122.2)
+                  router-7 VM (192.168.xxx.2)
                   nginx reverse proxy
                          │
                          ▼
@@ -65,8 +66,8 @@ services.fail2ban = {
   ignoreIP = [
     "127.0.0.0/8"
     "::1"
-    "192.168.122.0/24"  # internal libvirt VM bridge
-    "77.78.203.115"      # operator client IP
+    "192.168.xxx.0/24"  # internal libvirt VM bridge
+    "77.78.xxx.xxx"       # operator client IP
   ];
   # ... jails ...
 };

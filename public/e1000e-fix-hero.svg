@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="NixOS e1000e workaround: NIC chip with TSO, GSO, and GRO offloads disabled, packet flow through software, green checkmark confirming the fix">
+  <title>NixOS e1000e workaround — disable TSO / GSO / GRO offloads</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0b3872"/>
+      <stop offset="55%" stop-color="#001d42"/>
+      <stop offset="100%" stop-color="#000820"/>
+    </radialGradient>
+    <linearGradient id="chipFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid -->
+  <g fill="#ffffff" fill-opacity="0.05">
+    <circle cx="60" cy="60" r="2"/>
+    <circle cx="180" cy="60" r="2"/>
+    <circle cx="300" cy="60" r="2"/>
+    <circle cx="420" cy="60" r="2"/>
+    <circle cx="540" cy="60" r="2"/>
+    <circle cx="660" cy="60" r="2"/>
+    <circle cx="780" cy="60" r="2"/>
+    <circle cx="900" cy="60" r="2"/>
+    <circle cx="1020" cy="60" r="2"/>
+    <circle cx="1140" cy="60" r="2"/>
+    <circle cx="60" cy="180" r="2"/>
+    <circle cx="180" cy="180" r="2"/>
+    <circle cx="300" cy="180" r="2"/>
+    <circle cx="900" cy="180" r="2"/>
+    <circle cx="1020" cy="180" r="2"/>
+    <circle cx="1140" cy="180" r="2"/>
+    <circle cx="60" cy="300" r="2"/>
+    <circle cx="180" cy="300" r="2"/>
+    <circle cx="1020" cy="300" r="2"/>
+    <circle cx="1140" cy="300" r="2"/>
+    <circle cx="60" cy="450" r="2"/>
+    <circle cx="180" cy="450" r="2"/>
+    <circle cx="300" cy="450" r="2"/>
+    <circle cx="900" cy="450" r="2"/>
+    <circle cx="1020" cy="450" r="2"/>
+    <circle cx="1140" cy="450" r="2"/>
+    <circle cx="60" cy="570" r="2"/>
+    <circle cx="180" cy="570" r="2"/>
+    <circle cx="300" cy="570" r="2"/>
+    <circle cx="420" cy="570" r="2"/>
+    <circle cx="540" cy="570" r="2"/>
+    <circle cx="660" cy="570" r="2"/>
+    <circle cx="780" cy="570" r="2"/>
+    <circle cx="900" cy="570" r="2"/>
+    <circle cx="1020" cy="570" r="2"/>
+    <circle cx="1140" cy="570" r="2"/>
+  </g>
+
+  <!-- packet flow arrows (left side, flowing into chip) -->
+  <g stroke="#66d9a6" stroke-opacity="0.55" stroke-width="3" fill="none" stroke-linecap="round">
+    <line x1="160" y1="300" x2="430" y2="300"/>
+    <line x1="160" y1="360" x2="430" y2="360"/>
+    <line x1="160" y1="420" x2="430" y2="420"/>
+    <!-- arrowheads -->
+    <polyline points="420,293 432,300 420,307"/>
+    <polyline points="420,353 432,360 420,367"/>
+    <polyline points="420,413 432,420 420,427"/>
+  </g>
+  <!-- small packet blocks on the left -->
+  <g fill="#66d9a6" fill-opacity="0.7">
+    <rect x="130" y="293" width="20" height="14" rx="2"/>
+    <rect x="130" y="353" width="20" height="14" rx="2"/>
+    <rect x="130" y="413" width="20" height="14" rx="2"/>
+  </g>
+
+  <!-- packet flow arrows (right side, flowing out of chip) -->
+  <g stroke="#66d9a6" stroke-opacity="0.55" stroke-width="3" fill="none" stroke-linecap="round">
+    <line x1="770" y1="300" x2="1040" y2="300"/>
+    <line x1="770" y1="360" x2="1040" y2="360"/>
+    <line x1="770" y1="420" x2="1040" y2="420"/>
+    <polyline points="1030,293 1042,300 1030,307"/>
+    <polyline points="1030,353 1042,360 1030,367"/>
+    <polyline points="1030,413 1042,420 1030,427"/>
+  </g>
+  <g fill="#66d9a6" fill-opacity="0.7">
+    <rect x="1050" y="293" width="20" height="14" rx="2"/>
+    <rect x="1050" y="353" width="20" height="14" rx="2"/>
+    <rect x="1050" y="413" width="20" height="14" rx="2"/>
+  </g>
+
+  <!-- central NIC chip -->
+  <g transform="translate(600 360)">
+    <!-- chip body -->
+    <rect x="-170" y="-110" width="340" height="220" rx="12"
+          fill="url(#chipFill)"
+          stroke="#ffffff"
+          stroke-width="3"/>
+    <!-- chip pins left -->
+    <g stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+      <line x1="-170" y1="-60" x2="-190" y2="-60"/>
+      <line x1="-170" y1="0"   x2="-190" y2="0"/>
+      <line x1="-170" y1="60"  x2="-190" y2="60"/>
+    </g>
+    <!-- chip pins right -->
+    <g stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+      <line x1="170" y1="-60" x2="190" y2="-60"/>
+      <line x1="170" y1="0"   x2="190" y2="0"/>
+      <line x1="170" y1="60"  x2="190" y2="60"/>
+    </g>
+    <!-- chip label -->
+    <text x="0" y="-72" text-anchor="middle"
+          font-family="'Menlo', 'Consolas', 'Courier New', monospace"
+          font-size="16" font-weight="700" fill="#ffffff" fill-opacity="0.9" letter-spacing="1.5">
+      eno1
+    </text>
+    <!-- three offload toggles in OFF position -->
+    <g font-family="'Menlo', 'Consolas', 'Courier New', monospace" font-size="17" font-weight="700">
+      <!-- TSO row -->
+      <text x="-135" y="-30" fill="#ffffff">TSO</text>
+      <rect x="-45" y="-45" width="80" height="22" rx="11" fill="#ff4d4d" fill-opacity="0.25" stroke="#ff4d4d" stroke-width="2"/>
+      <circle cx="-34" cy="-34" r="8" fill="#ff4d4d"/>
+      <text x="18" y="-28" fill="#ff4d4d" letter-spacing="1">OFF</text>
+      <!-- GSO row -->
+      <text x="-135" y="16" fill="#ffffff">GSO</text>
+      <rect x="-45" y="1" width="80" height="22" rx="11" fill="#ff4d4d" fill-opacity="0.25" stroke="#ff4d4d" stroke-width="2"/>
+      <circle cx="-34" cy="12" r="8" fill="#ff4d4d"/>
+      <text x="18" y="18" fill="#ff4d4d" letter-spacing="1">OFF</text>
+      <!-- GRO row -->
+      <text x="-135" y="62" fill="#ffffff">GRO</text>
+      <rect x="-45" y="47" width="80" height="22" rx="11" fill="#ff4d4d" fill-opacity="0.25" stroke="#ff4d4d" stroke-width="2"/>
+      <circle cx="-34" cy="58" r="8" fill="#ff4d4d"/>
+      <text x="18" y="64" fill="#ff4d4d" letter-spacing="1">OFF</text>
+    </g>
+  </g>
+
+  <!-- green checkmark badge (top-right of chip) -->
+  <g transform="translate(788 250)">
+    <circle r="32" fill="#0b3872" stroke="#66d9a6" stroke-width="4"/>
+    <path d="M -14 2 L -4 12 L 16 -10"
+          fill="none"
+          stroke="#66d9a6"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </g>
+
+  <!-- title text -->
+  <text x="600" y="70" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="38" font-weight="700" fill="#ffffff" letter-spacing="1">
+    NixOS e1000e workaround
+  </text>
+  <text x="600" y="98" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="400" fill="#ffffff" fill-opacity="0.7" letter-spacing="2">
+    TSO · GSO · GRO offloads disabled
+  </text>
+</svg>

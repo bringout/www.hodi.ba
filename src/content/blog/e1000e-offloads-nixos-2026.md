@@ -2,6 +2,7 @@
 title: 'Onemogućavanje e1000e offload-a u NixOS konfiguraciji kao workaround za Hardware Unit Hang'
 description: 'Kako smo riješili Intel e1000e Hardware Unit Hang bug onemogućavanjem TSO/GSO/GRO offload funkcija kroz systemd oneshot servis u NixOS konfiguraciji'
 pubDate: '2026-04-11T15:00:00'
+heroImage: '/e1000e-fix-hero.svg'
 ---
 
 Ovaj post je nastavak [incident reporta od 11. aprila 2026.](/blog/incident-report-nic-hang-2026.md/) gdje smo opisali kako je Intel e1000e NIC driver spontano otkazao na našem glavnom fizičkom serveru nakon 130 dana uptime-a. Ovdje se fokusiramo na konkretan fix — jednostavan workaround koji se može ugraditi u NixOS konfiguraciju i koji svaki sljedeći boot primjenjuje automatski.

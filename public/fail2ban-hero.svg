@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="fail2ban network protection — shield over network nodes with blocked attack markers">
+  <title>fail2ban network protection</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0b3872"/>
+      <stop offset="55%" stop-color="#001d42"/>
+      <stop offset="100%" stop-color="#000820"/>
+    </radialGradient>
+    <linearGradient id="shieldFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid suggesting network fabric -->
+  <g fill="#ffffff" fill-opacity="0.05">
+    <circle cx="60" cy="60" r="2"/>
+    <circle cx="180" cy="60" r="2"/>
+    <circle cx="300" cy="60" r="2"/>
+    <circle cx="420" cy="60" r="2"/>
+    <circle cx="540" cy="60" r="2"/>
+    <circle cx="660" cy="60" r="2"/>
+    <circle cx="780" cy="60" r="2"/>
+    <circle cx="900" cy="60" r="2"/>
+    <circle cx="1020" cy="60" r="2"/>
+    <circle cx="1140" cy="60" r="2"/>
+    <circle cx="60" cy="180" r="2"/>
+    <circle cx="180" cy="180" r="2"/>
+    <circle cx="300" cy="180" r="2"/>
+    <circle cx="900" cy="180" r="2"/>
+    <circle cx="1020" cy="180" r="2"/>
+    <circle cx="1140" cy="180" r="2"/>
+    <circle cx="60" cy="300" r="2"/>
+    <circle cx="180" cy="300" r="2"/>
+    <circle cx="1020" cy="300" r="2"/>
+    <circle cx="1140" cy="300" r="2"/>
+    <circle cx="60" cy="450" r="2"/>
+    <circle cx="180" cy="450" r="2"/>
+    <circle cx="300" cy="450" r="2"/>
+    <circle cx="900" cy="450" r="2"/>
+    <circle cx="1020" cy="450" r="2"/>
+    <circle cx="1140" cy="450" r="2"/>
+    <circle cx="60" cy="570" r="2"/>
+    <circle cx="180" cy="570" r="2"/>
+    <circle cx="300" cy="570" r="2"/>
+    <circle cx="420" cy="570" r="2"/>
+    <circle cx="540" cy="570" r="2"/>
+    <circle cx="660" cy="570" r="2"/>
+    <circle cx="780" cy="570" r="2"/>
+    <circle cx="900" cy="570" r="2"/>
+    <circle cx="1020" cy="570" r="2"/>
+    <circle cx="1140" cy="570" r="2"/>
+  </g>
+
+  <!-- network connection lines between protected nodes -->
+  <g stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.5" fill="none">
+    <line x1="260" y1="260" x2="600" y2="360"/>
+    <line x1="260" y1="400" x2="600" y2="360"/>
+    <line x1="940" y1="260" x2="600" y2="360"/>
+    <line x1="940" y1="400" x2="600" y2="360"/>
+    <line x1="600" y1="150" x2="600" y2="360"/>
+    <line x1="600" y1="550" x2="600" y2="360"/>
+  </g>
+
+  <!-- protected network nodes (white) -->
+  <g fill="#ffffff">
+    <circle cx="260" cy="260" r="8"/>
+    <circle cx="260" cy="400" r="8"/>
+    <circle cx="940" cy="260" r="8"/>
+    <circle cx="940" cy="400" r="8"/>
+    <circle cx="600" cy="150" r="8"/>
+    <circle cx="600" cy="550" r="8"/>
+  </g>
+
+  <!-- blocked attackers (red X marks coming in from edges) -->
+  <g stroke="#ff4d4d" stroke-width="4" stroke-linecap="round">
+    <!-- top-left attacker -->
+    <line x1="100" y1="100" x2="140" y2="140"/>
+    <line x1="140" y1="100" x2="100" y2="140"/>
+    <line x1="140" y1="120" x2="235" y2="245" stroke-opacity="0.35" stroke-dasharray="6 6"/>
+    <!-- top-right attacker -->
+    <line x1="1060" y1="100" x2="1100" y2="140"/>
+    <line x1="1100" y1="100" x2="1060" y2="140"/>
+    <line x1="1060" y1="120" x2="965" y2="245" stroke-opacity="0.35" stroke-dasharray="6 6"/>
+    <!-- bottom-left attacker -->
+    <line x1="100" y1="490" x2="140" y2="530"/>
+    <line x1="140" y1="490" x2="100" y2="530"/>
+    <line x1="140" y1="510" x2="235" y2="415" stroke-opacity="0.35" stroke-dasharray="6 6"/>
+    <!-- bottom-right attacker -->
+    <line x1="1060" y1="490" x2="1100" y2="530"/>
+    <line x1="1100" y1="490" x2="1060" y2="530"/>
+    <line x1="1060" y1="510" x2="965" y2="415" stroke-opacity="0.35" stroke-dasharray="6 6"/>
+  </g>
+
+  <!-- central shield -->
+  <g transform="translate(600 355)">
+    <!-- shield outline (slightly larger for glow effect) -->
+    <path d="M 0 -145 L 115 -105 L 115 35 C 115 95 70 140 0 170 C -70 140 -115 95 -115 35 L -115 -105 Z"
+          fill="url(#shieldFill)"
+          stroke="#ffffff"
+          stroke-width="4"
+          stroke-linejoin="round"/>
+    <!-- inner checkmark -->
+    <path d="M -52 5 L -15 42 L 58 -42"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </g>
+
+  <!-- title text -->
+  <text x="600" y="110" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="38" font-weight="700" fill="#ffffff" letter-spacing="1">
+    fail2ban
+  </text>
+  <text x="600" y="138" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="400" fill="#ffffff" fill-opacity="0.7" letter-spacing="2">
+    SSH &amp; HTTP brute force protection
+  </text>
+</svg>

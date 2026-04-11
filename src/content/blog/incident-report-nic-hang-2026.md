@@ -2,6 +2,7 @@
 title: 'Incident report: otkazivanje mrežnog interfejsa na glavnom serveru (e1000e Hardware Unit Hang)'
 description: 'Detaljan forenzički izvještaj o incidentu od 11. aprila 2026. kada je Intel e1000e NIC driver spontano otkazao nakon 130 dana uptime-a'
 pubDate: '2026-04-11T14:00:00'
+heroImage: '/incident-report-hero.svg'
 ---
 
 Danas, 11. aprila 2026. godine, naš glavni fizički server (Hetzner dedicated, kernel 6.12.63, NixOS 25.05) doživio je kompletan gubitak mrežne konektivnosti koji je završio prinudnim restartom. Ovaj post opisuje šta se tačno desilo, kako smo to dijagnostikovali iz journal logova, i šta je bio stvarni uzrok. Kasnije u istoj sedmici objavljujemo dva popratna posta — jedan o [konkretnom fix-u za NixOS konfiguraciju](/blog/e1000e-offloads-nixos-2026.md/) i jedan o [fail2ban zaštiti](/blog/fail2ban-ssh-http-zastita-2026.md/) koju smo instalirali kao posljedicu ovog incidenta.

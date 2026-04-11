@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Incident report: e1000e NIC Hardware Unit Hang — warning triangle with broken network nodes and cascading failure indicators">
+  <title>Incident report: e1000e NIC Hardware Unit Hang</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0b3872"/>
+      <stop offset="55%" stop-color="#001d42"/>
+      <stop offset="100%" stop-color="#000820"/>
+    </radialGradient>
+    <linearGradient id="triangleFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb84d" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffb84d" stop-opacity="0.06"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid -->
+  <g fill="#ffffff" fill-opacity="0.05">
+    <circle cx="60" cy="60" r="2"/>
+    <circle cx="180" cy="60" r="2"/>
+    <circle cx="300" cy="60" r="2"/>
+    <circle cx="420" cy="60" r="2"/>
+    <circle cx="540" cy="60" r="2"/>
+    <circle cx="660" cy="60" r="2"/>
+    <circle cx="780" cy="60" r="2"/>
+    <circle cx="900" cy="60" r="2"/>
+    <circle cx="1020" cy="60" r="2"/>
+    <circle cx="1140" cy="60" r="2"/>
+    <circle cx="60" cy="180" r="2"/>
+    <circle cx="180" cy="180" r="2"/>
+    <circle cx="300" cy="180" r="2"/>
+    <circle cx="900" cy="180" r="2"/>
+    <circle cx="1020" cy="180" r="2"/>
+    <circle cx="1140" cy="180" r="2"/>
+    <circle cx="60" cy="300" r="2"/>
+    <circle cx="180" cy="300" r="2"/>
+    <circle cx="1020" cy="300" r="2"/>
+    <circle cx="1140" cy="300" r="2"/>
+    <circle cx="60" cy="450" r="2"/>
+    <circle cx="180" cy="450" r="2"/>
+    <circle cx="300" cy="450" r="2"/>
+    <circle cx="900" cy="450" r="2"/>
+    <circle cx="1020" cy="450" r="2"/>
+    <circle cx="1140" cy="450" r="2"/>
+    <circle cx="60" cy="570" r="2"/>
+    <circle cx="180" cy="570" r="2"/>
+    <circle cx="300" cy="570" r="2"/>
+    <circle cx="420" cy="570" r="2"/>
+    <circle cx="540" cy="570" r="2"/>
+    <circle cx="660" cy="570" r="2"/>
+    <circle cx="780" cy="570" r="2"/>
+    <circle cx="900" cy="570" r="2"/>
+    <circle cx="1020" cy="570" r="2"/>
+    <circle cx="1140" cy="570" r="2"/>
+  </g>
+
+  <!-- broken/severed connection lines (dashed red) from center to the "failed" nodes -->
+  <g stroke="#ff4d4d" stroke-opacity="0.55" stroke-width="2" fill="none" stroke-dasharray="8 8">
+    <line x1="260" y1="260" x2="520" y2="360"/>
+    <line x1="260" y1="400" x2="520" y2="400"/>
+    <line x1="940" y1="260" x2="680" y2="360"/>
+    <line x1="940" y1="400" x2="680" y2="400"/>
+    <line x1="600" y1="150" x2="600" y2="210"/>
+    <line x1="600" y1="520" x2="600" y2="470"/>
+  </g>
+
+  <!-- failed network nodes (white ring with red inside — showing error state) -->
+  <g>
+    <circle cx="260" cy="260" r="10" fill="#ff4d4d" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="260" cy="400" r="10" fill="#ff4d4d" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="940" cy="260" r="10" fill="#ff4d4d" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="940" cy="400" r="10" fill="#ff4d4d" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="600" cy="150" r="10" fill="#ff4d4d" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="600" cy="520" r="10" fill="#ff4d4d" stroke="#ffffff" stroke-width="2"/>
+  </g>
+
+  <!-- small node labels hinting at the cascade -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+     font-size="14" fill="#ff9f9f" fill-opacity="0.85" text-anchor="middle">
+    <text x="260" y="238">NIC</text>
+    <text x="260" y="428">nbd2</text>
+    <text x="940" y="238">EXT4</text>
+    <text x="940" y="428">libvirt</text>
+    <text x="600" y="128">journald</text>
+    <text x="600" y="548">kernel</text>
+  </g>
+
+  <!-- central warning triangle -->
+  <g transform="translate(600 360)">
+    <!-- outer glow / fill triangle -->
+    <path d="M 0 -150 L 152 115 L -152 115 Z"
+          fill="url(#triangleFill)"
+          stroke="#ffb84d"
+          stroke-width="5"
+          stroke-linejoin="round"/>
+    <!-- exclamation bar -->
+    <rect x="-7" y="-85" width="14" height="125" rx="7" fill="#ffb84d"/>
+    <!-- exclamation dot -->
+    <circle cx="0" cy="82" r="12" fill="#ffb84d"/>
+  </g>
+
+  <!-- title text -->
+  <text x="600" y="70" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="38" font-weight="700" fill="#ffffff" letter-spacing="1">
+    Incident report
+  </text>
+  <text x="600" y="98" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="400" fill="#ffffff" fill-opacity="0.7" letter-spacing="2">
+    e1000e Hardware Unit Hang &amp; cascade
+  </text>
+</svg>
