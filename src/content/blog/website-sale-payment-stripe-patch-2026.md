@@ -9,19 +9,6 @@ heroImage: '/website-sale-patch-hero.svg'
 
 U sklopu rada na bosanskoj lokalizaciji Odoo-a i pripreme e-commerce toka za domaće trgovce, naišli smo na zanimljivu prepreku: **standardni `website_sale` modul se nije htio instalirati** na našoj Hodi Odoo 16 konfiguraciji. U ovom postu opisujemo šta je pošlo naopako, kako smo to dijagnostikovali, i kako smo to riješili malim, sigurnim patch-om u upstream bringout forku OCA-inog OCB repozitorija.
 
-## Kontekst — zašto nam je `website_sale` važan
-
-`website_sale` je Odoo modul koji pretvara Odoo instancu u pravu web-trgovinu: katalog proizvoda, shopping cart, checkout tok, i integracija sa payment acquirer-ima. Za svaku ozbiljnu eCommerce implementaciju u BiH — bilo da trgovac prodaje fizičke proizvode, usluge, digitalne licence, ili pretplate — ovaj modul je polazna tačka.
-
-U našem bosanskom stack-u, `website_sale` se veže sa:
-
-- **Lokalnim payment acquirer-ima** — Monri, WSPay, Corvus, lokalne banke
-- **Fiskalizacijom kroz `l10n_ba_pdv`** — pravilnim označavanjem PDV stopa, izdavanjem faktura u formatu koji UINO prihvata
-- **Valutom BAM** — umjesto EUR/USD koji dolaze kao default
-- **Bosanskim prijevodom** — da korisnički interfejs bude čitljiv kupcima
-
-Sve je ovo već funkcionalno kod nas u `bringout-test` instanci **osim** posljednjeg koraka prije "live": instalacije `website_sale` modula. I baš tu se sistem zalomio.
-
 ## Simptom — kernel traceback usred modulnog init-a
 
 Pri pokretanju `odoo --init=payment_monri_pay_by_link,sale,website_sale,...` protiv naše test instance, Odoo je počeo normalno podizati module, ali onda u 77/96 iteracije:
