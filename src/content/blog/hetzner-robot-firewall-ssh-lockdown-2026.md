@@ -11,14 +11,9 @@ Odlučili smo da premjestimo tu prvu liniju odbrane jedan korak uzbrdo — u Het
 
 ## Cilj
 
-SSH na `95.217.79.40:22` treba da bude dostupan **samo sa četiri bastion hosta**:
+SSH pristup treba omogućiti **samo sa bastion hostova**.
 
-- `smtp-sa-1.out.ba`
-- `smtp-sa-2.out.ba`
-- `awslight-frankfurt-1`
-- `awslight-paris-1`
-
-(U nastavku posta javne IP adrese ovih hostova su prikazane sa prva dva okteta, na primjer `77.78.xxx.xxx` — to daje dovoljno konteksta da se razumije da se radi o različitim providerima i mrežama, ali ne pruža potencijalnom napadaču gotovu listu ulaznih tačaka.)
+(U nastavku posta bastion hostovi su prikazani kao generičke oznake `bastion 1..4`, a njihove javne IP adrese zamagljene — to su operativni detalji koji nemaju razloga biti zauvijek indeksirani u Google-u.)
 
 Svi ostali portovi (`80`, `443`, `25`, `465`, `993`, `2222`, ...) ostaju netaknuti — kroz njih i dalje prolazi saobraćaj za web, mail i Forgejo SSH forwarding. Jedini cilj je **port 22 na samom hostu**.
 
@@ -41,10 +36,10 @@ Konačni dizajn ima **tačno 10 input pravila** (maksimum koji Robot dozvoljava 
  [0] established tcp            tcp flags=ack                    accept   ← v4 i v6 obje
  [1] icmp v4                    ipv4 icmp                        accept
  [2] icmp v6                    ipv6 icmp                        accept   ← Neighbor Discovery / PMTUD
- [3] ssh from smtp-sa-1         ipv4 src=77.78.xxx.xxx dport=22 tcp  accept
- [4] ssh from smtp-sa-2         ipv4 src=77.78.xxx.xxx dport=22 tcp  accept
- [5] ssh from awslight-fra      ipv4 src=52.58.xxx.xxx dport=22 tcp  accept
- [6] ssh from awslight-par      ipv4 src=13.37.xxx.xxx dport=22 tcp  accept
+ [3] ssh from bastion 1         ipv4 src=xx.xx.xxx.xxx dport=22 tcp  accept
+ [4] ssh from bastion 2         ipv4 src=xx.xx.xxx.xxx dport=22 tcp  accept
+ [5] ssh from bastion 3         ipv4 src=xx.xx.xxx.xxx dport=22 tcp  accept
+ [6] ssh from bastion 4         ipv4 src=xx.xx.xxx.xxx dport=22 tcp  accept
  [7] drop other ssh v4          ipv4 dport=22 tcp                discard
  [8] drop other ssh v6          ipv6 dport=22 tcp                discard
  [9] allow everything else      (nothing)                        accept
