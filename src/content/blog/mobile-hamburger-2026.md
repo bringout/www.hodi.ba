@@ -2,7 +2,7 @@
 title: 'Mobilna naslovna strana www.hodi.ba — hamburger meni'
 description: 'Kratka popravka: na telefonima se navigacija sada skriva iza hamburger dugmeta, a hero logo i pozdrav su bliže jedno drugom.'
 pubDate: '2026-04-11T12:15:00'
-heroImage: '/mobile-poslije-hamburger.png'
+heroImage: '/mobile-hamburger-hero.svg'
 ---
 
 Mali, ali primjetan popravak na naslovnoj strani [www.hodi.ba](https://www.hodi.ba) — sada je ljepša na telefonu.
