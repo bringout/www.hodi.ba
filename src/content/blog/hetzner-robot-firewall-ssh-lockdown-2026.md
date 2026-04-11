@@ -75,9 +75,9 @@ Robot web panel je sasvim sposoban da se uđe u firewall stranicu i klikne kroz 
 
 Napravili smo `profile/hetzner/scripts/hetzner_setup_firewall.py` — stdlib-only Python skriptu (oko 600 linija) koja rješava sve četiri stavke.
 
-## Skript
+## Skripta
 
-Skripta razgovara sa Robot web-service API-jem preko HTTP Basic Auth-a. Kredencijali se čitaju iz `pass` store-a:
+Razgovara sa Robot web-service API-jem preko HTTP Basic Auth-a. Kredencijali se čitaju iz `pass` store-a:
 
 ```bash
 pass show hetzner/ws-user       # na primjer: #ws+xxxxxxxx
