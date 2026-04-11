@@ -35,19 +35,19 @@ Ključna stvar koju često zaboravimo: **Robot firewall je stateless**. Ako post
 
 ## Ruleset
 
-Napisali smo tih 10 input pravila po tačno određenom redoslijedu — top-to-bottom, prvi match pobjeđuje:
+Konačni dizajn ima **tačno 10 input pravila** (maksimum koji Robot dozvoljava — više o tome dole):
 
 ```
- [0] allow established tcp     proto=tcp flags=ack              accept
- [1] allow icmp v4              ipv4 icmp                        accept
- [2] allow icmp v6              ipv6 icmp                        accept   ← Neighbor Discovery / PMTUD
- [3] ssh from smtp-sa-1         src=77.78.xxx.xxx dport=22 tcp    accept
- [4] ssh from smtp-sa-2         src=77.78.xxx.xxx dport=22 tcp    accept
- [5] ssh from awslight-fra      src=52.58.xxx.xxx dport=22 tcp    accept
- [6] ssh from awslight-par      src=13.37.xxx.xxx dport=22 tcp    accept
- [7] drop other ssh             dport=22 tcp                     discard
- [8] allow other tcp            tcp                              accept
- [9] allow udp                  udp                              accept
+ [0] established tcp            tcp flags=ack                    accept   ← v4 i v6 obje
+ [1] icmp v4                    ipv4 icmp                        accept
+ [2] icmp v6                    ipv6 icmp                        accept   ← Neighbor Discovery / PMTUD
+ [3] ssh from smtp-sa-1         ipv4 src=77.78.xxx.xxx dport=22 tcp  accept
+ [4] ssh from smtp-sa-2         ipv4 src=77.78.xxx.xxx dport=22 tcp  accept
+ [5] ssh from awslight-fra      ipv4 src=52.58.xxx.xxx dport=22 tcp  accept
+ [6] ssh from awslight-par      ipv4 src=13.37.xxx.xxx dport=22 tcp  accept
+ [7] drop other ssh v4          ipv4 dport=22 tcp                discard
+ [8] drop other ssh v6          ipv6 dport=22 tcp                discard
+ [9] allow everything else      (nothing)                        accept
 
 output:
  [0] Allow all                                                   accept
@@ -56,13 +56,50 @@ filter_ipv6 = true
 whitelist_hos = true
 ```
 
+Ovako izgleda u Hetzner Robot panelu nakon apply-a (IP adrese zamagljene):
+
+![Hetzner Robot firewall panel sa 10 aktivnih pravila nakon apply-a](/hetzner-robot-panel.png)
+
 Nekoliko suptilnosti koje smo naučili na nogama:
 
-1. **Pravilo 0 (`tcp flags: ack`) mora biti prvo.** Stateless firewall ne zna šta je "established" sam po sebi — jedina vodilja je TCP flag bit. Ako ovo pravilo ne postoji, SSH sesija koja je upravo primijenila promjenu gubi se sljedećim packetom i moraš čekati da se vidjiš. Sa ovim pravilom, tekuće sesije preživljavaju apply.
-2. **Pravilo 7 (`drop other ssh`) mora biti iznad pravila 8.** Ako se zamijene, `allow other tcp` će pokupiti svaki dolazni TCP uključujući SSH, i blokada nikad neće okinuti.
-3. **Pravila 8 i 9 su "fall-through allow".** Bez njih bi Robot default-discard blokirao sav web i mail saobraćaj. Sa njima, sav ne-SSH saobraćaj prolazi kroz edge kao i do sada i dalje ga filtrira samo OS-level iptables — čime se edge promjena svede striktno na port 22.
-4. **`filter_ipv6=true`** je zadržan namerno. Da smo ga isključili, IPv6 bi u cijelosti zaobilazio Robot firewall i IPv6 SSH bi ostao otvoren svima. Zadržavanjem filtera na pravilo 7 (`drop other ssh`) se primjenjuje i na IPv6, jer nema postavljen `ip_version`. Mrežni "back door" je zatvoren.
-5. **ICMPv6 (pravilo 2) mora biti eksplicitno dopušten.** U suprotnom IPv6 Neighbor Discovery i Path MTU Discovery mogu tiho prestati raditi. Ovo je uobičajen razlog zašto ljudi koji isključe Robot firewall ostanu bez IPv6 konekcije.
+1. **Pravilo 0 (`tcp flags: ack`) mora biti prvo.** Stateless firewall ne zna šta je "established" sam po sebi — jedina vodilja je TCP flag bit. Ako ovo pravilo ne postoji, SSH sesija koja je upravo primijenila promjenu gubi se sljedećim paketom. Sa ovim pravilom, tekuće sesije preživljavaju apply. Ovo pravilo **namjerno nema `ip_version`** jer želimo da pokrije i IPv4 i IPv6 istovremeno — bez toga bismo trošili dva slota od 10.
+2. **Pravila 7 i 8 (`drop other ssh v4/v6`) moraju biti iznad pravila 9.** Ako se zamijene, `allow everything else` će pokupiti svaki dolazni TCP uključujući SSH, i blokada nikad neće okinuti.
+3. **Pravilo 9 je "fall-through allow".** Bez njega bi Robot default-discard blokirao sav web i mail saobraćaj. Sa njim, sav ne-SSH saobraćaj prolazi kroz edge i dalje ga filtrira samo OS-level iptables — čime se edge promjena svede striktno na port 22.
+4. **`filter_ipv6=true`** je zadržan namjerno. Da smo ga isključili, IPv6 bi u cijelosti zaobilazio Robot firewall i IPv6 SSH bi ostao otvoren svima. Sa filterom, pravilo 8 (`drop other ssh v6`) zatvara IPv6 back door.
+5. **ICMPv6 (pravilo 2) mora biti eksplicitno dopušten.** U suprotnom IPv6 Neighbor Discovery i Path MTU Discovery mogu tiho prestati raditi. Ovo je uobičajen razlog zašto ljudi koji uključe Robot firewall ostanu bez IPv6 konekcije.
+
+## Dvije nepisane konstante koje su nas koštale sat vremena
+
+Hetzner Robot docs opisuju POST `/firewall/{server-number}` na visokom nivou, ali dvije konstante *nisu* dokumentovane, a obje smo otkrili na bolan način:
+
+### 1. Hard cap: **maksimalno 10 input pravila**
+
+Prvi put smo dizajnirali ruleset od 14 pravila (posebno `allow tcp v4`, `allow tcp v6`, `allow udp v4`, `allow udp v6` na dnu). API ga je odbio sa `HTTP 400 INVALID_INPUT` na polje `rules`. Ista greška sa 11 pravila. Sa 10 — prolazi. Limit je tvrd i ne zavisi od sadržaja. Taj cap nismo našli ni u jednom dokumentu — znalo se samo u starim forum thread-ovima.
+
+Ovo je razlog zašto pravilo 0 (`established tcp`) nema postavljen `ip_version` — merge-anje v4 i v6 u jedno pravilo oslobađa slot.
+
+### 2. `protocol` **zahtijeva** `ip_version`
+
+Ako pravilo ima postavljen `protocol` (`tcp`, `udp`, `icmp`), onda **mora** imati i `ip_version` (`ipv4` ili `ipv6`). Bez toga Robot API vraća isti `HTTP 400 INVALID_INPUT`, i to za sve vrijednosti protokola. Mi smo u prvom pokušaju imali pravila kao:
+
+```
+rules[input][0][name]=allow tcp
+rules[input][0][protocol]=tcp
+rules[input][0][action]=accept
+```
+
+i debilno dugo probavali drugi `protocol=` string, pa numerički broj (`6`), pa različite kombinacije — sve je padalo na istu grešku. Rješenje:
+
+```
+rules[input][0][name]=allow tcp v4
+rules[input][0][ip_version]=ipv4        ← bez ovoga POST ne prolazi
+rules[input][0][protocol]=tcp
+rules[input][0][action]=accept
+```
+
+Izuzetak: pravila koja imaju samo `tcp_flags` bez `protocol` (poput našeg `established tcp`) **mogu** izostaviti `ip_version`, i onda se primjenjuju na oba IP familije. To je jedini način da se spaja v4/v6 obrada u jedno pravilo pri ovom 10-slot limitu.
+
+**Ako Hetzner bude ikada vratio jasnu validaciju s nazivima polja koja im trebaju — velika hvala. Do tad, ovaj blog post je dokumentacija.**
 
 ## Zašto reusable skripta, a ne klikanje po browseru
 
