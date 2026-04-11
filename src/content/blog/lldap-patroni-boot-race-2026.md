@@ -28,9 +28,9 @@ SSO stack se sastoji iz tri servisa raspoređena preko više mašina:
 
 | Servis | Host | Port | Uloga |
 |---|---|---|---|
-| **Authelia** | node67 (`192.168.122.13`) | 9091 | OIDC provider |
-| **LLDAP** | node67 (`192.168.122.13`) | 3890 (LDAP), 17170 (admin UI) | Direktorij korisnika |
-| **Patroni PostgreSQL** | node62–65, VIP `192.168.122.100` | 5432 | Storage za LLDAP *i* Authelia |
+| **Authelia** | node67 (`192.168.xxx.xx2`) | 9091 | OIDC provider |
+| **LLDAP** | node67 (`192.168.xxx.xx2`) | 3890 (LDAP), 17170 (admin UI) | Direktorij korisnika |
+| **Patroni PostgreSQL** | node62–65, VIP `192.168.xxx.xx1` | 5432 | Storage za LLDAP *i* Authelia |
 
 Lanc zavisnosti:
 
@@ -39,9 +39,9 @@ nginx (router-7) ──▶ authelia-main (node67:9091)
                           │
                           ├──▶ LLDAP (localhost:3890)
                           │         │
-                          │         └──▶ Postgres @ VIP 192.168.122.100:5432
+                          │         └──▶ Postgres @ VIP 192.168.xxx.xx1:5432
                           │
-                          └──▶ Postgres @ VIP 192.168.122.100:5432
+                          └──▶ Postgres @ VIP 192.168.xxx.xx1:5432
 ```
 
 Ako bilo koji član lanca otkaže, **503/502 se vraća prema korisniku**. Ako LLDAP ne može doći do Postgres-a, njegov proces izlazi — a onda Authelia ne može autentikovati korisnike i pravi 502 upstream error u nginx-u.
@@ -51,9 +51,9 @@ Ako bilo koji član lanca otkaže, **503/502 se vraća prema korisniku**. Ako LL
 Prvo smo provjerili šta nginx javlja i da li je Authelia upstream živ:
 
 ```bash
-$ ssh router-7 'curl -sS -o /dev/null -w "authelia upstream: %{http_code}\n" http://192.168.122.13:9091/'
+$ ssh router-7 'curl -sS -o /dev/null -w "authelia upstream: %{http_code}\n" http://192.168.xxx.xx2:9091/'
 authelia upstream: 000
-curl: (7) Failed to connect to 192.168.122.13 port 9091
+curl: (7) Failed to connect to 192.168.xxx.xx2 port 9091
 ```
 
 Port je zatvoren. Skok na node67:
@@ -75,7 +75,7 @@ Apr 11 11:48:04 node67 systemd[1]: lldap.service: Main process exited, code=exit
 Apr 11 11:48:04 node67 systemd[1]: lldap.service: Failed with result 'exit-code'.
 ```
 
-LLDAP je pokušao jednom, udario u `No route to host` prema Patroni VIP-u (`192.168.122.100:5432`), izašao je sa kodom 1, i od tada — **više nikad** nije pokušao. Nije bilo retry-a, nije bilo restart-a, samo permanent `failed` stanje.
+LLDAP je pokušao jednom, udario u `No route to host` prema Patroni VIP-u (`192.168.xxx.xx1:5432`), izašao je sa kodom 1, i od tada — **više nikad** nije pokušao. Nije bilo retry-a, nije bilo restart-a, samo permanent `failed` stanje.
 
 ## Root cause
 
@@ -86,8 +86,8 @@ Ovo je klasičan boot race između dvije nezavisne mašine:
    - etcd je trebao quorum
    - Patroni replika mora iskomunicirati sa etcd-om
    - Leader election se mora završiti
-   - Leader mora bind-ati floating VIP `192.168.122.100` na svoj interfejs
-3. **LLDAP** je startao prije nego što se taj lanac završio i probao TCP konekciju na `192.168.122.100:5432`. Nijedan routing table nije imao rutu za taj IP u tom trenutku (VIP nije bio up ni na jednoj mašini) → kernel vraća `EHOSTUNREACH` → LLDAP izlazi.
+   - Leader mora bind-ati floating VIP `192.168.xxx.xx1` na svoj interfejs
+3. **LLDAP** je startao prije nego što se taj lanac završio i probao TCP konekciju na `192.168.xxx.xx1:5432`. Nijedan routing table nije imao rutu za taj IP u tom trenutku (VIP nije bio up ni na jednoj mašini) → kernel vraća `EHOSTUNREACH` → LLDAP izlazi.
 
 Problem nije loša konfiguracija LLDAP-a — problem je što **LLDAP nema ugrađen retry mehanizam pri startup failu**. Ako baza nije dostupna, servis se ne ubija u petlji, samo izađe i ostaje mrtav.
 
@@ -108,7 +108,7 @@ Restart servisa rješava trenutno stanje, ali ne rješava sutra. Sljedeći reboo
 U nixos konfiguraciji (`services/hetzner/sso/default.nix`) dodali smo sljedeći blok:
 
 ```nix
-# LLDAP depends on the Patroni Postgres cluster at 192.168.122.100:5432.
+# LLDAP depends on the Patroni Postgres cluster at 192.168.xxx.xx1:5432.
 # At boot the VIP / leader election may take several seconds longer than
 # this host's network-online.target, and LLDAP exits immediately on
 # "No route to host" with no built-in retry. Restart on failure with a
@@ -137,7 +137,7 @@ Systemd ostaje nenadašno uporan jer smo eksplicitno postavili `StartLimitInterv
 
 ## Zašto ne diramo Authelia
 
-Initialni pokušaj je bio da istu politiku postavimo i na `authelia-main.service`, ali nix eval odmah javi:
+Inicijalni pokušaj je bio da istu politiku postavimo i na `authelia-main.service`, ali nix eval odmah javi:
 
 ```
 error: The option `systemd.services.authelia-main.serviceConfig.Restart' has
