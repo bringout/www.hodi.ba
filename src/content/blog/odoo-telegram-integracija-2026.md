@@ -2,7 +2,6 @@
 title: 'Odoo 16 + Telegram: besplatna integracija za korisničku podršku'
 description: 'Kako smo spojili Telegram Bot API sa Odoo 16 koristeći OCA mail_gateway modul — bez troškova, bez Meta verifikacije, s potpunom dvosmjernom komunikacijom'
 pubDate: '2026-04-12T15:00:00'
-heroImage: '/telegram-discuss-chat.png'
 ---
 
 ## Zašto Telegram, a ne WhatsApp?
@@ -67,10 +66,6 @@ U Odoo navigirajte na **Postavke → Tehnički detalji → Gateway** i kreirajte
 Nakon snimanja, kliknite **"Integrate Webhook"** — Odoo automatski registruje webhook URL kod Telegram API-ja.
 
 ## Korak 3: Testiranje komunikacije
-
-Kada korisnik pošalje poruku vašem botu na Telegramu, poruka se automatski pojavljuje u **Odoo Discuss** kao novi kanal pod sekcijom vašeg bota:
-
-![Telegram kanali u Odoo Discuss sidebar](/telegram-discuss-sidebar.png)
 
 Odoo korisnici mogu direktno odgovoriti iz Discuss-a, a odgovor se šalje nazad korisniku na Telegram:
 

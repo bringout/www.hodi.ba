@@ -2,7 +2,6 @@
 title: 'Popravke OCA mail_gateway modula za Odoo 16'
 description: 'Dva buga koja smo pronašli i popravili u OCA mail_gateway modulu: Werkzeug 3.x charset kompatibilnost i Odoo 16 OWL selection field validacija'
 pubDate: '2026-04-12T16:00:00'
-heroImage: '/telegram-gateway-config.png'
 ---
 
 Prilikom integracije [Telegram bota sa Odoo 16](/blog/odoo-telegram-integracija-2026/) koristeći OCA `mail_gateway` modul, naišli smo na dva buga koji sprečavaju normalan rad. Oba su popravljena u našem forku: [bringout/odoo-bringout-oca-social](https://github.com/bringout/odoo-bringout-oca-social/commit/0a14b48362f16f3820c0bdaf9b2a6648e362ef15).
