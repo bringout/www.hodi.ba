@@ -155,6 +155,10 @@ Kupac klikne "Plati" na web shopu
 | `telegram_notify_monri.notify_error` | `True` | Notifikacija na grešku |
 | `telegram_notify_monri.notify_hangup` | `True` | Notifikacija na timeout |
 
+## Napomena
+
+Trenutna faza ovih modula je "brainstorm".
+
 ## Izvorni kod
 
 Svi repozitoriji su private na GitHub organizaciji `bringout/`:
