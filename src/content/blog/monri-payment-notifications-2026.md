@@ -165,7 +165,7 @@ Svi repozitoriji su private na GitHub organizaciji `bringout/`:
 
 Dokumentacija modula: [MONRI_SPECS.md](https://github.com/bringout/odoo-bringout-payment_monri_pay_by_link/blob/main/docs/MONRI_SPECS.md)
 
-## Napomena
+## Napomene
 
 Trenutna faza ovih modula je "brainstorm".
 
