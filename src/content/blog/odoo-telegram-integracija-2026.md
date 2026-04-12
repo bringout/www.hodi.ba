@@ -121,3 +121,10 @@ Naš fork OCA/social repozitorija sa primijenjenim popravkama:
 ## Zaključak
 
 Za mala preduzeća koja traže besplatnu messaging integraciju sa Odoo-om, Telegram Bot API + OCA mail_gateway je odlično rješenje. Nema troškova API-ja, nema Meta verifikacije, postavljanje traje par minuta, a dvosmjerna komunikacija radi odmah.
+
+## Napomena
+
+Generisano od strane Claude 🤖
+
+--
+hernad@bring.out.ba

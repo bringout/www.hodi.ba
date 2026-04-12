@@ -155,10 +155,6 @@ Kupac klikne "Plati" na web shopu
 | `telegram_notify_monri.notify_error` | `True` | Notifikacija na grešku |
 | `telegram_notify_monri.notify_hangup` | `True` | Notifikacija na timeout |
 
-## Napomena
-
-Trenutna faza ovih modula je "brainstorm".
-
 ## Izvorni kod
 
 Svi repozitoriji su private na GitHub organizaciji `bringout/`:
@@ -168,3 +164,12 @@ Svi repozitoriji su private na GitHub organizaciji `bringout/`:
 - [odoo-bringout-payment_monri_pay_by_link](https://github.com/bringout/odoo-bringout-payment_monri_pay_by_link) (v16.0.1.6.0)
 
 Dokumentacija modula: [MONRI_SPECS.md](https://github.com/bringout/odoo-bringout-payment_monri_pay_by_link/blob/main/docs/MONRI_SPECS.md)
+
+## Napomena
+
+Trenutna faza ovih modula je "brainstorm".
+
+Generisano od strane Claude 🤖
+
+--
+hernad@bring.out.ba

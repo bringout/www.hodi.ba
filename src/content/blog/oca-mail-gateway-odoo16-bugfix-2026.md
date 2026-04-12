@@ -107,3 +107,10 @@ Ovaj fix je implementiran kao Odoo modul override (QWeb template inheritance), n
 ## Kako primijeniti popravke
 
 Ako koristite OCA `mail_gateway` na Odoo 16 sa Werkzeug 3.x, možete preuzeti naš fork ili primijeniti promjene ručno — radi se o ukupno 3 fajla i manje od 30 linija koda.
+
+## Napomena
+
+Generisano od strane Claude 🤖
+
+--
+hernad@bring.out.ba
