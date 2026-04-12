@@ -2,6 +2,7 @@
 title: 'Odoo 16 + Telegram: besplatna integracija za korisničku podršku'
 description: 'Kako smo spojili Telegram Bot API sa Odoo 16 koristeći OCA mail_gateway modul — bez troškova, bez Meta verifikacije, s potpunom dvosmjernom komunikacijom'
 pubDate: '2026-04-12T15:00:00'
+heroImage: '/telegram-odoo-hero.svg'
 ---
 
 ## Zašto Telegram, a ne WhatsApp?
