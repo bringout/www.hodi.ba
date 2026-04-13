@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2AABEE"/>
+      <stop offset="100%" stop-color="#229ED9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Grid pattern -->
+  <g opacity="0.06" stroke="#fff" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accent)"/>
+  <!-- Telegram icon -->
+  <g transform="translate(80, 160)">
+    <circle cx="50" cy="50" r="50" fill="url(#tg)"/>
+    <path d="M70.3 33.5L28.8 49.4c-2.8 1.1-2.8 2.9-.5 3.6l10.6 3.3 4.1 12.6c.5 1.4.3 2 1.8 2l-1.7-7.8 29.5-26.6c1.3-1.1-.3-1.7-2-.7L38.5 63.9l-.2.1-1.3 6.3c1.3 0 1.8-.6 2.5-1.3l6-5.8 12.4 9.2c2.3 1.3 3.9.6 4.5-2.1l8.1-38.4c.8-3.1-1.2-4.5-3.2-3.6z" fill="#fff"/>
+  </g>
+  <!-- Odoo gear icon -->
+  <g transform="translate(1020, 400)" opacity="0.15">
+    <circle cx="50" cy="50" r="40" stroke="#e94560" stroke-width="3" fill="none"/>
+    <circle cx="50" cy="50" r="15" stroke="#e94560" stroke-width="3" fill="none"/>
+    <line x1="50" y1="5" x2="50" y2="20" stroke="#e94560" stroke-width="4"/>
+    <line x1="50" y1="80" x2="50" y2="95" stroke="#e94560" stroke-width="4"/>
+    <line x1="5" y1="50" x2="20" y2="50" stroke="#e94560" stroke-width="4"/>
+    <line x1="80" y1="50" x2="95" y2="50" stroke="#e94560" stroke-width="4"/>
+  </g>
+  <!-- Check marks -->
+  <g transform="translate(80, 340)" fill="#4ade80">
+    <path d="M0 12 L8 20 L22 4" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="32" y="18" font-family="monospace" font-size="16" fill="#94a3b8">mail_gateway: email skip for gateway partners</text>
+  </g>
+  <g transform="translate(80, 375)" fill="#4ade80">
+    <path d="M0 12 L8 20 L22 4" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="32" y="18" font-family="monospace" font-size="16" fill="#94a3b8">mail_gateway_telegram: null message guard</text>
+  </g>
+  <g transform="translate(80, 410)" fill="#4ade80">
+    <path d="M0 12 L8 20 L22 4" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="32" y="18" font-family="monospace" font-size="16" fill="#94a3b8">"via Telegram" identity display</text>
+  </g>
+  <g transform="translate(80, 445)" fill="#4ade80">
+    <path d="M0 12 L8 20 L22 4" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="32" y="18" font-family="monospace" font-size="16" fill="#94a3b8">oca-social repo restructure</text>
+  </g>
+  <!-- Title -->
+  <text x="80" y="100" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#e94560">OCA mail_gateway + mail_gateway_telegram</text>
+  <text x="80" y="140" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#ffffff">Popravke za Odoo 16 — Dio 2</text>
+  <!-- Version badge -->
+  <rect x="80" y="500" width="120" height="32" rx="6" fill="#0f3460"/>
+  <text x="140" y="522" font-family="monospace" font-size="14" fill="#60a5fa" text-anchor="middle">Odoo 16.0</text>
+  <rect x="210" y="500" width="80" height="32" rx="6" fill="#1e3a5f"/>
+  <text x="250" y="522" font-family="monospace" font-size="14" fill="#60a5fa" text-anchor="middle">OCA</text>
+  <rect x="300" y="500" width="100" height="32" rx="6" fill="#1e3a5f"/>
+  <text x="350" y="522" font-family="monospace" font-size="14" fill="#2AABEE" text-anchor="middle">Telegram</text>
+  <!-- Date -->
+  <text x="1120" y="600" font-family="monospace" font-size="14" fill="#475569" text-anchor="end">2026-04-13 | hodi.ba</text>
+</svg>
