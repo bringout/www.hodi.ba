@@ -1,11 +1,11 @@
 ---
-title: 'Odoo + Telegram: Iteracija 4 — telegram_partner_group v2.0.0 (@svi, @reply, forum relay, auto-match telefonom)'
-description: 'Četvrta iteracija bring.out Telegram podrške: @svi broadcast, @reply i @-mention rutiranje, bidirekcioni forum ↔ Discuss relay, auto-match telefonom, keyword stripping i još'
+title: 'Odoo + Telegram: Iteracija 5 — telegram_partner_group v2.0.0 (@svi, @reply, forum relay, auto-match telefonom)'
+description: 'Peta iteracija bring.out Telegram podrške: @svi broadcast, @reply i @-mention rutiranje, bidirekcioni forum ↔ Discuss relay, auto-match telefonom, keyword stripping i još'
 pubDate: '2026-04-14T16:20:00'
 heroImage: '/telegram-forum-test-dobavljac-2026-04-14.png'
 ---
 
-Nastavak rada na [prvoj](/blog/odoo-telegram-integracija-2026/), [drugoj](/blog/oca-mail-gateway-telegram-fixes-part2-2026/) i [trećoj](/blog/odoo-telegram-iteracija-3-2026/) iteraciji Odoo-Telegram integracije. Fokus ove iteracije: **preciznije rutiranje poruka** i **bidirekcioni rad kroz forum supergrupu na mobitelu**.
+Nastavak rada na [prvoj](/blog/odoo-telegram-integracija-2026/), [drugoj](/blog/oca-mail-gateway-telegram-fixes-part2-2026/), [trećoj](/blog/odoo-telegram-iteracija-3-2026/) i [četvrtoj](/blog/odoo-telegram-partner-forum-2026/) iteraciji Odoo-Telegram integracije. Fokus ove iteracije: **preciznije rutiranje poruka** i **bidirekcioni rad kroz forum supergrupu na mobitelu**.
 
 Modul: [bringout/odoo-bringout-telegram_partner_group](https://github.com/bringout/odoo-bringout-telegram_partner_group) v2.0.0.
 
@@ -19,7 +19,7 @@ U iteracijama 1–3 imali smo:
 - Agent odgovara iz Discuss-a → poruka stiže kontaktu na Telegram.
 - Paralelni mirror u **forum supergrupu** `bring.out partneri` — jedan topik po firmi ili kontaktu, da cijeli tim vidi razgovore sa mobitela.
 
-Problemi koje smo rješavali u iteraciji 4:
+Problemi koje smo rješavali u iteraciji 5:
 
 1. **Rutiranje kod više kontakata iste firme.** Kad pišu i Edin i Elma iz HANO d.o.o., default `last-writer-wins` često šalje agentov odgovor pogrešnoj osobi.
 2. **Jednosmjerni forum.** Agent tipka u forum topic na mobitelu → Odoo ne vidi, kupac ne dobija poruku.
