@@ -2,7 +2,8 @@
 title: 'Telegram onboarding preko KEP-potpisanog PDF-a'
 description: 'Novi Odoo modul automatski verifikuje KEP potpis na PDF-u koji kontakt pošalje Telegram botu, ekstrahuje podatke (ime, telefon, email, adresa, mjesto) i povezuje Telegram korisnika sa kontaktom u bazi.'
 pubDate: '2026-04-16T01:00:00'
-heroImage: '/kep-17-29-32.png'
+updatedDate: '2026-04-16T03:00:00'
+heroImage: '/telegram-kep-onboarding.png'
 ---
 
 Nakon [Bosanskog KEP verifikatora](/blog/kep-verifikator-2026), dodali smo i automatizovanu integraciju sa Telegram botom za onboarding novih kontakata — bez ručnog unosa podataka.
@@ -40,15 +41,20 @@ Novi Odoo modul `telegram_iddeea_pdf_processor` nasljeđuje `mail.gateway.telegr
 2. **Ako potpis nije kvalifikovan** — bot odgovara: `Kontaktni podaci moraju biti KEP potpisani.` i tu je kraj.
 3. **Ako je potpis validan** — iz PDF-a se lokalno izvlači tekst (PyPDF2) i parsira red po red.
 4. **Cross-check imena** — ime i prezime iz `Ime i Prezime:` reda u PDF-u se normalizuje (bez dijakritika, upper-case) i upoređuje sa `given_name + surname` iz certifikata. Ne poklapa se? Odgovor: `Ime i prezime u PDF-u ne odgovaraju KEP potpisniku.` — blokiramo slučaj u kojem neko potpiše PDF vlastitim certifikatom a u tijelo upiše tuđe ime.
-5. **Upsert kontakta** — tražimo `res.partner` po cifrenom poklapanju telefona:
-   - Ako kontakt postoji → ažuriraju se `name`, `email`, `street`, `zip`, `city`.
-   - Ako ne postoji → kreira se novi `res.partner` sa svim poljima.
-6. **Povezivanje Telegram korisnika** — kreira se `res.partner.gateway.channel` (Telegram ID ↔ partner), `telegram.contact.handshake` se označi kao `matched`, a DM kanal u Odoo Discussu dobija ime kontakta. Ovo eliminiše standardni "Podijeli broj" zahtjev — KEP potpis je jači dokaz od native Telegram contact share-a.
-7. **Povratna informacija** — korisniku se na Telegramu šalje potvrda:
+5. **Rezolucija mjesta** — iz `Mjesto: 72000 Zenica` reda izdvaja se ZIP i grad. ZIP se traži u `res.city` tabeli (dolazi sa l10n_ba bazom) → kad postoji poklapanje, popunjava se kompletan lanac: `city_id`, `city`, `zip`, `state_id` (npr. Zeničko-dobojski kanton FBiH) i `country_id` (BiH). Kontakti kreirani preko KEP PDF-a ovako imaju identičan oblik adrese kao i oni ručno uneseni.
+6. **Upsert kontakta uz poštovanje hijerarhije** — tražimo `res.partner` po cifrenom poklapanju telefona, a onda pravilo ide po strukturi kontakta u bazi:
+   - **Samostalni kontakt (nema parent_id)** → sva polja (`name`, `phone`, `email`, adresa) upisuju se u taj isti red.
+   - **Kontakt unutar kompanije (parent_id pokazuje na `is_company=True`)** → polja adrese se pišu na **kompaniju**, a `name`, `phone`, `email` ostaju na kontaktu. Tako adresa ostaje na komercijalnom entitetu, kao i za ostale postojeće l10n_ba kontakte.
+   - **Kompanija direktno uhvaćena po telefonu** — ako pod njom već postoji kontakt-dijete sa istim telefonom, radi se scenario iznad; inače se kompanija ignoriše i kreira se **samostalan Pojedinac** (`company_type='person'`, `is_company=False`).
+   - **Nema poklapanja** → kreira se samostalan Pojedinac sa svim poljima. Modul nikada ne spaja novi kontakt pod postojeću kompaniju bez eksplicitne korisničke akcije.
+   Ime iz certifikata upisuje se u velikim slovima (kao na l.k.).
+7. **Povezivanje Telegram korisnika** — kreira se `res.partner.gateway.channel` (Telegram ID ↔ partner), `telegram.contact.handshake` se označi kao `matched`, a DM kanal u Odoo Discussu dobija ime kontakta. Ovo eliminiše standardni "Podijeli broj" zahtjev — KEP potpis je jači dokaz od native Telegram contact share-a.
+8. **Povratna informacija** — korisniku se na Telegramu šalje potvrda. Ako je kontakt dio kompanije, dodaje se i `Preduzeće:` linija:
 
    ```
-   Vaš PDF je pročitan, dodani ste u našoj kontakt listi kao:
+   Vaš PDF je pročitan, ažurirani ste u našoj kontakt listi kao:
 
+   Preduzeće: Test kupac
    Ime i prezime: ERNAD HUSREMOVIĆ
    Telefon: +387 62 277 793
    Email: ernad.husremovic@gmail.com
@@ -58,7 +64,7 @@ Novi Odoo modul `telegram_iddeea_pdf_processor` nasljeđuje `mail.gateway.telegr
    Možete nastaviti komunikaciju preko bring.out telegram kanala.
    ```
 
-   Paralelno, operater u Odoo dobija **toast notifikaciju** sa imenom novog/ažuriranog kontakta.
+   Paralelno, operater u Odoo dobija **toast notifikaciju** (`bus.bus` `simple_notification`, plain text — Odoo 16 toast ne renderuje HTML) sa imenom novog/ažuriranog kontakta. Lista primaoca je konfigurabilna preko `ir.config_parameter` ključa `telegram_iddeea_pdf_processor.notify_user_ids` (npr. `"2,9"`).
 
 ## Sigurnost
 
@@ -98,6 +104,16 @@ Telegram user  →  Telegram Bot  →  Odoo mail.gateway.telegram
 - **Backend (Odoo)**: 16.0, `mail.gateway.telegram` (OCA), `python-telegram-bot`, PyPDF2
 - **KEP verifikator**: FastAPI + pyhanko + pyhanko-certvalidator + SQLite (API keys)
 - **Deployment**: NixOS + Colmena, automatska distribucija modula u Odoo nix store
+
+## Naučene lekcije
+
+U prvoj iteraciji smo naivno pisali `name` i adresu direktno na prvi `res.partner` čiji se telefon poklopio po ciframa — što je završilo preimenovanjem kompanije "Test kupac" u ime njenog kontakta kad su mobile polja bila ista. Iz toga su izvučena pravila koja sada važe:
+
+- **Ne preimenuj kompaniju** — `name` kontakta ne ide na `is_company=True` red, čak i kad je telefonski match.
+- **Adresa pripada komercijalnom entitetu** — ako postoji parent kompanija, adresa ide gore; ako ne postoji, ostaje na samostalnom kontaktu.
+- **Novi kontakt je uvijek Pojedinac bez parent_id** — auto-linkovanje na kompaniju bi moglo slučajno pogoditi "slučajni" telefon koji se poklopio; tu akciju ostavljamo operateru.
+
+Drugi problem je bila Python zamka: parametar naziva `fields` u metodi koja upsertuje `res.partner` zasjenio je `from odoo import fields`, pa je `fields.Datetime.now()` bacao `AttributeError: 'dict' object has no attribute 'Datetime'`. Sada je parametar preimenovan u `pdf_fields`. Gluma sa shadowingom je jedna od onih grešaka koja se ne vidi dok se ne desi u produkciji.
 
 ## Šta dalje
 
