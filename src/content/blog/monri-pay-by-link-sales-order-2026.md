@@ -1,7 +1,8 @@
 ---
-title: 'Monri Pay By Link iz prodajne narudžbe: payment_monri_pay_by_link 16.0.1.7.0 → 16.0.2.5.1'
-description: 'Novi tok plaćanja karticom u Odoo 16 — bez website_sale-a. RFQ dobije Monri payment term, Odoo automatski generiše link, email kupcu sadrži zeleno dugme "Plati karticom", portal osvježava notu kada Monri potvrdi transakciju.'
+title: 'Monri Pay By Link iz prodajne narudžbe: payment_monri_pay_by_link 16.0.1.7.0 → 16.0.2.7.4'
+description: 'Novi tok plaćanja karticom u Odoo 16 — bez website_sale-a. RFQ dobije Monri payment term, Odoo automatski generiše link, email kupcu sadrži zeleno dugme "Plati karticom", portal osvježava notu kada Monri potvrdi transakciju. Plus niz owl-form fix-ova i dirty-flag saga.'
 pubDate: '2026-04-18T15:37:50'
+updatedDate: '2026-04-18T16:55:00'
 heroImage: '/monri-pay-by-link-hero.svg'
 ---
 
@@ -11,7 +12,7 @@ heroImage: '/monri-pay-by-link-hero.svg'
 
 > Prodavac kreira ponudu (RFQ) u Odoou. Klijent treba platiti karticom, ali nikad se neće prijaviti na Odoo portal. Želim da **pošaljem ponudu emailom sa dugmetom "Plati karticom"** i da se nota na narudžbi automatski ažurira kad Monri potvrdi uplatu.
 
-Ovaj blog pokriva cjelokupan rad na `payment_monri_pay_by_link` modulu danas — od **16.0.1.7.0** do **16.0.2.5.1** (jučerašnja baza bila je 16.0.1.6.0) — koji je dodao taj drugi scenario (iz prodajne narudžbe) uz očuvanje postojećeg e-commerce toka.
+Ovaj blog pokriva cjelokupan rad na `payment_monri_pay_by_link` modulu danas — od **16.0.1.7.0** do **16.0.2.7.4** (jučerašnja baza bila je 16.0.1.6.0) — koji je dodao taj drugi scenario (iz prodajne narudžbe) uz očuvanje postojećeg e-commerce toka.
 
 ## Pregled scenarija
 
@@ -309,6 +310,46 @@ Injekcija se pokreće iz:
 
 Provjerili u DB-u da `<t t-if="object.monri_payment_url">` i `t-att-href="..."` sad stoje kao literalni tagovi umjesto `&lt;` varijante. Email sada ima klikibilno dugme koje vodi na hosted Monri stranicu.
 
+## Dirty-flag saga — 7 verzija da se ugasi jedno dugme
+
+Nakon što je osnovni tok prošao, operater je primijetio da nakon save-a RFQ-a sa Monri payment term-om ostaje dirty-indikator — u ovoj instalaciji manifestuje se kao **dugme "Odbaci izmjene"** koje se nikad ne sakrije. Klikanje *Generate Monri Link* je gasilo to dugme (zato što je vraćalo `soft_reload`), ali običan save nije.
+
+Sedam uzastopnih pokušaja da se to riješi na serverskoj strani:
+
+- **16.0.2.5.2** — Note ažuriranje kroz direct SQL (umjesto `order.write({'note': ...})`) da se izbjegne rekurzivni `sale.order.write` tokom user-ovog save-a. → Nije pomoglo.
+- **16.0.2.5.3** — `sale_order_transaction_rel` insert kroz `cr.execute` umjesto `sale_order_ids=[(6,0,...)]` u `tx.create()`. → Nije pomoglo.
+- **16.0.2.6.0** — Uklonjen auto-create-on-save (button-only). → Nije pomoglo.
+
+Konačno diagnoza: problem **nije** uzrokovan našim modulom. Odoo 16 owl form ostavlja dirty-flag stuck za SVE `sale.order` save-ove, pre-existing environment bug. Rješenje je morao biti JS:
+
+- **16.0.2.6.1** — Patch legacy `FormController.saveRecord`. JS nije bio ni loaded (legacy ne prikazuje sale.order u ovom setup-u).
+- **16.0.2.6.2** — Dodat i owl patch + console logging.
+- **16.0.2.7.0** — Vraćen auto-create (bio je nevin).
+- **16.0.2.7.1** — Ispravno ime metode za owl: `saveButtonClicked` (ne `save`).
+- **16.0.2.7.2** — Reset `state.fieldIsDirty = false` nakon save-a. **Konačno pali** — `FormStatusIndicator.indicatorMode` koristi `model.root.isDirty || fieldIsDirty`, a `fieldIsDirty` se nikad nije rispevnjen automatski na owl formi u ovoj distribuciji.
+
+```js
+// static/src/js/monri_sale_order_reload.js — ključan dio
+patch(FormController.prototype, "payment_monri_pay_by_link.sale_order_reload_owl", {
+    async saveButtonClicked(params = {}) {
+        const saved = await this._super(...arguments);
+        if (saved && this.props.resModel === "sale.order") {
+            await this.model.root.load();
+            if (this.state && this.state.fieldIsDirty) {
+                this.state.fieldIsDirty = false;
+            }
+            this.render(true);
+        }
+        return saved;
+    },
+});
+```
+
+Naknadni fix-ovi iz istog radnog dana:
+
+- **16.0.2.7.3** — Email block je bio injected samo u `bs_BA` translation. Kada je en_US translation dodata naknadno, bila je bez bloka i emailovi na engleskom su dolazili bez dugmeta. Re-run inject kroz migration — sad su sve jezičke verzije konzistentne.
+- **16.0.2.7.4** — Klik na *Generate Monri Link* na novoj (još nesnimljenoj) RFQ-i vratio je operatera na **prethodnu** SO (npr. S00027 umjesto S00031). Razlog: `ir.actions.client tag=soft_reload` restore-uje trenutni action controller iz breadcrumb snapshot-a; za brand-new record snapshot još nije popunjen pa se vraća na prethodni. Zamijenjeno sa eksplicitnim `ir.actions.act_window` targetiranim na `self.id`.
+
 ## Šta je sve nastalo danas
 
 | Verzija | Promjena |
@@ -325,11 +366,22 @@ Provjerili u DB-u da `<t t-if="object.monri_payment_url">` i `t-att-href="..."` 
 | **16.0.2.4.1** | Polling `access_token` u JSON body-ju umjesto query string-a |
 | **16.0.2.5.0** | "Plati karticom" dugme u sale email šablonu (sa skrivenim bug-om) |
 | **16.0.2.5.1** | Direct SQL injection — fix entity-encoded Qweb tagova |
+| **16.0.2.5.2** | SQL-only note update (attempt #1 za dirty-flag posle save) |
+| **16.0.2.5.3** | SQL INSERT u `sale_order_transaction_rel` (attempt #2) |
+| **16.0.2.6.0** | Button-only creation (pogrešna dijagnoza — auto-create uklonjen) |
+| **16.0.2.6.1** | JS patch legacy `FormController.saveRecord` |
+| **16.0.2.6.2** | Patch za oba framework-a (legacy + owl) + logging |
+| **16.0.2.7.0** | **Povratak** auto-create-on-save (dirty-flag je pre-existing env issue) |
+| **16.0.2.7.1** | Pravi owl method: `saveButtonClicked` (ne `save`) |
+| **16.0.2.7.2** | Reset `state.fieldIsDirty` — konačno gasi *Odbaci izmjene* dugme |
+| **16.0.2.7.3** | Re-inject Monri block u `en_US` translation (bila je samo `bs_BA`) |
+| **16.0.2.7.4** | Button navigation na `self.id` umjesto `soft_reload` (pogrešan SO) |
 
 Plus u `profile/hetzner`:
 
 - Novi orchestration korak `hodi_odoo_set_smtp.py` (auth SMTP relay + `mail.bounce.alias` fix).
 - Detaljna dokumentacija `docs/MONRI_PAYMENT_SCENARIOS.md` (u `odoo-bringout-payment_monri/docs/`) koja side-by-side uspoređuje dva scenarija.
+- Dodat `partner_autocomplete` modul na bringout-test (106 umjesto 97 modula). Debug je počeo od console warning-a *"Missing widget: res_partner_many2one"* — ispostavilo se da nije bio uzrok dirty-flaga, ali je modul korisno imati svakako.
 
 ## Kompletan tok — vizuelno
 
