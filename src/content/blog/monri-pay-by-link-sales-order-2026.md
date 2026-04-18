@@ -1,5 +1,5 @@
 ---
-title: 'Monri Pay By Link iz prodajne narudžbe: payment_monri_pay_by_link 16.0.2.0.0 → 16.0.2.5.1'
+title: 'Monri Pay By Link iz prodajne narudžbe: payment_monri_pay_by_link 16.0.1.7.0 → 16.0.2.5.1'
 description: 'Novi tok plaćanja karticom u Odoo 16 — bez website_sale-a. RFQ dobije Monri payment term, Odoo automatski generiše link, email kupcu sadrži zeleno dugme "Plati karticom", portal osvježava notu kada Monri potvrdi transakciju.'
 pubDate: '2026-04-18T15:37:50'
 heroImage: '/monri-pay-by-link-hero.svg'
@@ -11,7 +11,7 @@ heroImage: '/monri-pay-by-link-hero.svg'
 
 > Prodavac kreira ponudu (RFQ) u Odoou. Klijent treba platiti karticom, ali nikad se neće prijaviti na Odoo portal. Želim da **pošaljem ponudu emailom sa dugmetom "Plati karticom"** i da se nota na narudžbi automatski ažurira kad Monri potvrdi uplatu.
 
-Ovaj blog pokriva cjelokupan rad na `payment_monri_pay_by_link` modulu danas — od verzije **16.0.2.0.0** do **16.0.2.5.1** — koji je dodao taj drugi scenario (iz prodajne narudžbe) uz očuvanje postojećeg e-commerce toka.
+Ovaj blog pokriva cjelokupan rad na `payment_monri_pay_by_link` modulu danas — od **16.0.1.7.0** do **16.0.2.5.1** (jučerašnja baza bila je 16.0.1.6.0) — koji je dodao taj drugi scenario (iz prodajne narudžbe) uz očuvanje postojećeg e-commerce toka.
 
 ## Pregled scenarija
 
@@ -313,7 +313,9 @@ Provjerili u DB-u da `<t t-if="object.monri_payment_url">` i `t-att-href="..."` 
 
 | Verzija | Promjena |
 |---|---|
-| **16.0.2.0.0** | Pending-note sa URL-om (prije 16.0.1.7.x — samo RFQ-link, bez note-a) |
+| **16.0.1.7.0** | SO-driven Pay By Link flow — `is_monri_pay_by_link` payment term, auto-create na save, Generate/Refresh button, URL polje na SO form-i |
+| **16.0.1.7.1** | Fix: `Field 'sale.order.monri_payment_transaction_id' in dependency … should be searchable` warning (compute sva tri polja u jednom methodu bez `related=`) |
+| **16.0.2.0.0** | Pending-note sa URL-om upisuje se u SO `note` polje kad je link kreiran |
 | **16.0.2.1.0** | Stale-tx detekcija — regeneracija na SO update |
 | **16.0.2.2.0** | `monri.contact.wizard` za nedostajući email/telefon |
 | **16.0.2.2.1** | Wizard zatvara modal sa `act_window_close` |
