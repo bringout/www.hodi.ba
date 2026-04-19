@@ -129,7 +129,48 @@ Korisnik koji nema marker grupu ne prolazi provjeru na root meniju — ali mora 
 
 **Ne rješava direktno, ali je arhitektonski izvedivo:**
 - **EE `hr_payroll` + ba_payroll u istoj bazi** — rename-generator i ovo pokriva, **bez ikakve modifikacije EE-a**. Razlog: EE ostaje u `hr.*` namespace-u (`hr.payslip`, `hr.salary.rule`), a ba_payroll je već preimenovan u `ba.*` (`ba.hr.payslip` itd.). Model-imena se ne sudaraju, što je jedina fundamentalna prepreka. Gore opisani **OCA + ba_payroll** eksperiment na multi-test-u dokazuje isti mehanizam — jedina razlika je što partner stack dolazi iz zatvorenog EE izvora umjesto iz OCA-e. Nismo fizički testirali EE kombinaciju (nemamo EE licencu na sandboxu), ali arhitektura je ista.
-- Jedini otvoreni zadatak prije EE + ba_payroll deployment-a: provjeriti da li EE-ova `hr.contract` / `hr.employee` ekstenzija pokriva polja koja ba_payroll-ov Python kôd referencira (`schedule_pay`, `struct_id`, `resource_calendar_id`...). Pošto oba stacka potiču iz istog Odoo 14 CE pretka (OCA je forkao u v15 kad je Odoo prebacio payroll u EE), većina polja se preklapa. Ono što eventualno ne odgovara rješava se tankim overlay modulom koji dodaje ili preimenuje potrebna polja — red veličine **~50 LOC**, ne rekonstrukcija EE funkcionalnosti.
+
+#### Šta tačno znači "tanak overlay modul"
+
+Rename-generator je pokrenut sa `--drop-extensions`, što znači da ba_payroll **ne dodaje** polja poput `schedule_pay` ili `struct_id` na `hr.contract`. Fileove koji su to radili smo izbacili — inače bi se dvaput definisali isti field-ovi pošto OCA payroll ih već dodaje. Ali **ba_payroll-ov vlastiti Python kôd i dalje čita ta polja** sa `hr.contract`:
+
+```python
+# ba_payroll/models/hr_payslip.py (renamed iz OCA hr_payslip.py)
+def compute_sheet(self):
+    for slip in self:
+        contract = slip.contract_id          # hr.contract record
+        schedule = contract.schedule_pay     # <-- očekuje ovo polje
+        struct = contract.struct_id          # <-- i ovo
+```
+
+Na trenutnom multi-test-u ovo radi jer je **OCA `payroll` instaliran** i njegov `models/hr_contract.py` dodaje `schedule_pay` + `struct_id` na shared `hr.contract` tabelu. ba_payroll samo pročita ta polja — nema konflikta jer postoji samo jedan writer (OCA).
+
+U scenariju gdje umjesto OCA-e imamo EE `hr_payroll`, pitanje postaje: **da li EE dodaje polje tačno imenovano `schedule_pay`? I tačno `struct_id`?**
+
+- **Najvjerovatnije da za većinu polja.** I OCA `payroll` i Odoo EE `hr_payroll` potiču iz istog Odoo 14 CE pretka — ista kodna baza prije OCA forka u v15. Uobičajena imena poput `schedule_pay`, `struct_id`, `resource_calendar_id` su stabilna kroz verzije.
+- **Moguće ne za poneko.** EE se razvijao u svojim smjerovima od v15. Polje koje OCA zove `struct_id` u aktuelnom EE-u može biti `salary_structure_id`, ili tip može da se razlikuje.
+
+Ako se neki nesklad pojavi, rješava se tankim overlay modulom koji mapira ili preimenuje nedostajuća polja:
+
+```python
+# bringout_payroll_ee_adapter/models/hr_contract.py — ~15 linija
+from odoo import fields, models
+
+class HrContract(models.Model):
+    _inherit = 'hr.contract'
+
+    # ba_payroll očekuje .struct_id — alias za EE-ovo .salary_structure_id
+    struct_id = fields.Many2one(
+        'hr.payroll.structure',
+        related='salary_structure_id',
+        store=True, readonly=False,
+    )
+    # ba_payroll očekuje .schedule_pay — EE već ima isto ime (nema šta da radimo)
+```
+
+Manifest + 3–5 takvih aliasa × ~10 LOC svaki = **~50 LOC ukupno**. To je **kompletan dodatni trošak** puštanja ba_payroll-a protiv EE umjesto protiv OCA-e. Ne prepisujemo EE-ov `compute_sheet`, ne dupliramo salary-rule engine, ne implementiramo ništa EE-specifično — samo **prevodimo imena polja** tako da ba_payroll-ov postojeći kôd (koji je naslijeđen iz OCA-e) može da čita EE-ove kontrakte.
+
+Ako se ispostavi da treba 200 LOC (desetak nesklada) — i dalje je "overlay teritorija", ne rekonstrukcija. Stvarni broj se može izmjeriti tek kad neko provjeri protiv EE licence; naša procjena bazirana je na zajedničkom porijeklu OCA/EE.
 
 **Stvarno ne rješava:**
 - Renaming EE `hr_payroll`-a samog po sebi (ako bi se pojavila potreba da se EE-ove modele preimenuje u `ee.*` paralelno sa ba_payroll-om) — to nije moguće jer je EE closed-source. Ali to nije ni scenarij koji se traži: EE ostaje takav kakav je, sa svojim `hr.payslip`.
