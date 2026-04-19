@@ -178,12 +178,12 @@ Ako se ispostavi da treba 200 LOC (desetak nesklada) — i dalje je "overlay ter
 
 ## Izvorni kod
 
-**Javno dostupno (AGPL-3):**
+Sve javno dostupno. Licenca prati upstream izvor:
 
-- Rename-generator skripta: [github.com/bringout/core_0](https://github.com/bringout/core_0) — `scripts/rename_oca_payroll.py`
-- Generisani ba_payroll modul: [github.com/bringout/odoo-bringout-ba_payroll](https://github.com/bringout/odoo-bringout-ba_payroll)
-- Demo orkestrator (4 kompanije + demo korisnici + stack grupe): [github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data](https://github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data)
-- Upstream OCA payroll (submodul): [github.com/OCA/payroll](https://github.com/OCA/payroll)
+- Rename-generator skripta (AGPL-3): [github.com/bringout/core_0](https://github.com/bringout/core_0) — `scripts/rename_oca_payroll.py`
+- Generisani **ba_payroll** modul (**LGPL-3** — nasljeđuje licencu od OCA payroll-a, koja je LGPL-3 na nivou `payroll/__manifest__.py` kao i originalni Odoo 14 CE `hr_payroll` iz kog je OCA forkan): [github.com/bringout/odoo-bringout-ba_payroll](https://github.com/bringout/odoo-bringout-ba_payroll)
+- Demo orkestrator (4 kompanije + demo korisnici + stack grupe, AGPL-3): [github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data](https://github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data)
+- Upstream OCA payroll (submodul, LGPL-3 na modul-nivou): [github.com/OCA/payroll](https://github.com/OCA/payroll)
 
 ## Napomena
 
