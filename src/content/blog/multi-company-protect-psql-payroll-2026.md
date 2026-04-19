@@ -125,6 +125,41 @@ SELECT company_id, count(*) FROM hr_employee GROUP BY company_id;
 
 Isti ORM, ista tabela, ista baza — ali **različit PostgreSQL role** i **različita session konfiguracija**. Fizička separacija na nivou reda, ne samo na nivou filtera upita.
 
+## Demo uživo — reprodukcija multi-company bugova
+
+Da bi se zaštita vidjela i **bez otvaranja PostgreSQL konzole**, napravili smo prateći modul [`bringout_payroll_timesheet_bug_test`](https://github.com/bringout/odoo-bringout-payroll_timesheet_bug_test). Riječ je o **namjerno pogrešnom** wizardu koji reprodukuje dva klasična multi-company bug-a:
+
+- **Bug A (čitanje):** `env['hr.employee'].sudo().search([])` bez filtera po kompaniji — neko pravi dashboard koji broji zaposlene, ali zaboravi `company_id` filter.
+- **Bug B (pisanje):** `env['account.analytic.line'].sudo().search([]).write({'name': tag})` — "označi sve timesheete kao pregledane" rutina bez company filtera.
+
+Oba bug-a koriste `sudo()` — što je legitiman Odoo mehanizam koji **zaobilazi record rules**. Aplikacijski sloj zaštite tu otkazuje. Samo PostgreSQL RLS preostaje kao odbrana.
+
+### Bug A — ista ruta, dva rezultata
+
+Kad **admin** (bez `psql_company_lock_id`) pokrene Bug A wizard, dobija ukupan broj zaposlenih preko **svih** kompanija. Bug se manifestuje — dashboard "nehotice" otkriva podatke iz svih entiteta:
+
+![Bug A pokrenut kao Demo Group Admin — broji 10 zaposlenih preko svih kompanija](/rls-bug-a-admin.png)
+
+Isti kod, ista linija, pokrenuta kao **zaključani hrvatski payroll clerk** (`demo.payroll.hr@hodi.ba`, `psql_company_lock_id = CompanyHR-1`) vraća **samo 2** — zaposlene svoje kompanije. RLS je presreo `SELECT` na SQL nivou i filtrirao ga na jednu kompaniju, bez ikakvog signala aplikacijskom kodu da se nešto dogodilo:
+
+![Bug A pokrenut kao zaključani hrvatski clerk — vidi samo 2 svoja zaposlena](/rls-bug-a-locked-hr.png)
+
+Isti bug, ista `.sudo().search([])` linija, isti Odoo ORM — **različit ishod** jer PostgreSQL RLS stoji pred bazom. Bug A je "dobar" bug za prikaz jer je **neinvazivan** — ništa se ne mijenja, samo se broje redovi.
+
+### Bug B — vidljivi trag u Timesheets listi
+
+Bug B piše tekst `BUG-B run by <user name>` u `name` polje svake timesheet zapisa. To je polje koje Odoo prikazuje kao **Description** u Timesheets listi, pa je efekat bug-a odmah vidljiv u UI-u.
+
+Kad admin (koji vidi sve 4 kompanije) pokrene Bug B, **svi** timesheet zapisi u bazi dobiju svoj description prepisan. Pollution prelazi granice kompanija:
+
+![Bug B pokrenut kao Demo Group Admin — timesheet u CompanyBA-1 sa admin-ovim tagom](/rls-bug-b-admin-timesheets.png)
+
+Kad zaključani hrvatski clerk pokrene **isti** wizard, samo **njegovi** (CompanyHR-1) timesheeti dobiju tag. Ostale kompanije ostaju netaknute — RLS ih je zaštitio prije nego što je `UPDATE` statement imao šansu da dohvati te redove:
+
+![Bug B pokrenut kao hrvatski clerk — samo 2 hrvatska timesheeta označena sa njegovim tagom](/rls-bug-b-locked-hr-timesheets.png)
+
+Broj "Lines affected" koji wizard prikazuje je direktan indikator koliko je bug probio. Kod admina — dosta. Kod zaključanog clerka — tačno onoliko koliko treba.
+
 ## Šta ovim modelom dobijate
 
 - **Operator plata ne može vidjeti plate u drugoj zemlji.** Garancija dolazi sa PostgreSQL-ovog nivoa, ne sa aplikacijske domene.
@@ -136,8 +171,9 @@ Isti ORM, ista tabela, ista baza — ali **različit PostgreSQL role** i **razli
 
 ## Izvorni kod i licenca
 
-- Modul: [github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll](https://github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll)
+- Glavni modul: [github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll](https://github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll)
 - Test bed orkestrator (4 kompanije + demo korisnici): [github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data](https://github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data)
+- Demo bugova (reprodukuje Bug A i Bug B): [github.com/bringout/odoo-bringout-payroll_timesheet_bug_test](https://github.com/bringout/odoo-bringout-payroll_timesheet_bug_test)
 - Minimalne demo lokalizacije: [l10n_si_demo](https://github.com/bringout/odoo-bringout-l10n_si_demo), [l10n_hr_demo](https://github.com/bringout/odoo-bringout-l10n_hr_demo)
 
 ## Naredni koraci
