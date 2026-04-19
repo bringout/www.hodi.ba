@@ -2,7 +2,7 @@
 title: 'Dva payroll modula u jednoj Odoo bazi — OCA payroll i ba_payroll side-by-side'
 description: 'Kako smo napravili rename-generator skriptu koja forkuje OCA payroll u ba_payroll sa prefiksiranim modelima, tako da oba stacka koegzistiraju u istoj bazi bez MRO, XML-id, M2M i unique-constraint kolizija.'
 pubDate: '2026-04-19T23:10:00'
-heroImage: '/ba-payroll-bosnia-menu.png'
+heroImage: '/ba-payroll-hero.png'
 ---
 
 ## Uvod
