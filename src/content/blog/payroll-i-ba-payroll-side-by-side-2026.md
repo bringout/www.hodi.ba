@@ -15,7 +15,7 @@ Ovaj post pokazuje konkretan pristup koji **mi je proradio**: forkanje OCA payro
 
 ## Zašto ne funkcionišu zajedno — u jednoj rečenici
 
-Odoo gradi model registar tako što **spaja sve klase koje imaju `_name = 'X'` ili `_inherit = 'X'`** kroz MRO u jednu konačnu Python klasu. Ako OCA `payroll` definiše klasu sa `_name = 'hr.payslip'` i Odoo EE `hr_payroll` takođe definiše klasu sa `_name = 'hr.payslip'`, Odoo vidi dvije definicije istog modela — obe moraju biti spojene. XML ID-evi se sudaraju, metode se gaze, polja se dupliraju. Prvi `odoo -u` ne prolazi.
+Odoo gradi model registar tako što **spaja sve klase koje imaju `_name = 'X'` ili `_inherit = 'X'`** kroz MRO[^mro] u jednu konačnu Python klasu. Ako OCA `payroll` definiše klasu sa `_name = 'hr.payslip'` i Odoo EE `hr_payroll` takođe definiše klasu sa `_name = 'hr.payslip'`, Odoo vidi dvije definicije istog modela — obe moraju biti spojene. XML ID-evi se sudaraju, metode se gaze, polja se dupliraju. Prvi `odoo -u` ne prolazi.
 
 ## Rješenje: rename-generator
 
@@ -188,3 +188,5 @@ Sve javno dostupno. Licenca prati upstream izvor:
 ## Napomena
 
 Generisano od strane Claude 🤖
+
+[^mro]: **MRO** = *Method Resolution Order* — Python algoritam (C3 linearizacija) koji određuje **kojim redom se traži atribut ili metoda kroz lanac nasljeđivanja**. Kada imate klasu `C(A, B)` koja nasljeđuje od dvije roditeljske klase, a obe imaju metodu `foo()`, MRO diktira da li `C().foo()` pozove verziju iz `A` ili iz `B`. Odoo-ov ORM gradi model registar tako što za svaki `_name` skuplja sve klase iz **svih instaliranih modula** koje se odnose na taj model (vlastite definicije i `_inherit` proširenja), i pomoću MRO ih spaja u jednu konačnu klasu iz koje se onda instanciraju recordset-i. Posljedica: dva različita modula koja oba definišu `class HrPayslip(_name='hr.payslip')` sa svojom verzijom `compute_sheet()` završe spojeni u istu krajnju klasu — koja "pobijedi" u MRO lanac zavisi od učitaja modula, i druga verzija je efektivno zamaskirana. Zbog toga se dva payroll modula sa istim model-imenima **ne mogu** meningfully koegzistirati na nivou Python klasa; rename u različite namespace-ove (`hr.payslip` vs `ba.hr.payslip`) je jedini način da se MRO lanci potpuno razdvoje.
