@@ -122,7 +122,7 @@ Korisnik koji nema marker grupu ne prolazi provjeru na root meniju — ali mora 
 ## Šta ovaj pristup rješava, a šta ne
 
 **Rješava:**
-- Dva open-source payroll modula u jednoj bazi bez MRO kolizija
+- Dva payroll modula u jednoj bazi bez MRO kolizija
 - Automatska regeneracija iz upstream-a (svaka nova OCA verzija → `rename_oca_payroll.py` → `git diff` → commit)
 - Razdvajanje korisnika po stack-u kroz grupe, bez modifikacije izvora originalnog OCA payroll-a
 - Osnova za Bosanski payroll overlay modul (koji extenduje `ba.hr.payslip` sa lokalnim pravilima)
