@@ -39,19 +39,58 @@ Ostatak instalacije — deljeni proizvodi, deljeni partneri, Odoo record rules z
 
 ## Šta se konkretno štiti
 
-Allowlist od 9 tabela koje su **stvarno** vlasništvo jedne kompanije:
+Allowlist od 10 tabela koje su **stvarno** vlasništvo jedne kompanije:
 
-| Tabela | Link na kompaniju |
-| --- | --- |
-| `hr_employee` | direktni `company_id` |
-| `hr_contract` | direktni `company_id` |
-| `hr_leave` | `employee_company_id` |
-| `hr_leave_allocation` | `employee_company_id` |
-| `hr_payslip` | direktni `company_id` |
-| `hr_payslip_run` | direktni `company_id` |
-| `hr_payslip_line` | preko `slip_id → hr_payslip` |
-| `hr_payslip_input` | preko `payslip_id → hr_payslip` |
-| `hr_payslip_worked_days` | preko `payslip_id → hr_payslip` |
+<table style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr style="background: #f5f5f5;">
+      <th style="border: 1px solid #999; padding: 0.5em 0.8em; text-align: left;">Tabela</th>
+      <th style="border: 1px solid #999; padding: 0.5em 0.8em; text-align: left;">Link na kompaniju</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_employee</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">direktni <code>company_id</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_contract</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">direktni <code>company_id</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_leave</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>employee_company_id</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_leave_allocation</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>employee_company_id</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_payslip</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">direktni <code>company_id</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_payslip_run</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">direktni <code>company_id</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_payslip_line</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">preko <code>slip_id → hr_payslip</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_payslip_input</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">preko <code>payslip_id → hr_payslip</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>hr_payslip_worked_days</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">preko <code>payslip_id → hr_payslip</code></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>account_analytic_line</code> <small>(hr_timesheet)</small></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">direktni <code>company_id</code></td>
+    </tr>
+  </tbody>
+</table>
 
 **Izričito nije pod RLS:**
 
