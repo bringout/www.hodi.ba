@@ -127,9 +127,13 @@ Korisnik koji nema marker grupu ne prolazi provjeru na root meniju — ali mora 
 - Razdvajanje korisnika po stack-u kroz grupe, bez modifikacije izvora originalnog OCA payroll-a
 - Osnova za Bosanski payroll overlay modul (koji extenduje `ba.hr.payslip` sa lokalnim pravilima)
 
-**Ne rješava:**
-- Odoo **Enterprise** `hr_payroll` ne može da se prepiše na isti način jer je closed-source. Rename-generator pristup fundamentalno zahtijeva pristup Python izvoru. Za scenarij "EE za SI/HR + OCA fork za BA u istoj bazi" ne postoji čisto rješenje osim odvojenih baza ili potpune rekonstrukcije EE funkcionalnosti na OCA temelju.
-- Core model ekstenzije (`hr.contract`, `hr.employee`, `hr.leave.type`) koje OCA payroll dodaje i dalje idu kroz core tabelu. Sa `--drop-extensions` ih izbacimo iz ba_payroll-a, ali onda ba_payroll **ima meku zavisnost** na OCA payroll (polja koje ba_payroll-ov `hr.payslip` koristi dolaze iz OCA-ove core ekstenzije). Za potpuno samostalan ba_payroll bez OCA, trebalo bi ekstenzije ručno prepisati kao delegation-inheritance sa `_inherits = {'hr.contract': 'core_contract_id'}` na vlastitu tabelu.
+**Ne rješava direktno, ali je arhitektonski izvedivo:**
+- **EE `hr_payroll` + ba_payroll u istoj bazi** — rename-generator i ovo pokriva, **bez ikakve modifikacije EE-a**. Razlog: EE ostaje u `hr.*` namespace-u (`hr.payslip`, `hr.salary.rule`), a ba_payroll je već preimenovan u `ba.*` (`ba.hr.payslip` itd.). Model-imena se ne sudaraju, što je jedina fundamentalna prepreka. Gore opisani **OCA + ba_payroll** eksperiment na multi-test-u dokazuje isti mehanizam — jedina razlika je što partner stack dolazi iz zatvorenog EE izvora umjesto iz OCA-e. Nismo fizički testirali EE kombinaciju (nemamo EE licencu na sandboxu), ali arhitektura je ista.
+- Jedini otvoreni zadatak prije EE + ba_payroll deployment-a: provjeriti da li EE-ova `hr.contract` / `hr.employee` ekstenzija pokriva polja koja ba_payroll-ov Python kôd referencira (`schedule_pay`, `struct_id`, `resource_calendar_id`...). Pošto oba stacka potiču iz istog Odoo 14 CE pretka (OCA je forkao u v15 kad je Odoo prebacio payroll u EE), većina polja se preklapa. Ono što eventualno ne odgovara rješava se tankim overlay modulom koji dodaje ili preimenuje potrebna polja — red veličine **~50 LOC**, ne rekonstrukcija EE funkcionalnosti.
+
+**Stvarno ne rješava:**
+- Renaming EE `hr_payroll`-a samog po sebi (ako bi se pojavila potreba da se EE-ove modele preimenuje u `ee.*` paralelno sa ba_payroll-om) — to nije moguće jer je EE closed-source. Ali to nije ni scenarij koji se traži: EE ostaje takav kakav je, sa svojim `hr.payslip`.
+- Core model ekstenzije (`hr.contract`, `hr.employee`, `hr.leave.type`) koje OCA payroll dodaje i dalje idu kroz core tabelu. Sa `--drop-extensions` ih izbacimo iz ba_payroll-a, ali onda ba_payroll **ima meku zavisnost** na neko treće mjesto koje te field-ove pruža — u trenutnom setup-u to je OCA `payroll`. U EE + ba_payroll setupu, to bi bila EE-ova ekstenzija ili prethodno spomenuti overlay modul.
 
 ## Izvorni kod
 
