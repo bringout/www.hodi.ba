@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="PostgreSQL Row-Level Security — payroll clerk locked to one company, other company databases blocked">
+  <title>PostgreSQL RLS payroll protection</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#0b3872"/>
+      <stop offset="55%" stop-color="#001d42"/>
+      <stop offset="100%" stop-color="#000820"/>
+    </radialGradient>
+    <linearGradient id="dbProtectedTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2ea0ff"/>
+      <stop offset="100%" stop-color="#0a5fbd"/>
+    </linearGradient>
+    <linearGradient id="dbProtectedSide" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a5fbd"/>
+      <stop offset="100%" stop-color="#03306e"/>
+    </linearGradient>
+    <linearGradient id="dbDimTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6a7280" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3a4150" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="dbDimSide" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a4150" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1f2430" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="shieldFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb347"/>
+      <stop offset="100%" stop-color="#e07b00"/>
+    </linearGradient>
+    <linearGradient id="blockFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff4d4d" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#a60000" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid -->
+  <g fill="#ffffff" fill-opacity="0.05">
+    <circle cx="60" cy="60" r="2"/><circle cx="180" cy="60" r="2"/><circle cx="300" cy="60" r="2"/>
+    <circle cx="420" cy="60" r="2"/><circle cx="540" cy="60" r="2"/><circle cx="660" cy="60" r="2"/>
+    <circle cx="780" cy="60" r="2"/><circle cx="900" cy="60" r="2"/><circle cx="1020" cy="60" r="2"/>
+    <circle cx="1140" cy="60" r="2"/>
+    <circle cx="60" cy="180" r="2"/><circle cx="180" cy="180" r="2"/><circle cx="300" cy="180" r="2"/>
+    <circle cx="900" cy="180" r="2"/><circle cx="1020" cy="180" r="2"/><circle cx="1140" cy="180" r="2"/>
+    <circle cx="60" cy="300" r="2"/><circle cx="180" cy="300" r="2"/>
+    <circle cx="1020" cy="300" r="2"/><circle cx="1140" cy="300" r="2"/>
+    <circle cx="60" cy="420" r="2"/><circle cx="180" cy="420" r="2"/>
+    <circle cx="1020" cy="420" r="2"/><circle cx="1140" cy="420" r="2"/>
+    <circle cx="60" cy="540" r="2"/><circle cx="180" cy="540" r="2"/><circle cx="300" cy="540" r="2"/>
+    <circle cx="420" cy="540" r="2"/><circle cx="540" cy="540" r="2"/><circle cx="660" cy="540" r="2"/>
+    <circle cx="780" cy="540" r="2"/><circle cx="900" cy="540" r="2"/><circle cx="1020" cy="540" r="2"/>
+    <circle cx="1140" cy="540" r="2"/>
+  </g>
+
+  <!-- title -->
+  <text x="600" y="80" font-family="'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle" fill="#ffffff">
+    PostgreSQL Row-Level Security
+  </text>
+  <text x="600" y="125" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" text-anchor="middle" fill="#9cc8ff">
+    zaštita plata u Odoo multi-company instalaciji
+  </text>
+
+  <!-- Left: payroll clerk silhouette -->
+  <g transform="translate(140, 340)">
+    <!-- user body -->
+    <circle cx="0" cy="0" r="28" fill="#ffffff" fill-opacity="0.9"/>
+    <path d="M -45 75 Q -45 25 0 25 Q 45 25 45 75 Z" fill="#ffffff" fill-opacity="0.9"/>
+    <!-- label -->
+    <text x="0" y="125" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" text-anchor="middle" fill="#ffffff">
+      Payroll clerk
+    </text>
+    <text x="0" y="148" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" text-anchor="middle" fill="#9cc8ff">
+      psql_company_lock_id = BA
+    </text>
+  </g>
+
+  <!-- Connection line from clerk to protected DB (BA) -->
+  <g stroke="#2ea0ff" stroke-width="3" fill="none" stroke-dasharray="6 5">
+    <path d="M 190 360 L 370 360"/>
+  </g>
+  <polygon points="370,360 358,353 358,367" fill="#2ea0ff"/>
+
+  <!-- Protected BA database cylinder -->
+  <g transform="translate(420, 290)">
+    <!-- cylinder -->
+    <ellipse cx="75" cy="30" rx="75" ry="18" fill="url(#dbProtectedTop)"/>
+    <rect x="0" y="30" width="150" height="120" fill="url(#dbProtectedSide)"/>
+    <ellipse cx="75" cy="150" rx="75" ry="18" fill="url(#dbProtectedTop)"/>
+    <!-- subtle separator rings -->
+    <ellipse cx="75" cy="70" rx="75" ry="18" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+    <ellipse cx="75" cy="110" rx="75" ry="18" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+
+    <!-- shield badge overlay -->
+    <g transform="translate(75, 90)">
+      <path d="M 0 -50 L -42 -32 L -42 10 Q -42 40 0 58 Q 42 40 42 10 L 42 -32 Z"
+            fill="url(#shieldFill)" stroke="#ffffff" stroke-width="2"/>
+      <!-- padlock shackle -->
+      <path d="M -10 -15 Q -10 -32 0 -32 Q 10 -32 10 -15 L 10 -5"
+            fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+      <rect x="-12" y="-5" width="24" height="22" rx="3" fill="#ffffff"/>
+      <circle cx="0" cy="5" r="3" fill="#e07b00"/>
+      <rect x="-1.5" y="5" width="3" height="7" fill="#e07b00"/>
+    </g>
+
+    <!-- company label -->
+    <text x="75" y="200" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#ffffff">
+      CompanyBA-1
+    </text>
+    <text x="75" y="225" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" text-anchor="middle" fill="#9cc8ff">
+      hr_employee · hr_payslip
+    </text>
+    <text x="75" y="243" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" text-anchor="middle" fill="#9cc8ff">
+      RLS: ENFORCED
+    </text>
+  </g>
+
+  <!-- Denied connection to other companies -->
+  <g stroke="#ff4d4d" stroke-width="3" fill="none" stroke-dasharray="6 5" opacity="0.85">
+    <path d="M 190 330 C 360 210, 600 160, 780 240"/>
+    <path d="M 190 390 C 360 510, 620 530, 780 440"/>
+  </g>
+
+  <!-- Three blocked company databases on the right -->
+  <g transform="translate(770, 210)">
+    <!-- cylinder dimmed -->
+    <ellipse cx="60" cy="24" rx="60" ry="14" fill="url(#dbDimTop)"/>
+    <rect x="0" y="24" width="120" height="80" fill="url(#dbDimSide)"/>
+    <ellipse cx="60" cy="104" rx="60" ry="14" fill="url(#dbDimTop)"/>
+    <ellipse cx="60" cy="55" rx="60" ry="14" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+    <ellipse cx="60" cy="85" rx="60" ry="14" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+
+    <!-- prohibition / denied circle -->
+    <g transform="translate(60, 64)">
+      <circle r="30" fill="none" stroke="url(#blockFill)" stroke-width="7"/>
+      <line x1="-21" y1="-21" x2="21" y2="21" stroke="url(#blockFill)" stroke-width="7" stroke-linecap="round"/>
+    </g>
+
+    <text x="60" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#ffffff">
+      CompanySL-1
+    </text>
+  </g>
+
+  <g transform="translate(940, 310)">
+    <ellipse cx="60" cy="24" rx="60" ry="14" fill="url(#dbDimTop)"/>
+    <rect x="0" y="24" width="120" height="80" fill="url(#dbDimSide)"/>
+    <ellipse cx="60" cy="104" rx="60" ry="14" fill="url(#dbDimTop)"/>
+    <ellipse cx="60" cy="55" rx="60" ry="14" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+    <ellipse cx="60" cy="85" rx="60" ry="14" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+
+    <g transform="translate(60, 64)">
+      <circle r="30" fill="none" stroke="url(#blockFill)" stroke-width="7"/>
+      <line x1="-21" y1="-21" x2="21" y2="21" stroke="url(#blockFill)" stroke-width="7" stroke-linecap="round"/>
+    </g>
+
+    <text x="60" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#ffffff">
+      CompanyHR-1
+    </text>
+  </g>
+
+  <g transform="translate(770, 410)">
+    <ellipse cx="60" cy="24" rx="60" ry="14" fill="url(#dbDimTop)"/>
+    <rect x="0" y="24" width="120" height="80" fill="url(#dbDimSide)"/>
+    <ellipse cx="60" cy="104" rx="60" ry="14" fill="url(#dbDimTop)"/>
+    <ellipse cx="60" cy="55" rx="60" ry="14" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+    <ellipse cx="60" cy="85" rx="60" ry="14" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+
+    <g transform="translate(60, 64)">
+      <circle r="30" fill="none" stroke="url(#blockFill)" stroke-width="7"/>
+      <line x1="-21" y1="-21" x2="21" y2="21" stroke="url(#blockFill)" stroke-width="7" stroke-linecap="round"/>
+    </g>
+
+    <text x="60" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#ffffff">
+      CompanyHR-2
+    </text>
+  </g>
+
+  <!-- bottom caption -->
+  <text x="600" y="590" font-family="'Monaco', 'Menlo', monospace" font-size="17" text-anchor="middle" fill="#9cc8ff" opacity="0.9">
+    SET LOCAL ROLE odoo_rls_user · SET LOCAL app.allowed_company_ids = '5'
+  </text>
+</svg>
