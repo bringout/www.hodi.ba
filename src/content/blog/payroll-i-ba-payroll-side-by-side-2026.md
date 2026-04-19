@@ -88,11 +88,36 @@ Sami `ir.ui.menu.groups_id` su "**bilo koji od**" — dodavanje grupe na root me
 
 Korisnik koji nema marker grupu ne prolazi provjeru na root meniju — ali mora takođe imati i pravu **access** grupu za tu granu kako bi djeca postala vidljiva. Upravo ta kombinacija marker + access određuje koju granu vidi:
 
-| Korisnik | Stack marker | Access grupa | Vidi |
-| --- | --- | --- | --- |
-| BA payroll clerk | `group_payroll_stack_ba` | `ba_payroll.group_payroll_user` | BA Payroll meni |
-| HR / SI payroll clerk | `group_payroll_stack_oca` | `payroll.group_payroll_user` | Payroll meni |
-| Admin / HR manager | obe | obe | oba menija |
+<table style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr style="background: #f5f5f5;">
+      <th style="border: 1px solid #999; padding: 0.5em 0.8em; text-align: left;">Korisnik</th>
+      <th style="border: 1px solid #999; padding: 0.5em 0.8em; text-align: left;">Stack marker</th>
+      <th style="border: 1px solid #999; padding: 0.5em 0.8em; text-align: left;">Access grupa</th>
+      <th style="border: 1px solid #999; padding: 0.5em 0.8em; text-align: left;">Vidi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">BA payroll clerk</td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>group_payroll_stack_ba</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>ba_payroll.group_payroll_user</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">BA Payroll meni</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">HR / SI payroll clerk</td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>group_payroll_stack_oca</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;"><code>payroll.group_payroll_user</code></td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">Payroll meni</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">Admin / HR manager</td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">obe</td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">obe</td>
+      <td style="border: 1px solid #ccc; padding: 0.5em 0.8em;">oba menija</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Šta ovaj pristup rješava, a šta ne
 
