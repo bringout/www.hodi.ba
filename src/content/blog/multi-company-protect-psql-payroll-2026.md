@@ -7,7 +7,7 @@ heroImage: '/rls-payroll-hero.svg'
 
 Multi-company Odoo setup izgleda jednostavno dok ne postavite ozbiljno pitanje: **šta ako operator obračuna plata u Bosni slučajno (ili ciljano) vidi plate slovenačkih ili hrvatskih zaposlenika?** Odoo-ve record rules su primarna zaštita — ali to je **samo jedan sloj**, i otkazuje tiho kad neki custom modul, loša konfiguracija ili direktni SQL zaobiđu ORM.
 
-Napravili smo [`multi_company_protect_psql_payroll`](https://github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll) — Odoo 16 modul koji dodaje **PostgreSQL Row-Level Security** kao drugu liniju odbrane, ali **samo za korisnike koji su eksplicitno zaključani na jednu kompaniju**. Live demo radi na [multi-test.hodi.ba](https://multi-test.hodi.ba) sa 4 kompanije u 3 zemlje.
+Napravili smo `multi_company_protect_psql_payroll` — Odoo 16 modul koji dodaje **PostgreSQL Row-Level Security** kao drugu liniju odbrane, ali **samo za korisnike koji su eksplicitno zaključani na jednu kompaniju**. Live demo radi na [multi-test.hodi.ba](https://multi-test.hodi.ba) sa 4 kompanije u 3 zemlje — svi prateći open-source moduli (demo bugova, test-bed orkestrator, minimalne lokalizacije) su javno dostupni pod AGPL-3, dok sâm glavni RLS modul ostaje **interni** iz razloga zaštite intelektualnog prava.
 
 ## Zašto ORM-only zaštita nije dovoljna
 
@@ -210,10 +210,17 @@ Broj "Lines affected" koji wizard prikazuje je direktan indikator koliko je bug 
 
 ## Izvorni kod i licenca
 
-- Glavni modul: [github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll](https://github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll)
-- Test bed orkestrator (4 kompanije + demo korisnici): [github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data](https://github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data)
-- Demo bugova (reprodukuje Bug A i Bug B): [github.com/bringout/odoo-bringout-payroll_timesheet_bug_test](https://github.com/bringout/odoo-bringout-payroll_timesheet_bug_test)
-- Minimalne demo lokalizacije: [l10n_si_demo](https://github.com/bringout/odoo-bringout-l10n_si_demo), [l10n_hr_demo](https://github.com/bringout/odoo-bringout-l10n_hr_demo)
+**Javno dostupno (AGPL-3):**
+
+- Test bed orkestrator (4 kompanije + demo korisnici + shared products): [github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data](https://github.com/bringout/odoo-bringout-multi_company_example_ba_hr_si_data)
+- Demo bugova (wizard koji reprodukuje Bug A i Bug B iz ovog posta): [github.com/bringout/odoo-bringout-payroll_timesheet_bug_test](https://github.com/bringout/odoo-bringout-payroll_timesheet_bug_test)
+- Minimalne demo lokalizacije (samo za test-bed, ne za produkciju): [l10n_si_demo](https://github.com/bringout/odoo-bringout-l10n_si_demo), [l10n_hr_demo](https://github.com/bringout/odoo-bringout-l10n_hr_demo)
+
+**Interno (proprietary):**
+
+- Glavni modul `multi_company_protect_psql_payroll` — zaštita intelektualnog prava vertikalnog rješenja. Dostupan uz ugovor o podršci i implementaciji. Za pristup kontaktirajte [bring.out doo Sarajevo](https://www.bring.out.ba).
+
+Ovaj split odražava našu [strategiju iz posta o Odoo licencama](https://www.bring.out.ba/blog/odoo-licence-analiza-2026/): prateći alati, lokalizacije i demo scenariji su javni i AGPL-3 (zajednica ih može slobodno koristiti, modifikovati, reproducirati), dok je sâm "koruber" koji rješava komercijalno vertikalno rješenje zaštićen kao internal IP.
 
 ## Naredni koraci
 
