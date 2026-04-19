@@ -5,6 +5,8 @@ pubDate: '2026-04-19T18:30:00'
 heroImage: '/rls-payroll-hero.svg'
 ---
 
+> **Napomena:** Generisano od strane Claude 🤖
+
 Multi-company Odoo setup izgleda jednostavno dok ne postavite ozbiljno pitanje: **šta ako operator obračuna plata u Bosni slučajno (ili ciljano) vidi plate slovenačkih ili hrvatskih zaposlenika?** Odoo-ve record rules su primarna zaštita — ali to je **samo jedan sloj**, i otkazuje tiho kad neki custom modul, loša konfiguracija ili direktni SQL zaobiđu ORM.
 
 Napravili smo [`multi_company_protect_psql_payroll`](https://github.com/bringout/odoo-bringout-multi_company_protect_psql_payroll) — Odoo 16 modul koji dodaje **PostgreSQL Row-Level Security** kao drugu liniju odbrane, ali **samo za korisnike koji su eksplicitno zaključani na jednu kompaniju**. Live demo radi na [multi-test.hodi.ba](https://multi-test.hodi.ba) sa 4 kompanije u 3 zemlje.
