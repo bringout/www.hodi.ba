@@ -1,5 +1,5 @@
 ---
-title: 'PostgreSQL Row-Level Security za zaštitu plata u Odoo multi-company instalaciji'
+title: 'PostgreSQL Row-Level Security za zaštitu modula za obračun plata (payroll) u Odoo multi-company instalaciji'
 description: 'Kako smo napravili odbrambeni sloj na PostgreSQL nivou koji garantuje da operator obračuna plata ne može čitati ni upisivati redove drugih kompanija — čak i kad Odoo record rules zakažu.'
 pubDate: '2026-04-19T18:30:00'
 heroImage: '/rls-payroll-hero.svg'
