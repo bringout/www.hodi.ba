@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="uvz-bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a2540"/>
+      <stop offset="100%" stop-color="#2e4263"/>
+    </linearGradient>
+    <linearGradient id="uvz-bill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dde4ef"/>
+    </linearGradient>
+    <linearGradient id="uvz-wrong" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8585"/>
+      <stop offset="100%" stop-color="#d93636"/>
+    </linearGradient>
+    <linearGradient id="uvz-clean" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6fe8a1"/>
+      <stop offset="100%" stop-color="#18a955"/>
+    </linearGradient>
+    <linearGradient id="uvz-arrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4b7bec"/>
+      <stop offset="100%" stop-color="#2ad1b3"/>
+    </linearGradient>
+    <filter id="uvz-shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="0" dy="6" result="b"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#uvz-bg)"/>
+
+  <!-- soft grid -->
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126"/>
+    <line x1="0" y1="252" x2="1200" y2="252"/>
+    <line x1="0" y1="378" x2="1200" y2="378"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Title -->
+  <text x="60" y="80" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="38" font-weight="700">Uvoz cleanup wizard</text>
+  <text x="60" y="120" fill="#9fb3d9" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="400">l10n_ba_uvoz_delete_then_recalc_svl — Odoo 16</text>
+
+  <!-- Left stack: BEFORE (wrong bills + LCs) -->
+  <g filter="url(#uvz-shadow)" transform="translate(60,180)">
+    <rect x="0" y="0" width="340" height="380" rx="14" fill="url(#uvz-bill)"/>
+    <rect x="0" y="0" width="340" height="66" rx="14" fill="url(#uvz-wrong)"/>
+    <rect x="0" y="52" width="340" height="14" fill="url(#uvz-wrong)"/>
+    <text x="22" y="28" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700">BILL/2026/03/0001 — USD</text>
+    <text x="22" y="50" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" opacity="0.9">krivi tečaj</text>
+
+    <!-- lines -->
+    <g font-family="Inter, system-ui, sans-serif" font-size="15" fill="#49526d">
+      <text x="22" y="96">product_02 · 50 kom</text>
+      <text x="22" y="126">product_01 · 50 kom</text>
+      <text x="22" y="156">product_03 · 50 kom</text>
+      <text x="22" y="186">product_04 · 10 kom</text>
+      <text x="22" y="216">product_05 · 10 kom</text>
+    </g>
+    <line x1="22" y1="96" x2="318" y2="96" stroke="#d93636" stroke-width="2"/>
+    <line x1="22" y1="126" x2="318" y2="126" stroke="#d93636" stroke-width="2"/>
+    <line x1="22" y1="156" x2="318" y2="156" stroke="#d93636" stroke-width="2"/>
+
+    <!-- LC card overlay -->
+    <rect x="24" y="240" width="292" height="56" rx="10" fill="#eef3ff" stroke="#4b7bec" stroke-width="1.5"/>
+    <text x="40" y="268" fill="#1f3b8a" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700">LC/2026/0003 — service_01</text>
+    <text x="40" y="288" fill="#3a548d" font-family="Inter, system-ui, sans-serif" font-size="13">35 SVL redova · 780.87</text>
+
+    <rect x="24" y="306" width="292" height="56" rx="10" fill="#eef3ff" stroke="#4b7bec" stroke-width="1.5"/>
+    <text x="40" y="334" fill="#1f3b8a" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700">LC/2026/0004 — service_02</text>
+    <text x="40" y="354" fill="#3a548d" font-family="Inter, system-ui, sans-serif" font-size="13">6 cost lines · 675.06</text>
+  </g>
+
+  <!-- Arrow -->
+  <g transform="translate(420,360)">
+    <path d="M0 10 L120 10 L120 0 L150 15 L120 30 L120 20 L0 20 Z" fill="url(#uvz-arrow)"/>
+    <text x="12" y="-8" fill="#9fb3d9" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">wizard</text>
+    <text x="12" y="50" fill="#9fb3d9" font-family="Inter, system-ui, sans-serif" font-size="14">1 transakcija</text>
+  </g>
+
+  <!-- Right stack: AFTER (clean SVL) -->
+  <g filter="url(#uvz-shadow)" transform="translate(610,180)">
+    <rect x="0" y="0" width="520" height="380" rx="14" fill="#101b33"/>
+    <rect x="0" y="0" width="520" height="56" rx="14" fill="url(#uvz-clean)"/>
+    <rect x="0" y="42" width="520" height="14" fill="url(#uvz-clean)"/>
+    <text x="22" y="36" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">SVL — očišćen i rekalkulisan</text>
+
+    <!-- Table header -->
+    <g font-family="JetBrains Mono, ui-monospace, monospace" font-size="13" fill="#7fa2e8">
+      <text x="22" y="88">proizvod</text>
+      <text x="230" y="88">prije</text>
+      <text x="310" y="88">LC</text>
+      <text x="380" y="88">poslije</text>
+    </g>
+    <line x1="22" y1="98" x2="498" y2="98" stroke="#24355f" stroke-width="1"/>
+
+    <!-- Rows -->
+    <g font-family="JetBrains Mono, ui-monospace, monospace" font-size="13" fill="#dbe5fb">
+      <text x="22" y="124">product_01</text>
+      <text x="230" y="124">222.03</text>
+      <text x="310" y="124" fill="#ff8585">-39.66</text>
+      <text x="380" y="124" fill="#6fe8a1">168.30</text>
+
+      <text x="22" y="156">product_02</text>
+      <text x="230" y="156">830.39</text>
+      <text x="310" y="156" fill="#ff8585">-146.50</text>
+      <text x="380" y="156" fill="#6fe8a1">680.96</text>
+
+      <text x="22" y="188">product_03</text>
+      <text x="230" y="188">711.31</text>
+      <text x="310" y="188" fill="#ff8585">-126.90</text>
+      <text x="380" y="188" fill="#6fe8a1">600.19</text>
+
+      <text x="22" y="220">product_04</text>
+      <text x="230" y="220">272.59</text>
+      <text x="310" y="220" fill="#ff8585">-48.77</text>
+      <text x="380" y="220" fill="#6fe8a1">229.90</text>
+
+      <text x="22" y="252">product_05</text>
+      <text x="230" y="252">5652.68</text>
+      <text x="310" y="252" fill="#ff8585">-1010.55</text>
+      <text x="380" y="252" fill="#6fe8a1">4768.60</text>
+    </g>
+
+    <line x1="22" y1="270" x2="498" y2="270" stroke="#24355f" stroke-width="1"/>
+
+    <!-- Summary chips -->
+    <g transform="translate(22,296)">
+      <rect width="230" height="30" rx="15" fill="#183056"/>
+      <text x="16" y="20" fill="#6fe8a1" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700">✓ 35 LC SVL obrisano</text>
+    </g>
+    <g transform="translate(262,296)">
+      <rect width="230" height="30" rx="15" fill="#183056"/>
+      <text x="16" y="20" fill="#6fe8a1" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700">✓ 5 računa obrisano</text>
+    </g>
+    <g transform="translate(22,334)">
+      <rect width="230" height="30" rx="15" fill="#183056"/>
+      <text x="16" y="20" fill="#6fe8a1" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700">✓ Tax 17% → uvoz 0%</text>
+    </g>
+    <g transform="translate(262,334)">
+      <rect width="230" height="30" rx="15" fill="#183056"/>
+      <text x="16" y="20" fill="#6fe8a1" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700">✓ PO spreman za re-bill</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <text x="60" y="598" fill="#6b80a8" font-family="Inter, system-ui, sans-serif" font-size="14">
+    bring.out doo Sarajevo · www.bring.out.ba
+  </text>
+</svg>
