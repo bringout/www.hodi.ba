@@ -7,7 +7,7 @@ heroImage: '/ba-payroll-hero.png'
 
 ## Uvod
 
-U [prethodnom postu o ba_payroll / payroll side-by-side](/blog/payroll-i-ba-payroll-side-by-side-2026/) opisali smo rename-generator pristup: fork OCA payroll-a kroz `core_0/scripts/rename_oca_payroll.py` u paralelni `ba_payroll` modul sa `ba.` prefiksom, pa oba stacka koegzistiraju u istoj bazi. Posao je prošao na [multi-test.hodi.ba](https://multi-test.hodi.ba) — sve dok dva laten tbug-a nisu isplivala. Ovo je kratak postmortem.
+U [prethodnom postu o ba_payroll / payroll side-by-side](/blog/payroll-i-ba-payroll-side-by-side-2026.md/) opisali smo rename-generator pristup: fork OCA payroll-a kroz `core_0/scripts/rename_oca_payroll.py` u paralelni `ba_payroll` modul sa `ba.` prefiksom, pa oba stacka koegzistiraju u istoj bazi. Posao je prošao na [multi-test.hodi.ba](https://multi-test.hodi.ba) — sve dok dva laten tbug-a nisu isplivala. Ovo je kratak postmortem.
 
 ## Bug 1 — OwlError: duplicate key in t-foreach
 
