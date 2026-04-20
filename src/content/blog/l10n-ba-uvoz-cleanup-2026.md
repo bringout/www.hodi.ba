@@ -69,7 +69,7 @@ Tri notebook taba u wizardu:
 
 ### 1. Per-product SVL preview
 
-Trešnja sa sumarnim footerom:
+Tabela sa sumarnim footerom:
 
 | proizvod | primljeno | otišlo | rem.prije | LC doprinos | rem.poslije |
 |---|---:|---:|---:|---:|---:|

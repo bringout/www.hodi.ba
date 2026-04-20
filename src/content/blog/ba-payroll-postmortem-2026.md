@@ -7,7 +7,7 @@ heroImage: '/ba-payroll-hero.png'
 
 ## Uvod
 
-U [prethodnom postu o ba_payroll / payroll side-by-side](/blog/payroll-i-ba-payroll-side-by-side-2026.md/) opisali smo rename-generator pristup: fork OCA payroll-a kroz `core_0/scripts/rename_oca_payroll.py` u paralelni `ba_payroll` modul sa `ba.` prefiksom, pa oba stacka koegzistiraju u istoj bazi. Posao je prošao na [multi-test.hodi.ba](https://multi-test.hodi.ba) — sve dok dva laten tbug-a nisu isplivala. Ovo je kratak postmortem.
+U [prethodnom postu o ba_payroll / payroll side-by-side](/blog/payroll-i-ba-payroll-side-by-side-2026.md/) opisali smo rename-generator pristup: fork OCA payroll-a kroz `core_0/scripts/rename_oca_payroll.py` u paralelni `ba_payroll` modul sa `ba.` prefiksom, pa oba stacka koegzistiraju u istoj bazi. Posao je prošao na [multi-test.hodi.ba](https://multi-test.hodi.ba) — sve dok dva latentna buga nisu isplivala. Ovo je kratak postmortem.
 
 ## Bug 1 — OwlError: duplicate key in t-foreach
 
@@ -33,7 +33,7 @@ pat_context_module = re.compile(
 
 ## Bug 2 — ParseError: Field "schedule_pay" does not exist in model "hr.contract"
 
-Prvi re-install nakon rednev fix-a je pao na:
+Prvi re-install nakon rename fix-a je pao na:
 
 ```
 ParseError: while parsing ba_payroll/views/hr_contract_views.xml:3
@@ -48,7 +48,7 @@ Fix u [`odoo-bringout-ba_payroll@56b8c7d`](https://github.com/bringout/odoo-brin
 
 ## Zaključak
 
-Oba fix-a žive isključivo u **generatoru** — izlazni modul nije hand-edit-ovan. Ova disciplina ("nikad ne uređuj izlaz") znači da svaka buduća OCA payroll verzija prolazi kroz istu obradu i oba patch-a se automatski prim enjuju.
+Oba fix-a žive isključivo u **generatoru** — izlazni modul nije hand-edit-ovan. Ova disciplina ("nikad ne uređuj izlaz") znači da svaka buduća OCA payroll verzija prolazi kroz istu obradu i oba patch-a se automatski primjenjuju.
 
 ## Napomena
 
