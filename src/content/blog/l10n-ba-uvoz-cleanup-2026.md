@@ -1,5 +1,5 @@
 ---
-title: 'Uvoz cleanup wizard — brisanje neispravno obrađenih ulaznih računa i LC dokumenata na uvoznoj nabavci'
+title: 'Uvoz cleanup wizard — brisanje neispravno obrađenih ulaznih računa i LC (zavisni troškovi) dokumenata na uvoznoj nabavci'
 description: 'Novi Odoo 16 modul l10n_ba_uvoz_delete_then_recalc_svl — wizard koji iz forme uvozne nabavke briše pogrešno knjižene račune i landed costove, zatim rekalkuliše SVL tako da ostane u integritetu.'
 pubDate: '2026-04-20T18:30:00'
 heroImage: '/uvoz-cleanup-hero.svg'
