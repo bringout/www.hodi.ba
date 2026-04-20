@@ -155,3 +155,8 @@ Pristup: korisnici iz `stock.group_stock_manager` (skladišni menadžeri) vide d
 Za uvoznu nabavku gdje je neko pogriješio u tečaju i već povukao 2-3 LC dokumenta na toj osnovi, a nijedan račun još nije plaćen — ovaj wizard zamjenjuje 8-dokumentnu credit-note lancu jednim transakcijskim brisanjem sa SVL rekalkulacijom. Reverse-via-credit-note ostaje pravi odgovor čim faktura pređe u reconciled stanje, ili čim period zatvori — do tada ovo je brže i ostavlja čišći audit trag.
 
 Modul je proizvod jednog realnog čišćenja (slučaj `CI26-0134`) na produkciji — ugrađen u wizard tako da sljedeća greška iste vrste ne traži pola sata SQL-a i tri razgovora o tome šta brisati.
+
+## Napomene
+
+- Kreirao Claude 🤖
+- **Modul nije testiran!**
