@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="month1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#0891b2" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="month2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="month3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#059669" stop-opacity="0.85"/>
+    </linearGradient>
+    <filter id="soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <!-- subtle grid -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.3">
+    <path d="M0 100 H1200 M0 200 H1200 M0 300 H1200 M0 400 H1200 M0 500 H1200"/>
+    <path d="M100 0 V600 M200 0 V600 M300 0 V600 M400 0 V600 M500 0 V600 M600 0 V600 M700 0 V600 M800 0 V600 M900 0 V600 M1000 0 V600 M1100 0 V600"/>
+  </g>
+
+  <!-- Title -->
+  <text x="60" y="95" fill="#f1f5f9" font-size="44" font-weight="700">l10n_ba_pdv_view</text>
+  <text x="60" y="140" fill="#cbd5e1" font-size="22" font-weight="400">PDV pregled · read-only · više mjeseci odjednom</text>
+  <line x1="60" y1="160" x2="560" y2="160" stroke="url(#accent)" stroke-width="3"/>
+
+  <!-- Three month cards -->
+  <g transform="translate(60,210)">
+    <!-- Month 1 card -->
+    <g transform="translate(0,0)">
+      <rect width="250" height="230" rx="14" fill="url(#month1)" opacity="0.95"/>
+      <text x="20" y="40" fill="#ecfeff" font-size="18" font-weight="600">2601</text>
+      <text x="20" y="68" fill="#ecfeff" font-size="14" opacity="0.9">Januar 2026</text>
+      <line x1="20" y1="88" x2="230" y2="88" stroke="#ecfeff" stroke-width="1" opacity="0.4"/>
+      <text x="20" y="120" fill="#ecfeff" font-size="14">KUF (nabavke)</text>
+      <text x="230" y="120" fill="#ecfeff" font-size="22" font-weight="700" text-anchor="end">32</text>
+      <text x="20" y="158" fill="#ecfeff" font-size="14">KIF (isporuke)</text>
+      <text x="230" y="158" fill="#ecfeff" font-size="22" font-weight="700" text-anchor="end">35</text>
+      <text x="20" y="202" fill="#ecfeff" font-size="12" opacity="0.85">∑ bez PDV: 2.695,72 KM</text>
+    </g>
+
+    <!-- Plus sign -->
+    <text x="275" y="130" fill="#94a3b8" font-size="42" font-weight="300" text-anchor="middle">+</text>
+
+    <!-- Month 2 card -->
+    <g transform="translate(300,0)">
+      <rect width="250" height="230" rx="14" fill="url(#month2)" opacity="0.95"/>
+      <text x="20" y="40" fill="#faf5ff" font-size="18" font-weight="600">2602</text>
+      <text x="20" y="68" fill="#faf5ff" font-size="14" opacity="0.9">Februar 2026</text>
+      <line x1="20" y1="88" x2="230" y2="88" stroke="#faf5ff" stroke-width="1" opacity="0.4"/>
+      <text x="20" y="120" fill="#faf5ff" font-size="14">KUF (nabavke)</text>
+      <text x="230" y="120" fill="#faf5ff" font-size="22" font-weight="700" text-anchor="end">22</text>
+      <text x="20" y="158" fill="#faf5ff" font-size="14">KIF (isporuke)</text>
+      <text x="230" y="158" fill="#faf5ff" font-size="22" font-weight="700" text-anchor="end">48</text>
+      <text x="20" y="202" fill="#faf5ff" font-size="12" opacity="0.85">∑ bez PDV: 1.698,98 KM</text>
+    </g>
+
+    <!-- Equals sign -->
+    <text x="575" y="130" fill="#94a3b8" font-size="36" font-weight="300" text-anchor="middle">=</text>
+
+    <!-- Combined card -->
+    <g transform="translate(600,-10)">
+      <rect width="270" height="250" rx="14" fill="url(#month3)" opacity="0.95"/>
+      <rect width="270" height="250" rx="14" fill="none" stroke="#ecfdf5" stroke-width="2"/>
+      <text x="20" y="45" fill="#ecfdf5" font-size="18" font-weight="600">2601 + 2602</text>
+      <text x="20" y="73" fill="#ecfdf5" font-size="14" opacity="0.9">01.01.2026 – 28.02.2026</text>
+      <line x1="20" y1="93" x2="250" y2="93" stroke="#ecfdf5" stroke-width="1" opacity="0.5"/>
+      <text x="20" y="128" fill="#ecfdf5" font-size="14">KUF ukupno</text>
+      <text x="250" y="128" fill="#ecfdf5" font-size="24" font-weight="700" text-anchor="end">54</text>
+      <text x="20" y="168" fill="#ecfdf5" font-size="14">KIF ukupno</text>
+      <text x="250" y="168" fill="#ecfdf5" font-size="24" font-weight="700" text-anchor="end">83</text>
+      <text x="20" y="215" fill="#ecfdf5" font-size="12" opacity="0.9">∑ bez PDV: 4.394,70 KM</text>
+      <text x="20" y="232" fill="#ecfdf5" font-size="12" opacity="0.9">(jedan XLSX, oba perioda)</text>
+    </g>
+  </g>
+
+  <!-- Bottom tagline -->
+  <g transform="translate(60,500)">
+    <rect width="1080" height="60" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="30" y="38" fill="#cbd5e1" font-size="15" font-family="ui-monospace,Menlo,Consolas,monospace">
+      ba.pdv.view.wizard  ·  čita ba.pdv.nabavke + ba.pdv.isporuke  ·  NE regeneriše tabele  ·  odoo 16  ·  AGPL-3
+    </text>
+  </g>
+
+  <!-- tiny Odoo-ish decoration -->
+  <g transform="translate(1040,50)" opacity="0.85">
+    <circle cx="0" cy="0" r="22" fill="url(#accent)"/>
+    <text x="0" y="6" fill="#0f172a" font-size="18" font-weight="700" text-anchor="middle">P</text>
+  </g>
+</svg>
