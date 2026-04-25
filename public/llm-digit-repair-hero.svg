@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="LLM digit-drop repair: ground-truth from PDF text snaps a 15-digit LLM read back to 16 digits">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#2c3a5d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#e2c781"/>
+      <stop offset="100%" stop-color="#d2b76a"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#92e0b2"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="10" fill="url(#accent)"/>
+
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f0f0">
+    <text x="60" y="80" font-size="38" font-weight="700">LLM ispustio cifru — popravak iz PDF teksta</text>
+    <text x="60" y="115" font-size="20" fill="#a8b3cc" font-weight="400">
+      l10n_ba_bank_pdf · subsequence-snap na ground-truth iz fitz.page.get_text()
+    </text>
+  </g>
+
+  <!-- LLM read (broken) -->
+  <g transform="translate(60, 165)">
+    <rect width="500" height="180" rx="10" fill="#3a4d75" opacity="0.55"
+          stroke="#ef6f6c" stroke-width="2"/>
+    <text x="20" y="34" font-size="13" letter-spacing="3" fill="#ef6f6c" font-family="'DejaVu Sans', sans-serif">
+      LLM PROČITAO (15 cifri)
+    </text>
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="34" font-weight="700">
+      <text x="20" y="92" fill="#f0f0f0">/161000009</text>
+      <!-- the gap where the dropped 0 should be — render as a struck-through ghost -->
+      <g transform="translate(220, 0)">
+        <rect x="0" y="65" width="34" height="40" rx="4" fill="#ef6f6c" opacity="0.18"/>
+        <text x="6" y="92" fill="#ef6f6c" opacity="0.55" font-style="italic">∅</text>
+      </g>
+      <text x="262" y="92" fill="#f0f0f0">5080090</text>
+    </g>
+    <text x="20" y="135" font-size="14" fill="#ef6f6c">
+      Qwen3-VL je ispustio jedan 0 iz niza nula
+    </text>
+    <text x="20" y="158" font-size="13" fill="#a8b3cc">
+      prompt "broji do 16, ako nije 16 vrati prazno" — ignorisan
+    </text>
+  </g>
+
+  <!-- Arrow + repair label -->
+  <g transform="translate(580, 250)">
+    <line x1="0" y1="20" x2="60" y2="20" stroke="#92e0b2" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="0" y="-8" font-size="13" fill="#92e0b2" font-family="'DejaVu Sans', sans-serif" font-weight="600">
+      subsekvenca
+    </text>
+    <text x="0" y="50" font-size="13" fill="#92e0b2" font-family="'DejaVu Sans', sans-serif" font-weight="600">
+      jedinstveni kandidat
+    </text>
+  </g>
+
+  <!-- Ground truth (repaired) -->
+  <g transform="translate(660, 165)">
+    <rect width="480" height="180" rx="10" fill="#3a4d75" opacity="0.65"
+          stroke="#92e0b2" stroke-width="3"/>
+    <text x="20" y="34" font-size="13" letter-spacing="3" fill="#92e0b2" font-family="'DejaVu Sans', sans-serif">
+      ★ POPRAVLJENO (16 cifri, iz PDF-a)
+    </text>
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="34" font-weight="700">
+      <text x="20" y="92" fill="#f0f0f0">/161000009</text>
+      <!-- the recovered 0, highlighted -->
+      <g transform="translate(220, 0)">
+        <rect x="0" y="65" width="34" height="40" rx="4" fill="#92e0b2" opacity="0.28"/>
+        <text x="4" y="92" fill="#92e0b2">0</text>
+      </g>
+      <text x="262" y="92" fill="#f0f0f0">5080090</text>
+    </g>
+    <text x="20" y="135" font-size="14" fill="#92e0b2">
+      regex /(\d{16}) preko fitz.page.get_text()
+    </text>
+    <text x="20" y="158" font-size="13" fill="#a8b3cc">
+      ground-truth iz tekst-sloja PDF-a — deterministički
+    </text>
+  </g>
+
+  <!-- Algorithm steps -->
+  <g font-family="'DejaVu Sans', sans-serif">
+    <text x="60" y="400" font-size="17" fill="#e2c781" font-weight="700">
+      Dva-koračni pipeline:
+    </text>
+    <text x="60" y="430" font-size="15" fill="#a8b3cc">
+      → 1. Vision LLM (kontekst): zna koja cifra je "iznos", ko je nalogodavac, šta je opis
+    </text>
+    <text x="60" y="455" font-size="15" fill="#a8b3cc">
+      → 2. Regex preko PDF tekst-sloja (cifre): 100% tačnost na izoliranim brojevima
+    </text>
+    <text x="60" y="480" font-size="15" fill="#a8b3cc">
+      → snap LLM-ovog reada na ground-truth iz iste stranice; 0 ili ≥2 kandidata = bez snapa, chatter alarm
+    </text>
+    <text x="60" y="505" font-size="15" fill="#a8b3cc">
+      → svaki tihi popravak loguje se u chatter izvoda (audit trail za računovodstvo)
+    </text>
+  </g>
+
+  <rect x="0" y="600" width="1200" height="30" fill="url(#accent)"/>
+  <text x="60" y="620" font-family="'DejaVu Sans', sans-serif"
+        font-size="14" fill="#1f2a44" font-weight="600">
+    bring.out d.o.o. Sarajevo  ·  www.bring.out.ba
+  </text>
+</svg>

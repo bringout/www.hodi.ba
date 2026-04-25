@@ -2,7 +2,7 @@
 title: 'Bosanska lokalizacija "Odoo" open-source platforme: Kada LLM ignoriše instrukcije — popravak ispuštenih cifri u broju transakcijskog računa pomoću PDF teksta kao "ground truth"'
 description: 'Iako je modul l10n_ba_bank_pdf u vision-modu (rasterizovana stranica + tekst), Qwen3-VL (i GPT-4o, i Claude) povremeno ispušta jednu cifru iz broja transakcijskog računa kad se u nizu ponavlja istih cifri (najčešće nula). Promptu se kaže "broji do 16, ako nije 16 vrati prazno" — LLM ignoriše instrukciju jer ne broji tokene pouzdano. Rješenje: na ulazu u parser regexom izvući svaki /16-cifreni iz tekst-sloja PDF-a kao "ground truth" set, pa nakon LLM odgovora svaki 14- ili 15-cifreni odgovor "snapnuti" na jedinstvenog kandidata kojem je LLM-ov pogrešan niz subsekvenca. Cijeli popravak se loguje u chatter izvoda — operatera odmah vidi šta je AI pogriješio i koju vrijednost je sistem deterministički vratio.'
 pubDate: '2026-04-25T20:30:00'
-heroImage: '/banke-vision-hero.svg'
+heroImage: '/llm-digit-repair-hero.svg'
 ---
 
 ## Problem: LLM ne broji cifre pouzdano
