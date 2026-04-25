@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="Banke u Republici Srpskoj — Odoo modul l10n_ba_rs_bank_data">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#2c3a5d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#e2c781"/>
+      <stop offset="100%" stop-color="#d2b76a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- top accent bar -->
+  <rect x="0" y="0" width="1200" height="10" fill="url(#accent)"/>
+
+  <!-- title block -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f0f0">
+    <text x="60" y="92" font-size="52" font-weight="700">Banke u Republici Srpskoj</text>
+    <text x="60" y="132" font-size="22" fill="#a8b3cc" font-weight="400">
+      Odoo moduli
+      <tspan fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="600">l10n_ba_rs_bank_data</tspan>
+      <tspan fill="#e2c781"> + </tspan>
+      <tspan fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="600">l10n_ba_bank</tspan>
+      <tspan fill="#a8b3cc">  ·  3-cifreni prefiks → res.bank</tspan>
+    </text>
+  </g>
+
+  <!-- header row -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <text x="80"  y="200" font-size="13" letter-spacing="3" fill="#92e0b2">ŠIFRA</text>
+    <text x="220" y="200" font-size="13" letter-spacing="3" fill="#92e0b2">BANKA</text>
+    <line x1="60" y1="212" x2="1140" y2="212" stroke="#3a4d75" stroke-width="1"/>
+  </g>
+
+  <!-- bank rows -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" font-size="22" fill="#f0f0f0">
+    <text x="80"  y="252" fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="700">551</text>
+    <text x="220" y="252">UniCredit Bank a.d. Banja Luka</text>
+    <line x1="60" y1="268" x2="1140" y2="268" stroke="#2c3a5d" stroke-width="1"/>
+
+    <text x="80"  y="295" fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="700">552</text>
+    <text x="220" y="295">Addiko Bank a.d. Banja Luka</text>
+    <line x1="60" y1="311" x2="1140" y2="311" stroke="#2c3a5d" stroke-width="1"/>
+
+    <text x="80"  y="338" fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="700">554</text>
+    <text x="220" y="338">Naša banka a.d. Bijeljina</text>
+    <line x1="60" y1="354" x2="1140" y2="354" stroke="#2c3a5d" stroke-width="1"/>
+
+    <!-- 555 highlighted -->
+    <rect x="60" y="360" width="1080" height="38" fill="#3a4d75" opacity="0.55" rx="4"/>
+    <text x="80"  y="386" fill="#e2c781" font-family="ui-monospace, monospace" font-weight="700">555</text>
+    <text x="220" y="386" fill="#ffffff" font-weight="600">Nova banka a.d. Banja Luka</text>
+    <text x="1110" y="386" fill="#e2c781" font-size="13" text-anchor="end">★ primjer u tekstu</text>
+
+    <text x="80"  y="425" fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="700">562</text>
+    <text x="220" y="425">NLB Banka a.d. Banja Luka</text>
+    <line x1="60" y1="441" x2="1140" y2="441" stroke="#2c3a5d" stroke-width="1"/>
+
+    <text x="80"  y="468" fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="700">567</text>
+    <text x="220" y="468">ATOS Bank a.d. Banja Luka</text>
+    <line x1="60" y1="484" x2="1140" y2="484" stroke="#2c3a5d" stroke-width="1"/>
+
+    <text x="80"  y="511" fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="700">571</text>
+    <text x="220" y="511">Banka poštanska štedionica a.d. Banja Luka</text>
+    <line x1="60" y1="527" x2="1140" y2="527" stroke="#2c3a5d" stroke-width="1"/>
+
+    <text x="80"  y="554" fill="#92e0b2" font-family="ui-monospace, monospace" font-weight="700">572</text>
+    <text x="220" y="554">MF banka a.d. Banja Luka</text>
+  </g>
+
+  <!-- bottom signature bar -->
+  <rect x="0" y="600" width="1200" height="30" fill="url(#accent)"/>
+  <text x="60" y="620" font-family="'DejaVu Sans', 'Inter', sans-serif"
+        font-size="14" fill="#1f2a44" font-weight="600">
+    bring.out d.o.o. Sarajevo  ·  www.bring.out.ba
+  </text>
+</svg>
