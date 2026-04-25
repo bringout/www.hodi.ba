@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="ProCredit vision-LLM mode — slika stranice umjesto iskrivljenog teksta">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#2c3a5d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#e2c781"/>
+      <stop offset="100%" stop-color="#d2b76a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="10" fill="url(#accent)"/>
+
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f0f0">
+    <text x="60" y="92" font-size="46" font-weight="700">ProCredit + Qwen3-VL</text>
+    <text x="60" y="132" font-size="22" fill="#a8b3cc" font-weight="400">
+      vision-LLM mode  ·  slika stranice umjesto iskrivljenog teksta
+    </text>
+  </g>
+
+  <!-- Two-column comparison -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <!-- LEFT: garbled text (text-only mode) -->
+    <rect x="60" y="180" width="540" height="380" rx="8"
+          fill="#3a4d75" opacity="0.35" stroke="#ef6f6c" stroke-width="2"/>
+    <text x="80" y="210" font-size="14" letter-spacing="3" fill="#ef6f6c">
+      ❌ TEKST (use_vision = False)
+    </text>
+    <text x="80" y="232" font-size="13" fill="#a8b3cc">fitz extraction → garbled (no ToUnicode CMap)</text>
+
+    <g font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="20" fill="#ffffff">
+      <text x="80" y="280">5DþXQEURM</text>
+      <text x="80" y="310">1941202302802154</text>
+      <text x="80" y="340" fill="#ef6f6c" opacity="0.7">/LPLWSUHNRUDþHQMD</text>
+      <text x="80" y="370">0,00</text>
+      <text x="80" y="400" fill="#ef6f6c" opacity="0.7">3RþHWQRVWDQMH</text>
+      <text x="80" y="430" fill="#ef6f6c" opacity="0.7">9ODVQLNUDþXQD</text>
+      <text x="80" y="460">PARTNER A doo</text>
+    </g>
+
+    <!-- RIGHT: rendered image (vision mode) -->
+    <rect x="600" y="180" width="540" height="380" rx="8"
+          fill="#3a4d75" opacity="0.45" stroke="#92e0b2" stroke-width="2"/>
+    <text x="620" y="210" font-size="14" letter-spacing="3" fill="#92e0b2">
+      ✓ SLIKA (use_vision = True)
+    </text>
+    <text x="620" y="232" font-size="13" fill="#a8b3cc">PNG @ 150 DPI → LLM čita rendiranu stranicu</text>
+
+    <g font-family="'DejaVu Sans', sans-serif" font-size="20" fill="#ffffff">
+      <text x="620" y="280" font-weight="700">Račun broj</text>
+      <text x="620" y="310">1941202302802154</text>
+      <text x="620" y="340" font-weight="700" fill="#92e0b2">Limit prekoračenja</text>
+      <text x="620" y="370">0,00</text>
+      <text x="620" y="400" font-weight="700" fill="#92e0b2">Početno stanje</text>
+      <text x="620" y="430" font-weight="700" fill="#92e0b2">Vlasnik računa</text>
+      <text x="620" y="460">PARTNER A doo</text>
+    </g>
+  </g>
+
+  <!-- Footer storage delta callout -->
+  <g font-family="'DejaVu Sans', sans-serif" fill="#e2c781">
+    <text x="60" y="595" font-size="16" font-weight="600">
+      Bonus: rasterizovani PDF → 60% manje storage-a u Odoo bazi (originalni eml ostaje u Stalwart)
+    </text>
+  </g>
+
+  <rect x="0" y="600" width="1200" height="30" fill="url(#accent)"/>
+  <text x="60" y="620" font-family="'DejaVu Sans', sans-serif"
+        font-size="14" fill="#1f2a44" font-weight="600">
+    bring.out d.o.o. Sarajevo  ·  www.bring.out.ba
+  </text>
+</svg>
