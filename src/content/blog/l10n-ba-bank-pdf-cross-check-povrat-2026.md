@@ -12,7 +12,7 @@ Dva ranija posta:
 - [`l10n-ba-bank-pdf-vision-procredit-2026`](/blog/l10n-ba-bank-pdf-vision-procredit-2026.md/) — uveo *vision-LLM mod* (rasterizovati svaku stranicu PDF-a u PNG @ 150 DPI, poslati i tekst i sliku LLM-u) jer ProCredit tekstualni stream nosi `5DþXQEURM` umjesto `Račun broj` (CRT/iReport stari font subseti bez ToUnicode CMap-a). Plus *flat image-only PDF* koji zamjenjuje originalni attachment u Odoo — **62% storage uštede** (1.28 MB → 487 KB).
 - [`l10n-ba-bank-pdf-llm-digit-repair-2026`](/blog/l10n-ba-bank-pdf-llm-digit-repair-2026.md/) — pokazao da Qwen3-VL (i Claude, GPT-4o) tihi ispustaju jednu cifru iz duge sekvence nula u 16-cifrenom transakcijskom računu. Riješeno: regex `r"/(\d{16})"` nad PDF tekstom kao "ground-truth" set, pa subsekvenca-match snapuje 14- ili 15-cifrenu LLM grešku na jedinstvenog kandidata.
 
-Ova iteracija — **`l10n_ba_bank_pdf 16.0.1.28.0`** — gradi tri sloja iznad toga.
+Ova iteracija — **`l10n_ba_bank_pdf 16.0.1.29.0`** — gradi tri sloja iznad toga.
 
 ## 1. Ground-truth ekstrakcija je sad **per-bank**
 
@@ -186,10 +186,13 @@ Detaljnije:
 
 Bitno je razumjeti da **ova iteracija ne mijenja ovaj mehanizam**. Ono što je dodato:
 
-1. Pre-flat-replace-a, modul izvuče **PRETHODNI/NOVI SALDO** iz PDF tekstualnog sloja (regex) i sačuva kao polja na statement-u. Tako reprocess (preko `action_reprocess_pdf`) ima i dalje pristup tom signalu, čak i kad attachment više nema tekst.
-2. Ground-truth set 16-cifrenih partner-računa se iznova računa na svakom prolazu — ali pri reprocess flat PDF-a, set je prazan, pa cross-check daje `unverifiable` umjesto `confirmed`. To je vidljivo u chatter-u ("`N brojeva računa nije moguće verifikovati — PDF nema tekstualni sloj — vjerovatno reprocess image-only verzije`").
+1. Pre-flat-replace-a, modul izvuče **PRETHODNI/NOVI SALDO** iz PDF tekstualnog sloja (regex) i sačuva kao polja na statement-u (`pdf_text_balance_start`, `pdf_text_balance_end`, `has_pdf_text_balance`). Tako reprocess (preko `action_reprocess_pdf`) ima i dalje pristup tom signalu, čak i kad attachment više nema tekst.
 
-Da bi se i ovo riješilo (cache ground-truth set kao polje), bila bi to manja izmjena na statement modelu, identična mehanici po kojoj balance polja sad već radi. Predviđeno za jedno od narednih izdanja ako se pokaže potrebno (trenutno reprocess je rijedak — uglavnom posle module fix-a).
+2. **Isto i za ground-truth set 16-cifrenih partner-računa** (uvedeno u 1.29.0). Polje `pdf_text_ground_truth_accounts` (Char, CSV-encoded list) se popunjava pri prvom importu iz originalnog PDF text-a kroz bank-specifičan `_extract_ground_truth_accounts`. Pri reprocess-u, kada `_extract_statement_data` dobije kao argument postojeći statement i regex nad flat-PDF-om vrati prazan set, fallback čita keširani CSV. `data` dict koji parser vraća uključuje `ground_truth_source = "pdf-text" | "cached"` da `_update_statement_from_data` ne prepiše stvarni keš degradiranim "round-trip"-om.
+
+Sa ovom izmjenom — reprocess statementa sa novim modulom radi cross-check pravilno: 16-cifre AI brojeva se i dalje klasifikuju kao `confirmed`/`suspicious`/`snap`, a ne kao bezvrijedan `unverifiable`. Bez nje, reprocess bi bio "tihi degrade" — prošao, ali bez audit-a.
+
+Stari statementi (importovani prije 1.29.0) nemaju keš. Postoji opciono backfill: skripta koja prošeta statemente bez keš-a, učita original eml iz Stalwart audit trail-a (ili iz `input/banke-izvodi-test/<bank>/` ako je test instanca), `pdftotext` + bank-specifičan regex, upiše polje. Trenutno nije commitovana — radi se po potrebi.
 
 ## 6. Test infrastruktura
 
@@ -206,7 +209,7 @@ Ovaj rad nije realno bio moguć bez automatskog test bench-a. U profilu `profile
 
 | Modul | Verzija |
 |---|---|
-| `l10n_ba_bank_pdf` | **16.0.1.28.0** — extension hooks, cross-check, [BANK_PDF_DIAG] log |
+| `l10n_ba_bank_pdf` | **16.0.1.29.0** — extension hooks, cross-check, [BANK_PDF_DIAG] log, ground-truth + balance keš za reprocess |
 | `l10n_ba_bank_pdf_pbs` | **16.0.1.2.0** — `Račun:` regex, ekskluzivira `Nalog:` |
 | `l10n_ba_bank_pdf_procredit` | **16.0.1.6.0** — bare-isolated regex |
 | `l10n_ba_bank_pdf_raiffeisen` | **16.0.1.8.0** — `/-prefix + TRN:` ground-truth, PRETHODNI/NOVI SALDO regex, POVRAT fix |
@@ -216,7 +219,7 @@ Ovaj rad nije realno bio moguć bez automatskog test bench-a. U profilu `profile
 
 ## Šta dalje
 
-- Cache ground-truth set 16-cifrenih partner-računa kao polje na statement-u (analogno `pdf_text_balance_*`), tako da reprocess flat PDF-a ne pada na `unverifiable`.
+- One-shot backfill skripta koja popuni `pdf_text_ground_truth_accounts` na statementima importovanim prije 1.29.0 — čita original eml iz audit trail-a, `pdftotext` + bank-specifičan regex, piše u polje. Trenutno se taj keš puni samo za nove importe.
 - Stalwart admin API write shape: ako neko nađe javnu dokumentaciju 0.15.x ili krene od source-a, helper skripta dobiva `set-test`/`reset` subkomande — i mašine za batch test više ne moraju kompajlirati Rust paket pri svakoj promjeni throttle-a.
 - Per-bank transaction-row regex za PBS, ProCredit, Sparkasse — trenutno je samo Raiffeisen full row-by-row diff u `batch_test`-u.
 
