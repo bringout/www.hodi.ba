@@ -2,6 +2,7 @@
 title: 'Bosanska lokalizacija "Odoo" open-source platforme: l10n_ba_bank_pdf refactor - uklonjena cache polja, originalni PDF je opet attachment'
 description: 'l10n_ba_bank_pdf 16.0.1.36.0 je refactor koji čisti posljedice ranije loše odluke: Odoo attachment više nije image-only PDF bez tekstualnog sloja, nego originalni PDF koji je banka poslala. Zbog toga se uklanjaju cache polja za ground-truth račune i salda, jer se regex orakli mogu ponovo izvršiti nad originalnim PDF tekstom pri svakom reprocess-u. Uz to je dodat hook _extract_ground_truth_date: za Sparkasse se datum izvoda deterministički čita iz headera "Izvod broj N od dd.mm.yyyy na dan dd.mm.yyyy" - koristi se prvi datum iza "od", ne as-of datum iza "na dan".'
 pubDate: '2026-04-27T22:30:00'
+heroImage: '/bank-pdf-original-date-oracle-hero.png'
 ---
 
 ## Refactor koji briše posljedice pogrešne odluke
