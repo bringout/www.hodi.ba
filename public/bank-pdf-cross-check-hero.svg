@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="l10n_ba_bank_pdf cross-check — AI extraction with deterministic regex as second line of defense">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#2c3a5d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#e2c781"/>
+      <stop offset="100%" stop-color="#d2b76a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="10" fill="url(#accent)"/>
+
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f0f0">
+    <text x="60" y="92" font-size="44" font-weight="700">l10n_ba_bank_pdf · cross-check</text>
+    <text x="60" y="132" font-size="20" fill="#a8b3cc" font-weight="400">
+      AI ekstrakcija + deterministički regex = druga linija odbrane
+    </text>
+  </g>
+
+  <!-- LEFT: AI extraction (uncertain) -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="60" y="180" width="500" height="300" rx="8"
+          fill="#3a4d75" opacity="0.35" stroke="#e2c781" stroke-width="2"/>
+    <text x="80" y="210" font-size="14" letter-spacing="3" fill="#e2c781">
+      AI VISION LLM
+    </text>
+    <text x="80" y="234" font-size="13" fill="#a8b3cc">
+      Qwen3-VL · čita sliku · daje partner_account, amount, …
+    </text>
+
+    <g font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="18" fill="#ffffff">
+      <!-- 16 digits, looks fine -->
+      <text x="80" y="282">partner_account: 1610000095080090  ✓</text>
+      <!-- 15 digits, missing zero — common LLM bug -->
+      <text x="80" y="312" fill="#f0c987">partner_account: 161000009580090   ?  (15)</text>
+      <!-- hallucinated 16-digit not in PDF text -->
+      <text x="80" y="342" fill="#ef6f6c">partner_account: 1610000537500039  ?</text>
+      <!-- POVRAT amount mis-read -->
+      <text x="80" y="382" fill="#ef6f6c">amount: -587.29   (PDF: -2 592.96)</text>
+      <text x="80" y="412" fill="#ef6f6c">balance_end_real: 2 005.67  (PDF: 0.00)</text>
+    </g>
+
+    <text x="80" y="455" font-size="13" fill="#ef6f6c" font-style="italic">
+      digit-drop · halucinacija · saldo "freeze"
+    </text>
+  </g>
+
+  <!-- RIGHT: deterministic regex pass -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="640" y="180" width="500" height="300" rx="8"
+          fill="#3a4d75" opacity="0.45" stroke="#92e0b2" stroke-width="2"/>
+    <text x="660" y="210" font-size="14" letter-spacing="3" fill="#92e0b2">
+      DETERMINISTIČKI REGEX (per-bank)
+    </text>
+    <text x="660" y="234" font-size="13" fill="#a8b3cc">
+      ground-truth set iz PDF text-sloja · keširan na statementu
+    </text>
+
+    <g font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="14" fill="#ffffff">
+      <text x="660" y="278">PBS:        Račun:\s*(\d&#x7b;16&#x7d;)         ¬ Nalog:</text>
+      <text x="660" y="304">ProCredit:  (?&lt;!\d)\d&#x7b;16&#x7d;(?!\d)</text>
+      <text x="660" y="330">Raiffeisen: /(\d&#x7b;16&#x7d;)  ∪  TRN:\s*(\d&#x7b;16&#x7d;)</text>
+      <text x="660" y="356">Sparkasse:  /(\d&#x7b;16&#x7d;)  ∪  Broj transakcijskog…</text>
+    </g>
+
+    <g font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="14" fill="#92e0b2">
+      <text x="660" y="396">PRETHODNI SALDO:  2 005.67</text>
+      <text x="660" y="416">NOVI SALDO:       0.00      (deterministički)</text>
+      <text x="660" y="448" fill="#a8b3cc" font-style="italic">
+        POVRAT amount = (close − open) − Σ ostalih transakcija
+      </text>
+    </g>
+  </g>
+
+  <!-- Center join arrow -->
+  <g fill="#e2c781">
+    <path d="M 564 320 L 614 320 L 614 308 L 638 330 L 614 352 L 614 340 L 564 340 Z"
+          opacity="0.7"/>
+  </g>
+
+  <!-- Verdict pills bottom -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" font-size="14" font-weight="600">
+    <text x="60" y="528" font-size="13" letter-spacing="3" fill="#e2c781">
+      VERDICT POSLE CROSS-CHECK-A
+    </text>
+
+    <!-- confirmed -->
+    <rect x="60"  y="544" width="180" height="34" rx="17" fill="#92e0b2" opacity="0.85"/>
+    <text x="150" y="566" text-anchor="middle" fill="#1f2a44">✓ confirmed</text>
+
+    <!-- snap -->
+    <rect x="252" y="544" width="180" height="34" rx="17" fill="#f0c987" opacity="0.85"/>
+    <text x="342" y="566" text-anchor="middle" fill="#1f2a44">↶ snap (popravljeno)</text>
+
+    <!-- snap_long -->
+    <rect x="444" y="544" width="180" height="34" rx="17" fill="#f0c987" opacity="0.6"/>
+    <text x="534" y="566" text-anchor="middle" fill="#1f2a44">↶ snap_long</text>
+
+    <!-- suspicious -->
+    <rect x="636" y="544" width="180" height="34" rx="17" fill="#ef6f6c" opacity="0.85"/>
+    <text x="726" y="566" text-anchor="middle" fill="#ffffff">⚠ suspicious</text>
+
+    <!-- unverifiable -->
+    <rect x="828" y="544" width="180" height="34" rx="17" fill="#a8b3cc" opacity="0.55"/>
+    <text x="918" y="566" text-anchor="middle" fill="#1f2a44">? unverifiable</text>
+  </g>
+
+  <!-- Footer marker -->
+  <g font-family="ui-monospace, 'JetBrains Mono', monospace" fill="#a8b3cc" font-size="12">
+    <text x="60" y="608">
+      [BANK_PDF_DIAG] code=&lt;bank&gt; type=&lt;snap|suspicious|…&gt; raw='…' final='…'   →   journalctl + chatter audit
+    </text>
+  </g>
+</svg>

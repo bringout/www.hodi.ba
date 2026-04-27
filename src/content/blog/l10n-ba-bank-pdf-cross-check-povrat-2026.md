@@ -1,8 +1,8 @@
 ---
-title: 'Bosanska lokalizacija "Odoo" open-source platforme: Modul l10n_ba_bank_pdf — per-bank cross-check, POVRAT KREDITA balance rekonstrukcija, i zašto AI ekstrakcija mora imati determinističku drugu liniju odbrane'
+title: 'Bosanska lokalizacija "Odoo" open-source platforme: Modul l10n_ba_bank_pdf — AI ekstrakcija mora imati determinističku drugu liniju odbrane'
 description: 'Treći post o l10n_ba_bank_pdf modulu. Prvi je opisao vision-LLM mod za ProCredit i 60% manju storage potrošnju. Drugi je dodao subsekvenca-snap popravak kad LLM ispusti cifru iz dugog niza nula u 16-cifrenom računu. Ova iteracija ide korak dalje: ground-truth ekstrakcija postaje per-bank (default `r"/(\\d{16})"` regex je tiho odbijao PBS i ProCredit izvode), cross-check se pretvara u always-on klasifikaciju (confirmed / suspicious / snap / snap_long / unverifiable) sa strukturiranim WARNING markerom za audit, a POVRAT KREDITA red — gdje je vision LLM uporno halucinirao iznos zbog gustog overdraft footera — sad se rekonstruiše čisto matematički iz PDF-text-baziranog PRETHODNOG i NOVOG SALDA. Plus: Sparkasse OUR/inostrani fee-ovi dobiju vlastiti konto 5531, batch_test scenario kroz fetchmail+OCR pipe, i odgovor na pitanje koje često pada — "da li Odoo i dalje čuva originalni PDF kako je banka poslala".'
 pubDate: '2026-04-27T17:30:00'
-heroImage: '/banke-vision-hero.svg'
+heroImage: '/bank-pdf-cross-check-hero.svg'
 ---
 
 ## Šta je bilo, šta je novo
