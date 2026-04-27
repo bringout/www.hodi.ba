@@ -1,6 +1,6 @@
 ---
 title: 'Bosanska lokalizacija "Odoo" open-source platforme: l10n_ba_bank_pdf refactor - uklonjena cache polja, originalni PDF je opet attachment'
-description: 'l10n_ba_bank_pdf 16.0.1.36.0 je refactor koji čisti posljedice ranije loše odluke: Odoo attachment više nije image-only PDF bez tekstualnog sloja, nego originalni PDF koji je banka poslala. Zbog toga se uklanjaju cache polja za ground-truth račune i salda, jer se regex orakli mogu ponovo izvršiti nad originalnim PDF tekstom pri svakom reprocess-u. Uz to je dodat hook _extract_ground_truth_date: za Sparkasse se datum izvoda deterministički čita iz headera "Izvod broj N od dd.mm.yyyy na dan dd.mm.yyyy", pa LLM više ne može povući pogrešan datum iz footera ili transakcijskog reda.'
+description: 'l10n_ba_bank_pdf 16.0.1.36.0 je refactor koji čisti posljedice ranije loše odluke: Odoo attachment više nije image-only PDF bez tekstualnog sloja, nego originalni PDF koji je banka poslala. Zbog toga se uklanjaju cache polja za ground-truth račune i salda, jer se regex orakli mogu ponovo izvršiti nad originalnim PDF tekstom pri svakom reprocess-u. Uz to je dodat hook _extract_ground_truth_date: za Sparkasse se datum izvoda deterministički čita iz headera "Izvod broj N od dd.mm.yyyy na dan dd.mm.yyyy" - koristi se prvi datum iza "od", ne as-of datum iza "na dan".'
 pubDate: '2026-04-27T22:30:00'
 ---
 
@@ -84,7 +84,7 @@ def _extract_ground_truth_date(self, text):
 
 Bankarski submoduli ga override-uju kada imaju stabilan format zaglavlja.
 
-## Sparkasse: "na dan" je datum izvoda
+## Sparkasse: datum iza "od" je datum izvoda
 
 Sparkasse header ima oblik:
 
@@ -92,14 +92,14 @@ Sparkasse header ima oblik:
 Izvod broj <N> od <dd.mm.yyyy> na dan <dd.mm.yyyy>
 ```
 
-Prvi datum je početak perioda. Drugi datum, iza `na dan`, je datum zatvaranja izvoda i to je vrijednost koju Odoo treba staviti u `account.bank.statement.date`.
+Prvi datum, iza `od`, je datum izvoda koji Sparkasse koristi kao statement date. Drugi datum, iza `na dan`, je balance as-of datum i može biti naredni dan. Za primjer `Izvod broj 28 od 16.02.2026 na dan 17.02.2026`, Odoo `account.bank.statement.date` treba biti `2026-02-16`, ne `2026-02-17`.
 
 Sparkasse override zato radi usko ciljano:
 
 ```python
 DATE_RE = re.compile(
-    r"Izvod\s+broj\s+\d+\s+od\s+\d{2}\.\d{2}\.\d{4}"
-    r"\s+na\s+dan\s+(\d{2})\.(\d{2})\.(\d{4})"
+    r"Izvod\s+broj\s+\d+\s+od\s+(\d{2})\.(\d{2})\.(\d{4})"
+    r"\s+na\s+dan\s+\d{2}\.\d{2}\.\d{4}"
 )
 ```
 
@@ -148,7 +148,7 @@ Relevantne verzije u ovoj iteraciji:
 | Modul | Verzija | Promjena |
 |---|---:|---|
 | `l10n_ba_bank_pdf` | `16.0.1.36.0` | originalni PDF ostaje attachment, flat-PDF cache polja se uklanjaju, dodat je `_extract_ground_truth_date` hook |
-| `l10n_ba_bank_pdf_sparkasse` | `16.0.1.6.0` | Sparkasse datum izvoda čita se iz headera `Izvod broj ... na dan ...` |
+| `l10n_ba_bank_pdf_sparkasse` | `16.0.1.7.0` | Sparkasse datum izvoda čita se kao prvi datum iz headera `Izvod broj ... od ... na dan ...` |
 | `l10n_ba_bank_pdf_procredit` | `16.0.1.9.0` | prompt za pure-fee redove: naknada je jedna transakcija, ne dvije |
 | `l10n_ba_bank_pdf_raiffeisen` | `16.0.1.9.0` | čišćenje starog balance-cache fallback-a nakon povratka na originalni PDF |
 
