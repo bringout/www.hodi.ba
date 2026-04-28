@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="Chromium OOP print backend salje job na praznu destinaciju">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#2c3a5d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#e2c781"/>
+      <stop offset="100%" stop-color="#d2b76a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="10" fill="url(#accent)"/>
+
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f0f0">
+    <text x="60" y="92" font-size="46" font-weight="700">Chromium 146 · Wayland · Arch</text>
+    <text x="60" y="132" font-size="22" fill="#a8b3cc" font-weight="400">
+      OOP print backend  ·  drugi job tiho ode na praznu destinaciju
+    </text>
+  </g>
+
+  <g font-family="'DejaVu Sans', 'JetBrains Mono', 'Inter', monospace">
+    <!-- LEFT: Chromium log (says success) -->
+    <rect x="60" y="180" width="540" height="380" rx="8"
+          fill="#3a4d75" opacity="0.35" stroke="#ef6f6c" stroke-width="2"/>
+    <text x="80" y="210" font-size="14" letter-spacing="3" fill="#ef6f6c">CHROMIUM LOG</text>
+
+    <text x="80" y="252" font-size="15" fill="#cfd6e6">
+      <tspan x="80" dy="0">print_job_worker_oop.cc:107</tspan>
+      <tspan x="80" dy="22" fill="#9aa3b8">Start printing document 4 to </tspan>
+      <tspan dy="0" fill="#ef6f6c" font-weight="700">""</tspan>
+    </text>
+    <text x="80" y="320" font-size="15" fill="#cfd6e6">
+      <tspan x="80" dy="0">print_job_worker_oop.cc:525</tspan>
+      <tspan x="80" dy="22" fill="#9aa3b8">Sending document 4 to </tspan>
+      <tspan dy="0" fill="#ef6f6c" font-weight="700">``</tspan>
+      <tspan dy="0" fill="#9aa3b8"> for printing</tspan>
+    </text>
+    <text x="80" y="388" font-size="15" fill="#cfd6e6">
+      <tspan x="80" dy="0">print_job_worker_oop.cc:214</tspan>
+      <tspan x="80" dy="22" fill="#7fc785" font-weight="700">Printing completed via service</tspan>
+    </text>
+
+    <text x="80" y="470" font-size="14" fill="#ef6f6c" font-weight="700">
+      Chromium misli da je uspjelo.
+    </text>
+    <text x="80" y="492" font-size="14" fill="#cfd6e6">
+      Dialog se zatvara, nikakva greska.
+    </text>
+  </g>
+
+  <g font-family="'DejaVu Sans', 'JetBrains Mono', 'Inter', monospace">
+    <!-- RIGHT: CUPS access_log (empty) -->
+    <rect x="640" y="180" width="500" height="380" rx="8"
+          fill="#3a4d75" opacity="0.35" stroke="#7fc785" stroke-width="2"/>
+    <text x="660" y="210" font-size="14" letter-spacing="3" fill="#7fc785">CUPS access_log</text>
+
+    <text x="660" y="252" font-size="15" fill="#9aa3b8">
+      <tspan x="660" dy="0">tail -f /var/log/cups/access_log</tspan>
+    </text>
+
+    <text x="660" y="306" font-size="48" fill="#7fc785" font-weight="700" letter-spacing="4">∅</text>
+    <text x="660" y="350" font-size="16" fill="#cfd6e6">
+      <tspan x="660" dy="0">Nijedan POST /printers/...</tspan>
+      <tspan x="660" dy="24">IPP zahtjev nikad nije stigao</tspan>
+      <tspan x="660" dy="24">do cupsd-a.</tspan>
+    </text>
+
+    <text x="660" y="470" font-size="14" fill="#7fc785" font-weight="700">
+      Job je nestao izmedu Chromiuma i CUPS-a.
+    </text>
+  </g>
+
+  <!-- Footer band -->
+  <rect x="0" y="580" width="1200" height="50" fill="#10182b"/>
+  <text x="60" y="612" font-family="'DejaVu Sans', monospace" font-size="16"
+        fill="#e2c781" font-weight="700">
+    fix:  --disable-features=EnableOopPrintDrivers   →   ~/.config/chromium-flags.conf
+  </text>
+</svg>
