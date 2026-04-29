@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="l10n_ba_bank_pdf — 2-pass OCR validation: Qwen3-VL-32B primary then Gemini 3 Flash failover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#2c3a5d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#e2c781"/>
+      <stop offset="100%" stop-color="#d2b76a"/>
+    </linearGradient>
+    <marker id="arrow-yellow" viewBox="0 0 12 12" refX="10" refY="6"
+            markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#e2c781"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="10" fill="url(#accent)"/>
+
+  <!-- Title -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f0f0">
+    <text x="60" y="76" font-size="40" font-weight="700">l10n_ba_bank_pdf · 2-pass OCR validation</text>
+    <text x="60" y="108" font-size="18" fill="#a8b3cc" font-weight="400">
+      Qwen3-VL-32B (primary) → Gemini 3 Flash (failover) → FAILED-* (manual)
+    </text>
+  </g>
+
+  <!-- PDF input pill, far left -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="40" y="285" width="120" height="60" rx="8" fill="#3a4d75" stroke="#a8b3cc" stroke-width="1.5"/>
+    <text x="100" y="310" text-anchor="middle" font-size="14" letter-spacing="3" fill="#a8b3cc">PDF</text>
+    <text x="100" y="332" text-anchor="middle" font-size="11" fill="#a8b3cc" font-style="italic">izvod banke</text>
+  </g>
+
+  <!-- Arrow PDF → Primary -->
+  <line x1="160" y1="315" x2="208" y2="315" stroke="#e2c781" stroke-width="2.5" marker-end="url(#arrow-yellow)" opacity="0.85"/>
+
+  <!-- PRIMARY: Qwen3-VL-32B -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="210" y="180" width="380" height="280" rx="10"
+          fill="#3a4d75" opacity="0.40" stroke="#e2c781" stroke-width="2"/>
+    <text x="230" y="210" font-size="13" letter-spacing="3" fill="#e2c781">PASS 1 · PRIMARY</text>
+    <text x="230" y="240" font-size="22" font-weight="700" fill="#ffffff">Qwen3-VL-32B</text>
+    <text x="230" y="262" font-size="12" fill="#a8b3cc">OpenRouter · vision · ~89s avg</text>
+
+    <g font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="13" fill="#ffffff">
+      <text x="230" y="300">extract → JSON</text>
+      <text x="230" y="324" fill="#a8b3cc">↓ deterministic cross-check</text>
+      <text x="230" y="354" fill="#92e0b2">✓ confirmed (partner_account)</text>
+      <text x="230" y="376" fill="#f0c987">↶ snap (digit-drop fixed)</text>
+      <text x="230" y="398" fill="#f0c987">↶ amount_snap, row_missing</text>
+      <text x="230" y="420" fill="#ef6f6c">⚠ suspicious, row_phantom</text>
+    </g>
+
+    <text x="230" y="448" font-size="12" fill="#a8b3cc" font-style="italic">
+      retry once on Timeout/ConnectionError
+    </text>
+  </g>
+
+  <!-- Decision arrow PRIMARY → FAILOVER, with label -->
+  <g>
+    <line x1="590" y1="315" x2="660" y2="315"
+          stroke="#e2c781" stroke-width="2.5"
+          marker-end="url(#arrow-yellow)" opacity="0.85"/>
+    <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif"
+       font-size="11" fill="#e2c781">
+      <text x="625" y="305" text-anchor="middle">repairs?</text>
+      <text x="625" y="338" text-anchor="middle">timeout?</text>
+    </g>
+  </g>
+
+  <!-- FAILOVER: Gemini 3 Flash -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="660" y="180" width="380" height="280" rx="10"
+          fill="#3a4d75" opacity="0.50" stroke="#92e0b2" stroke-width="2"/>
+    <text x="680" y="210" font-size="13" letter-spacing="3" fill="#92e0b2">PASS 2 · FAILOVER</text>
+    <text x="680" y="240" font-size="22" font-weight="700" fill="#ffffff">Gemini 3 Flash</text>
+    <text x="680" y="262" font-size="12" fill="#a8b3cc">OpenRouter · vision · ~32s avg · 0.6× cost</text>
+
+    <g font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="13" fill="#ffffff">
+      <text x="680" y="300">re-extract → JSON</text>
+      <text x="680" y="324" fill="#a8b3cc">↓ same cross-check, classify outcome</text>
+      <text x="680" y="354" fill="#92e0b2">→ clean         (90%)</text>
+      <text x="680" y="376" fill="#f0c987">→ autofix       (≤6%)</text>
+      <text x="680" y="398" fill="#ef6f6c">→ unresolved    (0% after IBAN fix)</text>
+      <text x="680" y="420" fill="#a8b3cc">→ both failed   → FAILED-*</text>
+    </g>
+
+    <text x="680" y="448" font-size="12" fill="#a8b3cc" font-style="italic">
+      wall-clock watchdog: read_timeout + 60s
+    </text>
+  </g>
+
+  <!-- Decision arrow FAILOVER → result -->
+  <line x1="1040" y1="315" x2="1090" y2="315"
+        stroke="#e2c781" stroke-width="2.5"
+        marker-end="url(#arrow-yellow)" opacity="0.85"/>
+
+  <!-- Outcome pill: <broj N> (success) -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="1090" y="285" width="100" height="60" rx="8" fill="#92e0b2" opacity="0.85"/>
+    <text x="1140" y="310" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2a44">broj N</text>
+    <text x="1140" y="332" text-anchor="middle" font-size="11" fill="#1f2a44" font-style="italic">completed</text>
+  </g>
+
+  <!-- Bottom: pipeline metrics from full batch -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" font-size="13" font-weight="600">
+    <text x="60" y="525" font-size="13" letter-spacing="3" fill="#e2c781">
+      PIPELINE (198 STMTS, 51 FAILOVER ENGAGEMENTS)
+    </text>
+
+    <rect x="60"  y="544" width="220" height="34" rx="17" fill="#92e0b2" opacity="0.85"/>
+    <text x="170" y="566" text-anchor="middle" fill="#1f2a44">✓ 46 clean (90%)</text>
+
+    <rect x="292" y="544" width="180" height="34" rx="17" fill="#f0c987" opacity="0.85"/>
+    <text x="382" y="566" text-anchor="middle" fill="#1f2a44">↶ 3 autofix</text>
+
+    <rect x="484" y="544" width="180" height="34" rx="17" fill="#ef6f6c" opacity="0.55"/>
+    <text x="574" y="566" text-anchor="middle" fill="#ffffff">⚠ 0 unresolved¹</text>
+
+    <rect x="676" y="544" width="180" height="34" rx="17" fill="#a8b3cc" opacity="0.55"/>
+    <text x="766" y="566" text-anchor="middle" fill="#1f2a44">↻ FAILED-* recovery</text>
+
+    <text x="868" y="566" font-size="11" fill="#a8b3cc" font-style="italic">
+      ¹ poslije IBAN substring fixa za cross-border SEPA
+    </text>
+  </g>
+
+  <!-- Footer caption -->
+  <g font-family="ui-monospace, 'JetBrains Mono', monospace" fill="#a8b3cc" font-size="12">
+    <text x="60" y="608">
+      account.journal · bank_pdf_ocr_model_id (primary) + bank_pdf_ocr_model_id_fallback (failover)   →   self-evident chatter trail
+    </text>
+  </g>
+</svg>

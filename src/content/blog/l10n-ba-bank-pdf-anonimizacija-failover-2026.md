@@ -2,7 +2,7 @@
 title: 'Bosanska lokalizacija "Odoo" open-source platforme: l10n_ba_bank_pdf — span-level anonimizacija, 16-ćelijska LLM matrica, per-bank deterministička provjera i wall-clock watchdog'
 description: 'Četvrta iteracija na bank-PDF parseru. (1) Anonimizacija test fiksture sad radi span-by-span umjesto pattern-by-pattern jer fitz get_text() reading-order razdvaja `/` od narednih 16 cifara kada redaktujemo samo dio span-a; (2) gradovi (Sarajevo, Mostar, Tuzla, …) više ne cure u anon PDF-ove; (3) 16-ćelijska matrica (model × vision × prompt × pdf) pokazuje da je Qwen3-VL-32B + vision-on jedina kombinacija koja prolazi i originalne i anon test setove, a Gemini 3 Flash je idealan failover za Raiffeisen — pogađa najtežu broj 8 statement-u prvi put za 32 sekunde; (4) per-row deterministička provjera implementirana za ProCredit i Sparkasse, plus IBAN substring matching za cross-border SEPA payments; (5) wall-clock watchdog na LLM pozivima (concurrent.futures.ThreadPoolExecutor) sprječava hung HTTP konekcije, uz FAILED-* placeholder rename za failed-after-both-phases statementa sa one-click Reprocess oporavkom. Final pipeline: 198 statementa, 51 failover engagement (90 % clean success), 0 truly-unresolved.'
 pubDate: '2026-04-29T08:30:00'
-heroImage: '/bank-pdf-cross-check-hero.svg'
+heroImage: '/bank-pdf-2pass-failover-hero.svg'
 ---
 
 ## Šta je bilo
