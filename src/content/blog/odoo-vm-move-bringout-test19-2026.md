@@ -15,8 +15,6 @@ Topologija pomaže: svaka `hodi-odoo.instances.<name>` evaluira `dbHost = "192.*
 2. **Service definicija** — blok `hodi-odoo.instances.bringout-test19 = { … }` migrira iz `hosts/hetzner/hodi-1/default.nix` u `hosts/hetzner/hodi-2/default.nix`.
 3. **Reverse-proxy upstream** — `virtualHosts."bringout-test19.hodi.ba"` u `services/hetzner/reverse-proxy-hetzner/default.nix` mijenja `192.*.*.11:8130` u `192.*.*.12:8130`.
 
-Nikakve secrets ne migriraju — `dbPassword = "odoo"` je hard-coded u hive, ACME runa samo na router-7, OAuth client-secret-i ne postoje za ovu instancu.
-
 ## Skript: `hodi_odoo_move_instance.py`
 
 12 koraka, idempotentni dry-run mode, konzervativan redoslijed da minimizira prozor 502-ica.
