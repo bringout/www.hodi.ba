@@ -1,5 +1,5 @@
 ---
-title: 'Premještanje Odoo instance između libvirt virtualki uz djeljeni Patroni: bringout-test19 sa hodi-1 na hodi-2'
+title: 'Premještanje Odoo instance između virtualnih mašina sa "hodi-1" na "hodi-2"'
 description: 'Shared-database topologija svodi VM-to-VM move na tri dijelna pomaka: filestore, hodi-odoo unit definicija, nginx upstream IP. Post pokriva 12-korakni Python skript koji automatizuje move kroz colmena apply, dvije usputne nixpkgs-unstable regresije (sphinx 9.1 ispustio Python 3.11 → ofxparse → pkgs.odoo19; npm-deps hash drift u euro-office) i njihove durable fix-ove.'
 pubDate: '2026-04-30T13:00:00'
 heroImage: '/odoo-vm-move-hero.svg'
