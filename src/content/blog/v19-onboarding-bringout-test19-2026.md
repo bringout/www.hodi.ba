@@ -1,13 +1,13 @@
 ---
-title: 'Odoo 19 onboarding na hodi.ba: integracija bringout-test19 u formalni hodi_onboard pipeline (uz auth_oidc, Authelia client, branch-aware skripte)'
-description: 'bringout-test19 (Odoo 19 sandbox na hodi-2) je do sad postojao kao "polu-deployan" — DB na Patroni-u, service unit u nix-u, ali bez config/hodi/<instance>/ unosa, bez SSO-a, bez emaila. Ovaj post pokriva integraciju u formalni hodi_onboard pipeline: dodavanje odoo.branch u config schema, dinamičko prepoznavanje res.users m2m polja (groups_id → group_ids u v19), kreiranje 19.0 grane oca-server-auth fork-a sa auth_oidc/auth_oidc_environment wrapperima, novi authelia-client onboarding step koji idempotentno registruje OAuth client kroz infra-hodi. Krajnji rezultat: "Log in with Hodi SSO" radi.'
+title: 'Odoo v19 onboarding na hodi.ba: integracija bringout-test19 u formalni hodi_onboard pipeline (uz auth_oidc, Authelia client, branch-aware skripte)'
+description: 'bringout-test19 (Odoo v19 sandbox na hodi-2) je do sad postojao kao "polu-deployan" — DB na Patroni-u, service unit u nix-u, ali bez config/hodi/<instance>/ unosa, bez SSO-a, bez emaila. Ovaj post pokriva integraciju u formalni hodi_onboard pipeline: dodavanje odoo.branch u config schema, dinamičko prepoznavanje res.users m2m polja (groups_id → group_ids u v19), kreiranje 19.0 grane oca-server-auth fork-a sa auth_oidc/auth_oidc_environment wrapperima, novi authelia-client onboarding step koji idempotentno registruje OAuth client kroz infra-hodi. Krajnji rezultat: "Log in with Hodi SSO" radi.'
 pubDate: '2026-04-30T14:00:00'
 heroImage: '/odoo-v19-sso-login-hero.png'
 ---
 
 ## Postavka
 
-`bringout-test19` je sandbox na Odoo 19 koji je preživio nekoliko dana kao orphan deployment: DB `hodi-bringout-test19` na Patroni klasteru, systemd unit `hodi-odoo-bringout-test19.service` aktivan, ali sve ručno — bez `config/hodi/bringout-test19/` unosa, bez Authelia client-a, bez OIDC postavke u Odoo, bez Stalwart mailbox-a, bez DNS MX/SPF/DMARC zapisa. Login je radio samo preko `admin/admin` web management UI-a.
+`bringout-test19` je sandbox na Odoo v19 koji je preživio nekoliko dana kao orphan deployment: DB `hodi-bringout-test19` na Patroni klasteru, systemd unit `hodi-odoo-bringout-test19.service` aktivan, ali sve ručno — bez `config/hodi/bringout-test19/` unosa, bez Authelia client-a, bez OIDC postavke u Odoo, bez Stalwart mailbox-a, bez DNS MX/SPF/DMARC zapisa. Login je radio samo preko `admin/admin` web management UI-a.
 
 Cilj: dovesti instancu u formalni `hodi_onboard.py` flow tako da je razlika v16 vs v19 stvar config polja, ne grane skripti. Onboarding chain mora raditi za oba.
 
@@ -76,7 +76,7 @@ ODOO_HOST = (config.get("odoo") or {}).get("host") or ODOO_HOST
 
 Default ostaje `"hodi-1"` ako polje fali — back-compat sa svim postojećim v16 config-ima.
 
-## Razlika 3: `groups_id` → `group_ids` u Odoo 19 res.users
+## Razlika 3: `groups_id` → `group_ids` u Odoo v19 res.users
 
 `hodi_odoo_create_users.py` je padao na:
 
@@ -84,7 +84,7 @@ Default ostaje `"hodi-1"` ako polje fali — back-compat sa svim postojećim v16
 ValueError: Invalid field 'groups_id' in 'res.users'
 ```
 
-U Odoo 19 m2m polje na `res.users` je preimenovano iz `groups_id` u `group_ids` (zajedno sa `all_group_ids` computed varijantom). Tabela `res_groups_users_rel` u DB-u nije promijenjena — samo ORM polje.
+U Odoo v19 m2m polje na `res.users` je preimenovano iz `groups_id` u `group_ids` (zajedno sa `all_group_ids` computed varijantom). Tabela `res_groups_users_rel` u DB-u nije promijenjena — samo ORM polje.
 
 Fix: probe-aj polje preko `fields_get` na startu, koristi koje god je prisutno:
 
