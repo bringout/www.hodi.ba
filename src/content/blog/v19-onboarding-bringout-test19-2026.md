@@ -1,5 +1,5 @@
 ---
-title: 'Odoo v19 onboarding na hodi.ba: integracija bringout-test19 u formalni hodi_onboard pipeline (uz auth_oidc, Authelia client, branch-aware skripte)'
+title: 'Odoo v19 "onboarding" na "hodi.ba": integracija bringout-test19 u formalni hodi_onboard pipeline (uz auth_oidc, Authelia client, branch-aware skripte)'
 description: 'bringout-test19 (Odoo v19 sandbox na hodi-2) je do sad postojao kao "polu-deployan" — DB na Patroni-u, service unit u nix-u, ali bez config/hodi/<instance>/ unosa, bez SSO-a, bez emaila. Ovaj post pokriva integraciju u formalni hodi_onboard pipeline: dodavanje odoo.branch u config schema, dinamičko prepoznavanje res.users m2m polja (groups_id → group_ids u v19), kreiranje 19.0 grane oca-server-auth fork-a sa auth_oidc/auth_oidc_environment wrapperima, novi authelia-client onboarding step koji idempotentno registruje OAuth client kroz infra-hodi. Krajnji rezultat: "Log in with Hodi SSO" radi.'
 pubDate: '2026-04-30T14:00:00'
 heroImage: '/odoo-v19-sso-login-hero.png'
