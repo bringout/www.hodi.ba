@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="VM-to-VM move: bringout-test19 sa hodi-1 na hodi-2 uz djeljeni Patroni cluster, nginx cutover na router-7">
+  <title>Move Odoo instance: hodi-1 → hodi-2</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#2c3a5d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#e2c781"/>
+      <stop offset="100%" stop-color="#d2b76a"/>
+    </linearGradient>
+    <marker id="arrow-yellow" viewBox="0 0 12 12" refX="10" refY="6"
+            markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#e2c781"/>
+    </marker>
+    <marker id="arrow-grey" viewBox="0 0 12 12" refX="10" refY="6"
+            markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#7a86a3"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="10" fill="url(#accent)"/>
+
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f0f0">
+    <text x="60" y="76" font-size="40" font-weight="700">VM-to-VM move: bringout-test19</text>
+    <text x="60" y="108" font-size="18" fill="#a8b3cc" font-weight="400">
+      hodi-1 → hodi-2 · djeljeni Patroni · nginx cutover na router-7
+    </text>
+  </g>
+
+  <!-- router-7 (top, centered) -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="475" y="160" width="250" height="80" rx="10" fill="#3a4d75" stroke="#a8b3cc" stroke-width="1.5"/>
+    <text x="600" y="190" text-anchor="middle" font-size="18" font-weight="600" fill="#f0f0f0">router-7 nginx</text>
+    <text x="600" y="214" text-anchor="middle" font-size="13" fill="#a8b3cc">virtualHosts."bringout-test19.hodi.ba"</text>
+    <text x="600" y="232" text-anchor="middle" font-size="11" fill="#7a86a3" font-style="italic">upstream IP rewrite</text>
+  </g>
+
+  <!-- hodi-1 (left) -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="80" y="320" width="380" height="180" rx="14" fill="#2a364f" stroke="#5a6680" stroke-width="2" stroke-dasharray="6 4" opacity="0.85"/>
+    <text x="100" y="350" font-size="22" font-weight="700" fill="#a8b3cc">hodi-1</text>
+    <text x="100" y="370" font-size="12" fill="#7a86a3" font-style="italic">libvirt KVM gost · prije move-a</text>
+
+    <!-- service box (struck-through to indicate removal) -->
+    <rect x="110" y="395" width="320" height="80" rx="8" fill="#1f2a44" stroke="#7a86a3" stroke-width="1.2"/>
+    <text x="125" y="423" font-size="15" font-weight="600" fill="#a8b3cc">hodi-odoo-bringout-test19</text>
+    <text x="125" y="443" font-size="11" fill="#7a86a3">Odoo 19 · port 8130 · /var/lib/hodi-bringout-test19/</text>
+    <text x="125" y="460" font-size="11" fill="#7a86a3">colmena apply hodi-1 → unit nestaje</text>
+    <line x1="115" y1="430" x2="425" y2="430" stroke="#9aa3b8" stroke-width="1.5" opacity="0.4"/>
+  </g>
+
+  <!-- hodi-2 (right) -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="740" y="320" width="380" height="180" rx="14" fill="#3a4d75" stroke="#e2c781" stroke-width="2"/>
+    <text x="760" y="350" font-size="22" font-weight="700" fill="#f0f0f0">hodi-2</text>
+    <text x="760" y="370" font-size="12" fill="#e2c781" font-style="italic">libvirt KVM gost · poslije move-a · active</text>
+
+    <rect x="770" y="395" width="320" height="80" rx="8" fill="#445a85" stroke="#e2c781" stroke-width="1.5"/>
+    <text x="785" y="423" font-size="15" font-weight="600" fill="#f0f0f0">hodi-odoo-bringout-test19</text>
+    <text x="785" y="443" font-size="11" fill="#d2b76a">Odoo 19 · port 8130 · /var/lib/hodi-bringout-test19/</text>
+    <text x="785" y="460" font-size="11" fill="#d2b76a">filestore: 432 KB rsync via hetzner-1 staging</text>
+  </g>
+
+  <!-- arrow router-7 → hodi-2 (cutover) -->
+  <path d="M 600 240 Q 600 280 760 320" stroke="#e2c781" stroke-width="2.5"
+        fill="none" marker-end="url(#arrow-yellow)" opacity="0.9"/>
+  <text x="630" y="290" font-size="11" fill="#e2c781" font-style="italic">cutover</text>
+
+  <!-- arrow router-7 → hodi-1 (greyed = old) -->
+  <path d="M 600 240 Q 600 280 460 320" stroke="#7a86a3" stroke-width="1.5"
+        fill="none" stroke-dasharray="4 4" opacity="0.6"/>
+  <text x="490" y="290" font-size="11" fill="#7a86a3" font-style="italic" opacity="0.6">old</text>
+
+  <!-- big arrow hodi-1 → hodi-2 (the move) -->
+  <path d="M 460 410 L 740 410" stroke="#e2c781" stroke-width="3"
+        fill="none" marker-end="url(#arrow-yellow)"/>
+  <text x="600" y="395" text-anchor="middle" font-size="13" font-weight="600" fill="#e2c781">filestore + nix unit</text>
+  <text x="600" y="430" text-anchor="middle" font-size="11" fill="#d2b76a" font-style="italic">12-koraka skript</text>
+
+  <!-- Patroni cluster (bottom, full width) -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif">
+    <rect x="80" y="525" width="1040" height="80" rx="10" fill="#2a364f" stroke="#a8b3cc" stroke-width="1.5"/>
+    <text x="600" y="552" text-anchor="middle" font-size="16" font-weight="600" fill="#f0f0f0">Patroni cluster · VIP 192.*.*.100:5432</text>
+    <text x="600" y="574" text-anchor="middle" font-size="12" fill="#a8b3cc">database "hodi-bringout-test19" — netaknut, oba host-a vide isti DB preko VIP-a</text>
+    <text x="600" y="592" text-anchor="middle" font-size="11" fill="#7a86a3" font-style="italic">node62 · node63 · node64 · node65</text>
+  </g>
+
+  <!-- arrows hodi-1, hodi-2 → Patroni -->
+  <line x1="270" y1="500" x2="350" y2="525" stroke="#7a86a3" stroke-width="1.5" marker-end="url(#arrow-grey)" opacity="0.7"/>
+  <line x1="930" y1="500" x2="850" y2="525" stroke="#7a86a3" stroke-width="1.5" marker-end="url(#arrow-grey)" opacity="0.7"/>
+
+</svg>
