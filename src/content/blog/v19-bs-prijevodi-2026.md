@@ -17,23 +17,23 @@ Cilj ovog rada: **dovesti `oca-ocb-*` 19.0 grane do 100% bs prijevoda**, distrib
 
 | Grupa                 | Stringova | Posljednji v19.0 commit |
 |-----------------------|----------:|-------------------------|
-| `oca-ocb-core`        | 19,150    | `37f8a5da` |
-| `oca-ocb-website`     | 8,267     | `dbb4dff` |
-| `oca-ocb-sale`        | 6,937     | `679ef98` |
-| `oca-ocb-hr`          | 4,582     | `bd847ab` |
-| `oca-ocb-accounting`  | 4,513     | `a13ff6d` |
-| `oca-ocb-warehouse`   | 2,657     | `aaac882` |
-| `oca-ocb-mail`        | 2,463     | `cdd26e4` |
-| `oca-ocb-report`      | 2,298     | `c905346` |
-| `oca-ocb-mrp`         | 1,264     | `bd5843a` |
-| `oca-ocb-project`     | 941       | `b9541a9` |
-| `oca-ocb-crm`         | 928       | `dbead34` |
-| `oca-ocb-technical`   | 718       | `231a255` |
-| `oca-ocb-pos`         | 680       | `f72f273` |
-| `oca-ocb-security`    | 606       | `06f28cd` |
-| `oca-ocb-hw`          | 286       | `5a1d404` |
-| `oca-ocb-web`         | 85        | `7458d7d` |
-| `oca-ocb-vertical-industry` | (untouched) | — |
+| [`oca-ocb-core`](https://git.hodi.ba/oca/oca-ocb-core/commits/branch/19.0)               | 19,150 | [`37f8a5da`](https://git.hodi.ba/oca/oca-ocb-core/commit/37f8a5daa69b7f56e8834de79081fc79e3f91845) |
+| [`oca-ocb-website`](https://git.hodi.ba/oca/oca-ocb-website/commits/branch/19.0)         | 8,267  | [`dbb4dff`](https://git.hodi.ba/oca/oca-ocb-website/commit/dbb4dff8ee51e7869b7b56ebb37a145506981bab) |
+| [`oca-ocb-sale`](https://git.hodi.ba/oca/oca-ocb-sale/commits/branch/19.0)               | 6,937  | [`679ef98`](https://git.hodi.ba/oca/oca-ocb-sale/commit/679ef98c4ac0522d7cc70b64512e3d2785728338) |
+| [`oca-ocb-hr`](https://git.hodi.ba/oca/oca-ocb-hr/commits/branch/19.0)                   | 4,582  | [`bd847ab`](https://git.hodi.ba/oca/oca-ocb-hr/commit/bd847ab51a0cefe4b794b1052f9b584132e44f81) |
+| [`oca-ocb-accounting`](https://git.hodi.ba/oca/oca-ocb-accounting/commits/branch/19.0)   | 4,513  | [`a13ff6d`](https://git.hodi.ba/oca/oca-ocb-accounting/commit/a13ff6d73f7af0acbf5129cd66399d5ca2175359) |
+| [`oca-ocb-warehouse`](https://git.hodi.ba/oca/oca-ocb-warehouse/commits/branch/19.0)     | 2,657  | [`aaac882`](https://git.hodi.ba/oca/oca-ocb-warehouse/commit/aaac8824954d285f892366a301e6c9d37e4e16f9) |
+| [`oca-ocb-mail`](https://git.hodi.ba/oca/oca-ocb-mail/commits/branch/19.0)               | 2,463  | [`cdd26e4`](https://git.hodi.ba/oca/oca-ocb-mail/commit/cdd26e4100b97b309a5afac0fccae7c82ee3dca8) |
+| [`oca-ocb-report`](https://git.hodi.ba/oca/oca-ocb-report/commits/branch/19.0)           | 2,298  | [`c905346`](https://git.hodi.ba/oca/oca-ocb-report/commit/c9053467811fc3f697893ecf6a32b2baca0d2066) |
+| [`oca-ocb-mrp`](https://git.hodi.ba/oca/oca-ocb-mrp/commits/branch/19.0)                 | 1,264  | [`bd5843a`](https://git.hodi.ba/oca/oca-ocb-mrp/commit/bd5843ad82d4d27d79e9b5862f8a81c5ad7b823e) |
+| [`oca-ocb-project`](https://git.hodi.ba/oca/oca-ocb-project/commits/branch/19.0)         | 941    | [`b9541a9`](https://git.hodi.ba/oca/oca-ocb-project/commit/b9541a959f5ad923a80d9c5f4ce9f44e471a4476) |
+| [`oca-ocb-crm`](https://git.hodi.ba/oca/oca-ocb-crm/commits/branch/19.0)                 | 928    | [`dbead34`](https://git.hodi.ba/oca/oca-ocb-crm/commit/dbead34bb532347a0d21fac1fe3a3900631a7fc9) |
+| [`oca-ocb-technical`](https://git.hodi.ba/oca/oca-ocb-technical/commits/branch/19.0)     | 718    | [`231a255`](https://git.hodi.ba/oca/oca-ocb-technical/commit/231a255deb5fbf58c4e90e5af387b54263c97f2a) |
+| [`oca-ocb-pos`](https://git.hodi.ba/oca/oca-ocb-pos/commits/branch/19.0)                 | 680    | [`f72f273`](https://git.hodi.ba/oca/oca-ocb-pos/commit/f72f27396342d74b29ebe525f385fdfc522fa927) |
+| [`oca-ocb-security`](https://git.hodi.ba/oca/oca-ocb-security/commits/branch/19.0)       | 606    | [`06f28cd`](https://git.hodi.ba/oca/oca-ocb-security/commit/06f28cd0520201ab14f2ceb564fd06fbe265faae) |
+| [`oca-ocb-hw`](https://git.hodi.ba/oca/oca-ocb-hw/commits/branch/19.0)                   | 286    | [`5a1d404`](https://git.hodi.ba/oca/oca-ocb-hw/commit/5a1d40477ba913f7b23f6a8432a27817f840107e) |
+| [`oca-ocb-web`](https://git.hodi.ba/oca/oca-ocb-web/commits/branch/19.0)                 | 85     | [`7458d7d`](https://git.hodi.ba/oca/oca-ocb-web/commit/7458d7d8ffa3119e802e289cefe107374e53fcb0) |
+| [`oca-ocb-vertical-industry`](https://git.hodi.ba/oca/oca-ocb-vertical-industry/commits/branch/19.0) | (untouched) | — |
 
 Ukupno preko **62 000** prevedenih `msgid → msgstr` parova u v19.0 sloju baze.
 
@@ -274,4 +274,4 @@ Ako naletite na konkretan loš prijevod (Odoo dosta marketing string-ova ima u m
 ---
 
 📦 [oca-ocb-v19_translation_bs.zip](/oca-ocb-v19_translation_bs.zip) (2.96 MB)
-🔗 GitHub: [bringout/oca-ocb-core](https://github.com/bringout/oca-ocb-core/tree/19.0)
+🔗 git.hodi.ba mirror: [oca/oca-ocb-core @ 19.0](https://git.hodi.ba/oca/oca-ocb-core/commits/branch/19.0) (i ostale `oca-ocb-*` grupe pod [git.hodi.ba/oca](https://git.hodi.ba/oca))
