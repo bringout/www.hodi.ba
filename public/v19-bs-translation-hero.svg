@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Odoo v19 Bosnian translations — 17 oca-ocb-* groups, 100% bs.po coverage">
+  <title>Odoo v19 Bosnian translations: 17 oca-ocb-* groups at 100%</title>
+  <defs>
+    <radialGradient id="bg" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#0e2a52"/>
+      <stop offset="55%" stop-color="#061833"/>
+      <stop offset="100%" stop-color="#020816"/>
+    </radialGradient>
+    <linearGradient id="bsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3a7ad9"/>
+      <stop offset="100%" stop-color="#1f4a96"/>
+    </linearGradient>
+    <linearGradient id="bsYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd84d"/>
+      <stop offset="100%" stop-color="#e8b800"/>
+    </linearGradient>
+    <linearGradient id="cardFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid -->
+  <g fill="#ffffff" fill-opacity="0.04">
+    <circle cx="60"  cy="60"  r="2"/><circle cx="140" cy="60"  r="2"/><circle cx="220" cy="60"  r="2"/>
+    <circle cx="300" cy="60"  r="2"/><circle cx="380" cy="60"  r="2"/><circle cx="460" cy="60"  r="2"/>
+    <circle cx="540" cy="60"  r="2"/><circle cx="620" cy="60"  r="2"/><circle cx="700" cy="60"  r="2"/>
+    <circle cx="780" cy="60"  r="2"/><circle cx="860" cy="60"  r="2"/><circle cx="940" cy="60"  r="2"/>
+    <circle cx="1020" cy="60" r="2"/><circle cx="1100" cy="60" r="2"/>
+    <circle cx="60"  cy="140" r="2"/><circle cx="140" cy="140" r="2"/><circle cx="220" cy="140" r="2"/>
+    <circle cx="300" cy="140" r="2"/><circle cx="380" cy="140" r="2"/><circle cx="460" cy="140" r="2"/>
+    <circle cx="540" cy="140" r="2"/><circle cx="620" cy="140" r="2"/><circle cx="700" cy="140" r="2"/>
+    <circle cx="780" cy="140" r="2"/><circle cx="860" cy="140" r="2"/><circle cx="940" cy="140" r="2"/>
+    <circle cx="1020" cy="140" r="2"/><circle cx="1100" cy="140" r="2"/>
+  </g>
+
+  <!-- Odoo v19 wordmark, top-left -->
+  <g font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-weight="700">
+    <text x="60" y="100" font-size="42" fill="#ffffff" fill-opacity="0.92">Odoo</text>
+    <text x="170" y="100" font-size="42" fill="url(#bsYellow)">v19</text>
+    <text x="60" y="142" font-size="22" fill="#ffffff" fill-opacity="0.55" font-weight="500">core modules · oca-ocb-*</text>
+  </g>
+
+  <!-- Center: EN → BS translation arrow -->
+  <g transform="translate(600, 280)" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+    <!-- EN card -->
+    <g transform="translate(-280, 0)">
+      <rect x="-90" y="-55" width="180" height="110" rx="14" fill="url(#cardFill)" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/>
+      <text x="0" y="-20" font-size="20" fill="#ffffff" fill-opacity="0.5" font-weight="500">English</text>
+      <text x="0" y="20" font-size="32" fill="#ffffff" font-weight="600">Cancel</text>
+      <text x="0" y="50" font-size="16" fill="#ffffff" fill-opacity="0.45">Customer · Status</text>
+    </g>
+
+    <!-- arrow -->
+    <g filter="url(#glow)">
+      <path d="M -150 0 L 150 0" stroke="url(#bsYellow)" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M 130 -16 L 160 0 L 130 16 Z" fill="url(#bsYellow)"/>
+    </g>
+    <text x="0" y="-30" font-size="18" fill="url(#bsYellow)" font-weight="600">.po</text>
+
+    <!-- BS card -->
+    <g transform="translate(280, 0)">
+      <rect x="-90" y="-55" width="180" height="110" rx="14" fill="url(#bsBlue)" stroke="#ffd84d" stroke-opacity="0.6" stroke-width="1.5"/>
+      <text x="0" y="-20" font-size="20" fill="#ffd84d" fill-opacity="0.85" font-weight="500">Bosanski</text>
+      <text x="0" y="20" font-size="32" fill="#ffffff" font-weight="600">Otkaži</text>
+      <text x="0" y="50" font-size="16" fill="#ffffff" fill-opacity="0.7">Kupac · Status</text>
+    </g>
+  </g>
+
+  <!-- Coverage statement, prominent -->
+  <g font-family="Inter, ui-sans-serif, system-ui, sans-serif" text-anchor="middle">
+    <text x="600" y="450" font-size="64" font-weight="700" fill="#ffffff">100%</text>
+    <text x="600" y="490" font-size="22" font-weight="500" fill="#ffffff" fill-opacity="0.7">17 oca-ocb-* grupa · 335 bs.po · ~62 000 stringova</text>
+  </g>
+
+  <!-- bottom strip: module name chips -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" text-anchor="middle">
+    <g transform="translate(60, 555)">
+      <rect width="140" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="70" y="23" fill="#ffffff" fill-opacity="0.85">core</text>
+    </g>
+    <g transform="translate(214, 555)">
+      <rect width="140" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="70" y="23" fill="#ffffff" fill-opacity="0.85">accounting</text>
+    </g>
+    <g transform="translate(368, 555)">
+      <rect width="120" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="60" y="23" fill="#ffffff" fill-opacity="0.85">sale</text>
+    </g>
+    <g transform="translate(502, 555)">
+      <rect width="120" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="60" y="23" fill="#ffffff" fill-opacity="0.85">stock</text>
+    </g>
+    <g transform="translate(636, 555)">
+      <rect width="120" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="60" y="23" fill="#ffffff" fill-opacity="0.85">website</text>
+    </g>
+    <g transform="translate(770, 555)">
+      <rect width="120" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="60" y="23" fill="#ffffff" fill-opacity="0.85">mail</text>
+    </g>
+    <g transform="translate(904, 555)">
+      <rect width="120" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="60" y="23" fill="#ffffff" fill-opacity="0.85">pos</text>
+    </g>
+    <g transform="translate(1038, 555)">
+      <rect width="100" height="36" rx="18" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="50" y="23" fill="#ffffff" fill-opacity="0.85">…</text>
+    </g>
+  </g>
+
+  <!-- BS flag slash, top-right -->
+  <g transform="translate(1080, 60)">
+    <rect width="60" height="40" rx="4" fill="url(#bsBlue)"/>
+    <polygon points="0,40 60,0 60,40" fill="url(#bsYellow)"/>
+    <g fill="#ffffff" font-family="Arial, sans-serif" font-size="6" text-anchor="middle">
+      <text x="46" y="13">★</text><text x="42" y="20">★</text><text x="38" y="27">★</text><text x="34" y="34">★</text>
+    </g>
+  </g>
+</svg>
