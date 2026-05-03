@@ -5,6 +5,8 @@ pubDate: '2026-05-03T18:00:00'
 heroImage: '/v19-bs-translation-hero.svg'
 ---
 
+> **Napomena:** Generisano od strane Claude 🤖
+
 Odoo upstream nikad nije imao kompletan bosanski (`bs_BA`) prijevod za core module — `Settings → Translations → Languages` ti omogući aktivaciju jezika, ali većina string-ova ostaje na engleskom. Za korisnike kojima je domaći jezik radni jezik (a ne IT lingua franca), to je svakodnevna friction.
 
 Cilj ovog rada: **dovesti `oca-ocb-*` 19.0 grane do 100% bs prijevoda**, distribuirati rezultat kao jedan zip, i imati ponovljiv pipeline za buduće verzije.
