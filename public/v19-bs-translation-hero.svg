@@ -120,12 +120,27 @@
     </g>
   </g>
 
-  <!-- BS flag slash, top-right -->
-  <g transform="translate(1080, 60)">
-    <rect width="60" height="40" rx="4" fill="url(#bsBlue)"/>
-    <polygon points="0,40 60,0 60,40" fill="url(#bsYellow)"/>
-    <g fill="#ffffff" font-family="Arial, sans-serif" font-size="6" text-anchor="middle">
-      <text x="46" y="13">★</text><text x="42" y="20">★</text><text x="38" y="27">★</text><text x="34" y="34">★</text>
-    </g>
+  <!-- BS flag, top-right.
+       Embeds the official Wikipedia rendering verbatim (viewBox 0 0 16 8):
+       blue field #002395, yellow isosceles right-triangle path m4.24,0h8v8z
+       (legs equal flag height, hypotenuse from (4.24,0) to (12.24,8)),
+       and 9 five-point white stars along a line parallel to the hypotenuse
+       with the top and bottom stars half-clipped by the flag edge. -->
+  <g transform="translate(1010, 60)">
+    <svg x="0" y="0" width="160" height="80" viewBox="0 0 16 8">
+      <rect width="16" height="8" fill="#002395"/>
+      <path d="m4.24,0h8v8z" fill="#fecb00"/>
+      <g id="bsStars">
+        <path id="bsStar"
+              d="M2.353283,0.5248529 2.8,-0.85 3.246717,0.524853 2.077197,-0.324853H3.522803z"
+              fill="#fff"/>
+        <use href="#bsStar" x="1" y="1"/>
+        <use href="#bsStar" x="2" y="2"/>
+      </g>
+      <use href="#bsStars" x="3" y="3"/>
+      <use href="#bsStars" x="6" y="6"/>
+    </svg>
+    <!-- subtle border so the flag reads as one element on the dark backdrop -->
+    <rect width="160" height="80" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1"/>
   </g>
 </svg>
