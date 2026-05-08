@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="KEP verifikator — slojevita zaštita registracione forme od bot napada">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5f7fa"/>
+      <stop offset="100%" stop-color="#dbe4ee"/>
+    </linearGradient>
+    <linearGradient id="shieldFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2b6cb0"/>
+      <stop offset="100%" stop-color="#1a365d"/>
+    </linearGradient>
+    <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4299e1" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4299e1" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle dotted grid -->
+  <g fill="#cbd5e0" opacity="0.35">
+    <circle cx="60" cy="60" r="1.5"/><circle cx="180" cy="60" r="1.5"/><circle cx="300" cy="60" r="1.5"/>
+    <circle cx="900" cy="60" r="1.5"/><circle cx="1020" cy="60" r="1.5"/><circle cx="1140" cy="60" r="1.5"/>
+    <circle cx="60" cy="180" r="1.5"/><circle cx="180" cy="180" r="1.5"/>
+    <circle cx="1020" cy="180" r="1.5"/><circle cx="1140" cy="180" r="1.5"/>
+    <circle cx="60" cy="450" r="1.5"/><circle cx="180" cy="450" r="1.5"/>
+    <circle cx="1020" cy="450" r="1.5"/><circle cx="1140" cy="450" r="1.5"/>
+    <circle cx="60" cy="570" r="1.5"/><circle cx="180" cy="570" r="1.5"/><circle cx="300" cy="570" r="1.5"/>
+    <circle cx="900" cy="570" r="1.5"/><circle cx="1020" cy="570" r="1.5"/><circle cx="1140" cy="570" r="1.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="80" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="700" fill="#1a365d">KEP verifikator</text>
+  <text x="600" y="115" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="500" fill="#4a5568">Slojevita zaštita registracione forme</text>
+
+  <!-- Defense rings (concentric, around shield at 600,335) -->
+  <g transform="translate(600 335)">
+    <!-- Outer glow -->
+    <circle r="260" fill="url(#ringGlow)"/>
+
+    <!-- Ring 4: Rate limit (outermost) -->
+    <circle r="240" fill="none" stroke="#90cdf4" stroke-width="2" stroke-dasharray="6 8" opacity="0.7"/>
+    <!-- Ring 3: Timestamp -->
+    <circle r="200" fill="none" stroke="#63b3ed" stroke-width="2" stroke-dasharray="8 6" opacity="0.8"/>
+    <!-- Ring 2: Heuristika -->
+    <circle r="160" fill="none" stroke="#4299e1" stroke-width="2" stroke-dasharray="10 4" opacity="0.85"/>
+    <!-- Ring 1: Honeypot (innermost) -->
+    <circle r="120" fill="none" stroke="#3182ce" stroke-width="2" opacity="0.9"/>
+
+    <!-- Ring labels (top of each ring) -->
+    <g font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">
+      <rect x="-50" y="-253" width="100" height="22" rx="11" fill="#2b6cb0"/>
+      <text x="0" y="-238" text-anchor="middle" fill="#ffffff">Rate limit</text>
+
+      <rect x="-50" y="-213" width="100" height="22" rx="11" fill="#2c5282"/>
+      <text x="0" y="-198" text-anchor="middle" fill="#ffffff">Timestamp</text>
+
+      <rect x="-55" y="-173" width="110" height="22" rx="11" fill="#2a4365"/>
+      <text x="0" y="-158" text-anchor="middle" fill="#ffffff">Heuristika</text>
+
+      <rect x="-50" y="-133" width="100" height="22" rx="11" fill="#1a365d"/>
+      <text x="0" y="-118" text-anchor="middle" fill="#ffffff">Honeypot</text>
+    </g>
+
+    <!-- Central shield -->
+    <g>
+      <path d="M 0 -85 L 70 -55 L 70 25 Q 70 75 0 100 Q -70 75 -70 25 L -70 -55 Z" fill="url(#shieldFill)" stroke="#0f2540" stroke-width="2"/>
+      <!-- KEP wordmark -->
+      <text x="0" y="-15" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="2">KEP</text>
+      <!-- Checkmark inside shield -->
+      <path d="M -22 25 L -8 42 L 24 4" fill="none" stroke="#68d391" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- Bots being blocked (red X marks at various ring boundaries) -->
+  <g font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">
+    <!-- Bot blocked at Rate limit (outermost) -->
+    <g transform="translate(280 200)">
+      <rect x="-32" y="-14" width="64" height="28" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+      <text x="0" y="4" text-anchor="middle" fill="#742a2a">BOT</text>
+      <line x1="-22" y1="-10" x2="22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="-10" x2="-22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Bot blocked at Timestamp -->
+    <g transform="translate(870 180)">
+      <rect x="-32" y="-14" width="64" height="28" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+      <text x="0" y="4" text-anchor="middle" fill="#742a2a">BOT</text>
+      <line x1="-22" y1="-10" x2="22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="-10" x2="-22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Bot blocked at Heuristika -->
+    <g transform="translate(940 460)">
+      <rect x="-32" y="-14" width="64" height="28" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+      <text x="0" y="4" text-anchor="middle" fill="#742a2a">BOT</text>
+      <line x1="-22" y1="-10" x2="22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="-10" x2="-22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Bot blocked at Honeypot -->
+    <g transform="translate(260 470)">
+      <rect x="-32" y="-14" width="64" height="28" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+      <text x="0" y="4" text-anchor="middle" fill="#742a2a">BOT</text>
+      <line x1="-22" y1="-10" x2="22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="-10" x2="-22" y2="10" stroke="#c53030" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Human request passing through (small green person icon, with arrow into shield) -->
+  <g transform="translate(140 335)">
+    <!-- Person icon -->
+    <circle cx="0" cy="-18" r="10" fill="#48bb78"/>
+    <path d="M -16 14 Q -16 -2 0 -2 Q 16 -2 16 14 Z" fill="#48bb78"/>
+    <text x="0" y="38" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#22543d">Korisnik</text>
+    <!-- Arrow toward shield -->
+    <path d="M 30 0 L 320 0" stroke="#48bb78" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 4" fill="none"/>
+    <path d="M 320 0 L 308 -8 L 308 8 Z" fill="#48bb78"/>
+  </g>
+
+  <!-- Footer URL -->
+  <text x="600" y="600" text-anchor="middle" font-family="ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, monospace" font-size="14" fill="#718096">provjeri.kep.hodi.ba</text>
+</svg>

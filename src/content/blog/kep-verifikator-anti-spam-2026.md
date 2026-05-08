@@ -2,7 +2,7 @@
 title: 'KEP verifikator — slojevita zaštita registracione forme od bot napada'
 description: 'Kako smo na provjeri.kep.hodi.ba zaustavili spam registracije bez CAPTCHA — honeypot, heuristike sadržaja i potpisani timestamp forme.'
 pubDate: '2026-05-08T16:30:00'
-heroImage: '/kep-pristup-servisu.png'
+heroImage: '/kep-anti-spam-hero.svg'
 ---
 
 Naš [Bosanski KEP verifikator](/blog/kep-verifikator-2026/) na [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba) koristi **email-bazirano odobravanje pristupa**: korisnik ostavi ime, organizaciju i email, administrator ručno odobri zahtjev, a korisnik dobija pristup link.
