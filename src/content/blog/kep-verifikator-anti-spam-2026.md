@@ -113,3 +113,9 @@ Privacy first, accessibility second, sigurnost rezultat oba — pristup koji sma
 4. **Eksternalije se akumuliraju.** Svaki dodatni JS, svaki tracker, svaki vendor lock-in je dug; izbjeći ako se može.
 
 Ako vodite sličan registracioni endpoint i borite se sa spamom — preskočite reCAPTCHA refleks i razmislite šta bot zapravo *radi*. Vjerovatno postoji jeftiniji način da ga zaustavite.
+
+---
+
+## Napomena
+
+Generisano od strane Claude 🤖
