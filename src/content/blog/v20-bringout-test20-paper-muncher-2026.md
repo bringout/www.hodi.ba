@@ -1,8 +1,8 @@
 ---
-title: 'Odoo v20 sandbox na hodi.ba: bringout-test20 iz upstream "odoo/odoo:master", bosanski prijevodi sa scheduled AI batch-evima, i prijelaz reporting engine-a prema paper-muncher-u'
+title: 'Odoo v20 sandbox na hodi.ba: bringout-test20 iz upstream "odoo/odoo:master", bosanski prijevodi'
 description: '17 bringout/oca-ocb-* fork-ova rebuildano sa 20.0 grane (snapshot upstream master-a, internalno 19.4-alpha), pkgs.odoo20 na python313 + http_interface=0.0.0.0, 209 dodatnih modula koje refresh nije pokrio (uključujući base_report_wkhtmltox preko kojeg point_of_sale pada na install), translate_bosnian DB sa 92.7% pokrivenosti za v20 (53 207 redova naslijeđeno iz v19 + 5h-paced AI batch-evi), kontekstualna AI greška Close → Amortizovano u 40 modula i njen sweep, pluggable PDF engine architecture (`_run_pdf_engine(engine_name, …)`) kao priprema za paper-muncher.'
 pubDate: '2026-05-09T09:30:00'
-heroImage: '/v20-pos-bringout-test20-hero.png'
+heroImage: '/v20-bringout-test20-hero.svg'
 ---
 
 > **Napomena:** Generisano od strane Claude 🤖

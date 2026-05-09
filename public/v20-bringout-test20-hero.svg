@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Odoo v20 sandbox na bringout-test20.hodi.ba — 89 modula, 92.7% bosanskog">
+  <title>Odoo v20 sandbox: bringout-test20.hodi.ba — 92.7% bosanskog</title>
+  <defs>
+    <radialGradient id="bg" cx="35%" cy="30%" r="80%">
+      <stop offset="0%"  stop-color="#10243d"/>
+      <stop offset="55%" stop-color="#06182c"/>
+      <stop offset="100%" stop-color="#020713"/>
+    </radialGradient>
+
+    <linearGradient id="masterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+
+    <linearGradient id="ocbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+
+    <linearGradient id="bsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#3a7ad9"/>
+      <stop offset="100%" stop-color="#1f4a96"/>
+    </linearGradient>
+
+    <linearGradient id="bsYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#ffd84d"/>
+      <stop offset="100%" stop-color="#e8b800"/>
+    </linearGradient>
+
+    <linearGradient id="hodiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle dot grid -->
+  <g fill="#ffffff" fill-opacity="0.04">
+    <circle cx="60"   cy="60"  r="2"/><circle cx="140"  cy="60"  r="2"/>
+    <circle cx="220"  cy="60"  r="2"/><circle cx="300"  cy="60"  r="2"/>
+    <circle cx="380"  cy="60"  r="2"/><circle cx="460"  cy="60"  r="2"/>
+    <circle cx="540"  cy="60"  r="2"/><circle cx="620"  cy="60"  r="2"/>
+    <circle cx="700"  cy="60"  r="2"/><circle cx="780"  cy="60"  r="2"/>
+    <circle cx="860"  cy="60"  r="2"/><circle cx="940"  cy="60"  r="2"/>
+    <circle cx="1020" cy="60"  r="2"/><circle cx="1100" cy="60"  r="2"/>
+    <circle cx="60"   cy="140" r="2"/><circle cx="140"  cy="140" r="2"/>
+    <circle cx="220"  cy="140" r="2"/><circle cx="300"  cy="140" r="2"/>
+    <circle cx="380"  cy="140" r="2"/><circle cx="460"  cy="140" r="2"/>
+    <circle cx="540"  cy="140" r="2"/><circle cx="620"  cy="140" r="2"/>
+    <circle cx="700"  cy="140" r="2"/><circle cx="780"  cy="140" r="2"/>
+    <circle cx="860"  cy="140" r="2"/><circle cx="940"  cy="140" r="2"/>
+    <circle cx="1020" cy="140" r="2"/><circle cx="1100" cy="140" r="2"/>
+  </g>
+
+  <!-- Top wordmark + alpha tag -->
+  <g font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+    <text x="60" y="100" font-size="44" font-weight="700" fill="#ffffff" fill-opacity="0.95">Odoo</text>
+    <text x="180" y="100" font-size="44" font-weight="700" fill="url(#masterGrad)">v20</text>
+    <text x="280" y="100" font-size="20" font-weight="500" fill="#ffffff" fill-opacity="0.55">sandbox</text>
+
+    <g transform="translate(1140, 78)" text-anchor="end">
+      <rect x="-152" y="-22" width="152" height="32" rx="16"
+            fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.2"/>
+      <text x="-12" y="0" font-size="14" font-weight="600" fill="#ffffff" fill-opacity="0.85"
+            font-family="ui-monospace, SFMono-Regular, Menlo, monospace">19.4 alpha</text>
+    </g>
+  </g>
+
+  <!-- Pipeline row: master → 17 forks → bringout-test20 -->
+  <g transform="translate(0, 200)" font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+
+    <!-- master card -->
+    <g transform="translate(180, 0)">
+      <rect x="-130" y="-65" width="260" height="130" rx="16"
+            fill="url(#masterGrad)" fill-opacity="0.18"
+            stroke="url(#masterGrad)" stroke-width="2"/>
+      <text x="0" y="-25" font-size="13" font-weight="500" text-anchor="middle"
+            fill="#7dd3fc" letter-spacing="1">UPSTREAM</text>
+      <text x="0" y="5" font-size="22" font-weight="700" text-anchor="middle" fill="#ffffff">odoo/odoo</text>
+      <text x="0" y="36" font-size="16" font-weight="500" text-anchor="middle"
+            fill="#ffffff" fill-opacity="0.6"
+            font-family="ui-monospace, SFMono-Regular, Menlo, monospace">:master</text>
+    </g>
+
+    <!-- arrow 1 -->
+    <g filter="url(#glow)">
+      <path d="M 320 0 L 470 0" stroke="url(#bsYellow)" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M 450 -14 L 478 0 L 450 14 Z" fill="url(#bsYellow)"/>
+    </g>
+    <text x="395" y="-22" font-size="12" font-weight="600" text-anchor="middle"
+          fill="#ffd84d" letter-spacing="1">REFRESH</text>
+    <text x="395" y="32" font-size="11" text-anchor="middle"
+          fill="#ffffff" fill-opacity="0.5"
+          font-family="ui-monospace, SFMono-Regular, Menlo, monospace">refresh_v20_from_master.py</text>
+
+    <!-- forks card (stack effect) -->
+    <g transform="translate(600, 0)">
+      <rect x="-130" y="-58" width="260" height="130" rx="16"
+            fill="url(#ocbGrad)" fill-opacity="0.10"
+            stroke="url(#ocbGrad)" stroke-opacity="0.4" stroke-width="1.5"/>
+      <rect x="-127" y="-61" width="260" height="130" rx="16"
+            fill="url(#ocbGrad)" fill-opacity="0.14"
+            stroke="url(#ocbGrad)" stroke-opacity="0.6" stroke-width="1.5"/>
+      <rect x="-124" y="-64" width="260" height="130" rx="16"
+            fill="url(#ocbGrad)" fill-opacity="0.20"
+            stroke="url(#ocbGrad)" stroke-width="2"/>
+      <text x="6" y="-28" font-size="13" font-weight="500" text-anchor="middle"
+            fill="#a78bfa" letter-spacing="1">17 FORK-OVA</text>
+      <text x="6" y="2" font-size="20" font-weight="700" text-anchor="middle" fill="#ffffff">bringout/oca-ocb-*</text>
+      <text x="6" y="34" font-size="14" font-weight="500" text-anchor="middle"
+            fill="#ffffff" fill-opacity="0.6"
+            font-family="ui-monospace, SFMono-Regular, Menlo, monospace">grana 20.0</text>
+    </g>
+
+    <!-- arrow 2 -->
+    <g filter="url(#glow)">
+      <path d="M 740 0 L 890 0" stroke="url(#bsYellow)" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M 870 -14 L 898 0 L 870 14 Z" fill="url(#bsYellow)"/>
+    </g>
+    <text x="815" y="-22" font-size="12" font-weight="600" text-anchor="middle"
+          fill="#ffd84d" letter-spacing="1">NIX BUNDLE</text>
+    <text x="815" y="32" font-size="11" text-anchor="middle"
+          fill="#ffffff" fill-opacity="0.5"
+          font-family="ui-monospace, SFMono-Regular, Menlo, monospace">pkgs.odoo20 / python313</text>
+
+    <!-- bringout-test20 card -->
+    <g transform="translate(1020, 0)">
+      <rect x="-130" y="-65" width="260" height="130" rx="16"
+            fill="url(#hodiGrad)" fill-opacity="0.18"
+            stroke="url(#hodiGrad)" stroke-width="2"/>
+      <text x="0" y="-25" font-size="13" font-weight="500" text-anchor="middle"
+            fill="#34d399" letter-spacing="1">SANDBOX</text>
+      <text x="0" y="5" font-size="20" font-weight="700" text-anchor="middle" fill="#ffffff">bringout-test20</text>
+      <text x="0" y="36" font-size="13" font-weight="500" text-anchor="middle"
+            fill="#ffffff" fill-opacity="0.6"
+            font-family="ui-monospace, SFMono-Regular, Menlo, monospace">.hodi.ba :8230</text>
+    </g>
+  </g>
+
+  <!-- Translation cards: English → Bosanski (Close → Zatvori), referencing the bug we fixed -->
+  <g transform="translate(0, 410)" font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+    <text x="60" y="-12" font-size="13" font-weight="600" fill="#ffffff" fill-opacity="0.5" letter-spacing="1">PRIJEVODI</text>
+
+    <!-- EN card -->
+    <g transform="translate(180, 30)">
+      <rect x="-92" y="-44" width="184" height="88" rx="12"
+            fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5"/>
+      <text x="0" y="-15" font-size="14" font-weight="500" text-anchor="middle"
+            fill="#ffffff" fill-opacity="0.5">English</text>
+      <text x="0" y="20" font-size="26" font-weight="700" text-anchor="middle" fill="#ffffff">Close</text>
+    </g>
+
+    <!-- arrow + .po marker -->
+    <g transform="translate(345, 30)" filter="url(#glow)">
+      <path d="M -55 0 L 55 0" stroke="url(#bsYellow)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 38 -10 L 60 0 L 38 10 Z" fill="url(#bsYellow)"/>
+    </g>
+    <text x="345" y="20" font-size="13" font-weight="600" text-anchor="middle"
+          fill="url(#bsYellow)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">bs.po</text>
+
+    <!-- BS card -->
+    <g transform="translate(510, 30)">
+      <rect x="-92" y="-44" width="184" height="88" rx="12"
+            fill="url(#bsBlue)" stroke="#ffd84d" stroke-opacity="0.6" stroke-width="1.5"/>
+      <text x="0" y="-15" font-size="14" font-weight="500" text-anchor="middle"
+            fill="#ffd84d" fill-opacity="0.85">Bosanski</text>
+      <text x="0" y="20" font-size="26" font-weight="700" text-anchor="middle" fill="#ffffff">Zatvori</text>
+    </g>
+
+    <!-- big % stat -->
+    <g transform="translate(950, 30)" text-anchor="middle">
+      <text x="0" y="-2" font-size="68" font-weight="700" fill="#ffffff">92.7<tspan font-size="48" fill="#ffffff" fill-opacity="0.7">%</tspan></text>
+      <text x="0" y="32" font-size="15" font-weight="500" fill="#ffffff" fill-opacity="0.6">v20 bs pokrivenost</text>
+    </g>
+  </g>
+
+  <!-- Bottom strip: key v20 module chips -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="500" text-anchor="middle">
+    <g transform="translate(60, 565)">
+      <rect width="120" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="60" y="22" fill="#ffffff" fill-opacity="0.78">core</text>
+    </g>
+    <g transform="translate(192, 565)">
+      <rect width="160" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="80" y="22" fill="#ffffff" fill-opacity="0.78">point_of_sale</text>
+    </g>
+    <g transform="translate(364, 565)">
+      <rect width="180" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="90" y="22" fill="#ffffff" fill-opacity="0.78">base_report_wkhtmltox</text>
+    </g>
+    <g transform="translate(556, 565)">
+      <rect width="160" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="80" y="22" fill="#ffffff" fill-opacity="0.78">account_peppol</text>
+    </g>
+    <g transform="translate(728, 565)">
+      <rect width="140" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="70" y="22" fill="#ffffff" fill-opacity="0.78">auth_passkey</text>
+    </g>
+    <g transform="translate(880, 565)">
+      <rect width="120" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="60" y="22" fill="#ffffff" fill-opacity="0.78">website</text>
+    </g>
+    <g transform="translate(1012, 565)">
+      <rect width="128" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.18"/>
+      <text x="64" y="22" fill="#ffffff" fill-opacity="0.78">…+89</text>
+    </g>
+  </g>
+</svg>
