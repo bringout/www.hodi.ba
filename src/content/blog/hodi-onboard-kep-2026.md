@@ -70,12 +70,6 @@ Evo izgleda istog korisničkog naloga 30 sekundi kasnije, nakon što je sync tim
 
 47 repozitorija u dvije organizacije postalo vidljivo, bez ijedne ručne intervencije. Korisnik može fork-ati, klonirati, pratiti issue-e — sve preko jednog SSO logina.
 
-## Šta se ne mijenja
-
-- **`bringout/` repozitoriji ostaju mirror-i sa GitHuba.** Forgejo blokira pull requestove protiv mirror repozitorija (pull-mirror sync bi pregaztio merge), tako da kontribucije i dalje idu kroz GitHub upstream. Forgejo na hodi.ba je primarno read-mostly mirror za browsing i fork.
-- **LLDAP super-admin (`uid=admin`, mail `podrska@hodi.ba`) ne može preko OIDC-a u Forgejo.** Ime `admin` je hardkodovano kao reserved username u Forgejo, a OAuth source ima `RequiredClaim groups=hodi-users` — što znači da Authelia → Forgejo pušta samo `hodi-users` članove.
-- **Lokalni Forgejo admin (`forgejo-admin`)** se prijavljuje kroz lokalnu formu na `/user/login` (zaobilazi auto-redirect na Authelia) i ostaje jedini admin koji može povući plug ako bilo šta krene loše.
-
 ## Tehnički stack
 
 | Komponenta | Tehnologija |
