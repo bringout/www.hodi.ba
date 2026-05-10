@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Stalwart LDAP domain leak — one LDAP user with foreign-domain mail makes the whole domain local, blocking external relay">
+  <title>Stalwart LDAP domain leak</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#1a2a4a"/>
+      <stop offset="55%" stop-color="#0a1530"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="cardFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="okGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="badRed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle grid -->
+  <g fill="#ffffff" fill-opacity="0.04">
+    <circle cx="60" cy="60" r="2"/><circle cx="180" cy="60" r="2"/><circle cx="300" cy="60" r="2"/><circle cx="420" cy="60" r="2"/><circle cx="540" cy="60" r="2"/><circle cx="660" cy="60" r="2"/><circle cx="780" cy="60" r="2"/><circle cx="900" cy="60" r="2"/><circle cx="1020" cy="60" r="2"/><circle cx="1140" cy="60" r="2"/>
+    <circle cx="60" cy="180" r="2"/><circle cx="1140" cy="180" r="2"/>
+    <circle cx="60" cy="300" r="2"/><circle cx="1140" cy="300" r="2"/>
+    <circle cx="60" cy="450" r="2"/><circle cx="1140" cy="450" r="2"/>
+    <circle cx="60" cy="570" r="2"/><circle cx="180" cy="570" r="2"/><circle cx="300" cy="570" r="2"/><circle cx="420" cy="570" r="2"/><circle cx="540" cy="570" r="2"/><circle cx="660" cy="570" r="2"/><circle cx="780" cy="570" r="2"/><circle cx="900" cy="570" r="2"/><circle cx="1020" cy="570" r="2"/><circle cx="1140" cy="570" r="2"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="80" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="700" fill="#f8fafc">Stalwart + LDAP: kad jedan korisnik “otme” cijeli domen</text>
+  <text x="600" y="115" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" fill="#94a3b8">5.1.2 Mailbox does not exist — umjesto da se mail relaja prema MX-u eksternog domena</text>
+
+  <!-- LDAP card -->
+  <g transform="translate(70, 175)">
+    <rect width="320" height="180" rx="14" fill="url(#cardFill)" stroke="#475569" stroke-width="1.5"/>
+    <text x="20" y="36" font-family="ui-monospace, monospace" font-size="20" font-weight="700" fill="#cbd5e1">LDAP directory</text>
+    <text x="20" y="62" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">objectClass=person</text>
+    <line x1="20" y1="76" x2="300" y2="76" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="100" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">user1  mail=user1@local.tld</text>
+    <text x="20" y="120" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">user2  mail=user2@sub.local.tld</text>
+    <text x="20" y="140" font-family="ui-monospace, monospace" font-size="13" fill="#fca5a5">userX  mail=userX@<tspan font-weight="700" fill="#ef4444">foreign.tld</tspan></text>
+    <text x="20" y="166" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-style="italic" fill="#64748b">jedan zalutali zapis…</text>
+  </g>
+
+  <!-- arrow LDAP -> Stalwart -->
+  <line x1="395" y1="265" x2="475" y2="265" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="435" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">mail=?</text>
+
+  <!-- Stalwart card -->
+  <g transform="translate(480, 175)">
+    <rect width="240" height="180" rx="14" fill="url(#cardFill)" stroke="#0ea5e9" stroke-width="1.5"/>
+    <text x="120" y="40" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="700" fill="#e0f2fe">Stalwart</text>
+    <text x="120" y="62" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#7dd3fc">nodeA</text>
+    <line x1="20" y1="76" x2="220" y2="76" stroke="#0ea5e9" stroke-opacity="0.4" stroke-width="1"/>
+    <text x="20" y="100" font-family="ui-monospace, monospace" font-size="12" fill="#94a3b8">lokalni domeni:</text>
+    <text x="20" y="120" font-family="ui-monospace, monospace" font-size="12" fill="#22c55e">  local.tld          ✓</text>
+    <text x="20" y="138" font-family="ui-monospace, monospace" font-size="12" fill="#22c55e">  sub.local.tld      ✓</text>
+    <text x="20" y="156" font-family="ui-monospace, monospace" font-size="12" fill="#ef4444">  foreign.tld        ✗</text>
+  </g>
+
+  <!-- arrow Stalwart -> External MX (BAD) -->
+  <line x1="730" y1="220" x2="855" y2="220" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+  <text x="795" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#fca5a5">RCPT bjelo@foreign.tld</text>
+  <text x="795" y="245" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#ef4444">550 5.1.2 Mailbox does not exist</text>
+
+  <!-- External MX card -->
+  <g transform="translate(860, 175)">
+    <rect width="270" height="180" rx="14" fill="url(#cardFill)" stroke="#475569" stroke-width="1.5"/>
+    <text x="20" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="700" fill="#e2e8f0">External MX</text>
+    <text x="20" y="62" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">foreign.tld → nodeB</text>
+    <line x1="20" y1="76" x2="250" y2="76" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="104" font-family="ui-monospace, monospace" font-size="12" fill="#94a3b8">DNS MX:</text>
+    <text x="20" y="124" font-family="ui-monospace, monospace" font-size="12" fill="#cbd5e1">  10 mx.foreign.tld</text>
+    <text x="20" y="158" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-style="italic" fill="#64748b">mail nikad ne stigne ovdje</text>
+  </g>
+
+  <!-- Bottom: fix -->
+  <g transform="translate(70, 410)">
+    <rect width="1060" height="170" rx="14" fill="url(#cardFill)" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="20" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700" fill="#bbf7d0">Rješenje: ograniči LDAP filter na dozvoljene domene</text>
+    <text x="20" y="78" font-family="ui-monospace, monospace" font-size="14" fill="#94a3b8">prije:</text>
+    <text x="100" y="78" font-family="ui-monospace, monospace" font-size="14" fill="#fca5a5">(&amp;(objectClass=person)(mail=?))</text>
+    <text x="20" y="108" font-family="ui-monospace, monospace" font-size="14" fill="#94a3b8">poslije:</text>
+    <text x="100" y="108" font-family="ui-monospace, monospace" font-size="14" fill="#86efac">(&amp;(objectClass=person)(mail=?)(|(mail=*@local.tld)(mail=*@*.local.tld)))</text>
+    <text x="20" y="146" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-style="italic" fill="#94a3b8">+ obrisati zaostali principal i auto-registrovani domen iz Stalwart store-a (REST API DELETE)</text>
+  </g>
+</svg>
