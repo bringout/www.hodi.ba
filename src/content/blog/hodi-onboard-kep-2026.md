@@ -5,7 +5,7 @@ pubDate: '2026-05-10T08:30:00'
 heroImage: '/hodi-onboard-input-pdf.png'
 ---
 
-Predstavljamo **registracija.kep.hodi.ba** — self-service onboarding na hodi.ba ekosistem. Korisnik popuni jednostavan PDF obrazac, potpiše ga svojim KEP-om (IDDEEA, UIO ili BHP), učita ga, klikne potvrdni link u emailu — i dobija pristup SSO portalu (Authelia), webmailu (Roundcube) i git serveru (Forgejo) sa pravom da kontribuira public repozitorijima.
+Predstavljamo **registracija.kep.hodi.ba** — self-service onboarding na hodi.ba ekosistem. Korisnik popuni jednostavan PDF obrazac, potpiše ga svojim KEP-om (IDDEEA, UIO ili BHP), učita ga, klikne potvrdni link u emailu — i dobija pristup SSO portalu (Authelia) i git serveru (Forgejo) sa pravom da kontribuira public repozitorijima.
 
 Servis je dostupan na: [registracija.kep.hodi.ba](https://registracija.kep.hodi.ba)
 
