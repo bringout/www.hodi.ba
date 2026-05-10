@@ -83,10 +83,6 @@ Evo izgleda istog korisničkog naloga 30 sekundi kasnije, nakon što je sync tim
 | Antispam | honeypot polje + signed form-token (min 2s, max 2h) + slowapi rate-limit (5/h) |
 | Forgejo team sync | Python `requests` skripta + systemd timer (svake 2 min) na builder-6 |
 
-## Probajte
-
-Ako imate KEP — bilo koji od tri podržana izdavača — slobodno prođite kroz onboarding. Ne dobijete admin prava nigdje, ali dobijete pristup svim public repozitorijima u `bringout/` i mirror-ima `oca/` koje hostujemo na git.hodi.ba.
-
 ---
 
 *Napomena: Generisano by Claude AI 🤖*
