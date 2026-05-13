@@ -5,7 +5,7 @@ pubDate: '2026-05-13T19:00:00'
 heroImage: '/registracija-kep-hodi-v05-admin-pdf.png'
 ---
 
-Prije par dana smo objavili [registracija.kep.hodi.ba](/blog/hodi-onboard-kep-2026/) — self-service onboarding gdje korisnik pošalje KEP-potpisan PDF i dobije nalog na hodi.ba. Servis je radio, ali se brzo pokazalo da nedostaju dva česta scenarija: korisnik koji je zaboravio lozinku i admin koji treba otvoriti nalog kolegi koji nema vlastiti KEP.
+Prije par dana smo objavili [registracija.kep.hodi.ba](/blog/hodi-onboard-kep-2026.md/) — self-service onboarding gdje korisnik pošalje KEP-potpisan PDF i dobije nalog na hodi.ba. Servis je radio, ali se brzo pokazalo da nedostaju dva česta scenarija: korisnik koji je zaboravio lozinku i admin koji treba otvoriti nalog kolegi koji nema vlastiti KEP.
 
 Umjesto da pravimo tri odvojena servisa, proširili smo postojeći **[registracija.kep.hodi.ba](https://registracija.kep.hodi.ba)** verzijom **`registracija-kep-hodi v0.5.0`**. Polje `Predmet` u PDF-u sada određuje vrstu zahtjeva — sve ostalo (KEP validacija, name + datum cross-check, rate-limit, antispam) ostaje identično. Hero slika iznad pokazuje upravo treću, najinteresantniju varijantu: admin-mediated zahtjev gdje administrator svojim KEP-om otvara nalog kolegi.
 
