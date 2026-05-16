@@ -37,6 +37,30 @@ import { SITE_TITLE } from '../consts';
 		gap: 0.25em;
 	}
 
+	.auth-link {
+		margin-left: auto;
+		padding: 0.4em 0.9em !important;
+		font-size: 0.9em;
+		border: 1px solid rgb(var(--gray-light)) !important;
+		border-radius: 4px;
+		background: white;
+		color: var(--black);
+		transition: background 0.15s, border-color 0.15s;
+	}
+	.auth-link:hover {
+		background: rgba(var(--gray-light), 0.4);
+		border-color: var(--accent) !important;
+	}
+	.auth-email {
+		font-size: 0.8em;
+		color: rgb(var(--gray));
+		padding: 0 0.5em;
+		max-width: 18ch;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 	/* Hamburger toggle (pure CSS, no JS) */
 	.nav-toggle {
 		display: none;
@@ -128,19 +152,33 @@ import { SITE_TITLE } from '../consts';
 			<a href="https://registracija.kep.hodi.ba">Registracija</a>
 			<a href="https://provjeri.kep.hodi.ba">KEP verifikator</a>
 			<a href="https://webmail.hodi.ba" target="_blank" data-webmail-link>Webmail</a>
+			<span class="auth-email" data-auth-email hidden></span>
+			<a class="auth-link" data-auth-link href="https://auth.hodi.ba/?rd=https://www.hodi.ba/">Prijava</a>
 		</div>
 	</nav>
 </header>
 
 <script>
-	// Hide Webmail link if the logged-in Authelia user is not on @hodi.ba.
-	// /api/whoami returns 401 for unauthenticated users → keep default state.
+	// /api/whoami is a same-origin Authelia-gated endpoint that returns
+	// {"email": "..."} when logged in, 401 otherwise. We use it to:
+	//   - hide Webmail link for users not on @hodi.ba
+	//   - swap the right-side button between Prijava ↔ Odjava
 	fetch('/api/whoami', { credentials: 'same-origin' })
 		.then((r) => (r.ok ? r.json() : null))
 		.then((d) => {
-			if (d && d.email && !d.email.toLowerCase().endsWith('@hodi.ba')) {
+			if (!d || !d.email) return;
+			const email = String(d.email).toLowerCase();
+			if (!email.endsWith('@hodi.ba')) {
 				document.querySelectorAll('[data-webmail-link]').forEach((el) => el.remove());
 			}
+			document.querySelectorAll('[data-auth-link]').forEach((el) => {
+				el.textContent = 'Odjava';
+				el.setAttribute('href', 'https://auth.hodi.ba/logout?rd=https://www.hodi.ba/');
+			});
+			document.querySelectorAll('[data-auth-email]').forEach((el) => {
+				el.textContent = email;
+				el.removeAttribute('hidden');
+			});
 		})
 		.catch(() => {});
 </script>
