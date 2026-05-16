@@ -109,7 +109,7 @@ Hero slika iznad pokazuje kompletan izlaz verifikatora — sedam provjera, svih 
 ## Tehnički detalji za zainteresirane
 
 - Kod: [git.hodi.ba/bringout/epotpis_ba_verify](https://git.hodi.ba/bringout/epotpis_ba_verify) (AGPL-3.0; mirror: [github.com/bringout/epotpis_ba_verify](https://github.com/bringout/epotpis_ba_verify))
-  - Za pristup git repozitoriju na git.hodi.ba potrebno je da se registrujete preko [registracija.kep.hodi.ba](/blog/registracija-kep-hodi-v05-2026.md/) (KEP-potpisani PDF zahtjev).
+  - Za pristup git repozitoriju na git.hodi.ba potrebno je da se registrujete prema uputama napisanim u [ovom članku](/blog/registracija-kep-hodi-v05-2026.md/).
 - Glavni modul: `src/revocation.py` (~250 linija, bez vanjskih dependencija osim `cryptography` + `requests`)
 - Cache je obični JSON fajl uz SQLite DB, pisanje pod `threading.Lock` (uvicorn radi sa više workera)
 - OCSP zahtjev koristi SHA-1 kao certIDhash algoritam — tako traže svi BA ovjerioci (eIDAS dozvoljava i SHA-256 ali nije svuda implementirano)
