@@ -108,14 +108,16 @@ Hero slika iznad pokazuje kompletan izlaz verifikatora — sedam provjera, svih 
 
 ## Tehnički detalji za zainteresirane
 
-- Kod: [git.hodi.ba/bringout/epotpis_ba_verify](https://git.hodi.ba/bringout/epotpis_ba_verify) (AGPL-3.0; mirror: [github.com/bringout/epotpis_ba_verify](https://github.com/bringout/epotpis_ba_verify))
-  - Za pristup git repozitoriju na git.hodi.ba potrebno je da se registrujete prema uputama napisanim u [ovom članku](/blog/registracija-kep-hodi-v05-2026.md/).
+- Kod: [git.hodi.ba/bringout/epotpis_ba_verify](https://git.hodi.ba/bringout/epotpis_ba_verify)[^git-access]
+- Licenca: [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html)
 - Glavni modul: `src/revocation.py` (~250 linija, bez vanjskih dependencija osim `cryptography` + `requests`)
 - Cache je obični JSON fajl uz SQLite DB, pisanje pod `threading.Lock` (uvicorn radi sa više workera)
 - OCSP zahtjev koristi SHA-1 kao certIDhash algoritam — tako traže svi BA ovjerioci (eIDAS dozvoljava i SHA-256 ali nije svuda implementirano)
 - Standalone test skripta `scripts/check_revocation.py <signed.pdf>` za brzu lokalnu provjeru bez podizanja servera
 
 Pravna napomena: kada vam treba pisano vještačenje o validnosti potpisa za sud ili poreznu kontrolu, *naš servis nije pravna ekspertiza* — služi kao tehnička provjera. Za pravno obavezujuće mišljenje obratite se nadležnim institucijama (Ured za nadzor i akreditaciju ovjerilaca pri Ministarstvu komunikacija i prometa BiH).
+
+[^git-access]: Za pristup git repozitoriju na git.hodi.ba potrebno je da se registrujete prema uputama napisanim u [ovom članku](/blog/registracija-kep-hodi-v05-2026.md/).
 
 ---
 
