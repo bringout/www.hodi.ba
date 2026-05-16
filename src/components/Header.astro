@@ -127,7 +127,20 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<a href="https://registracija.kep.hodi.ba" target="_blank">Registracija</a>
 			<a href="https://provjeri.kep.hodi.ba" target="_blank">KEP verifikator</a>
-			<a href="https://webmail.hodi.ba" target="_blank">Webmail</a>
+			<a href="https://webmail.hodi.ba" target="_blank" data-webmail-link>Webmail</a>
 		</div>
 	</nav>
 </header>
+
+<script>
+	// Hide Webmail link if the logged-in Authelia user is not on @hodi.ba.
+	// /api/whoami returns 401 for unauthenticated users → keep default state.
+	fetch('/api/whoami', { credentials: 'same-origin' })
+		.then((r) => (r.ok ? r.json() : null))
+		.then((d) => {
+			if (d && d.email && !d.email.toLowerCase().endsWith('@hodi.ba')) {
+				document.querySelectorAll('[data-webmail-link]').forEach((el) => el.remove());
+			}
+		})
+		.catch(() => {});
+</script>
