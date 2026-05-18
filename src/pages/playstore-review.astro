@@ -1,0 +1,218 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Play Store reviewer guide — ${SITE_TITLE}`}
+      description="Step-by-step guide for Google Play reviewers to verify the Hodoo Mobile app (BiH HR-attendance app) against a fresh demo Odoo instance."
+    />
+  </head>
+  <body>
+    <Header />
+    <main style="padding: 1.5rem; max-width: 920px; margin: 0 auto; line-height: 1.55;">
+
+      <h1 style="margin-bottom: 0.2rem;">Hodoo Mobile — Play Store reviewer guide</h1>
+      <p style="color: #666; margin-top: 0; font-size: 0.9rem;">
+        Page maintained by bring.out d.o.o. Sarajevo. Contact for review issues:
+        <a href="mailto:hernad@bring.out.ba">hernad@bring.out.ba</a>.
+      </p>
+
+      <section style="background: #fffbe5; border: 1px solid #f3d77a; border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0;">
+        <strong>Demo backend:</strong>
+        <a href="https://hodoo-playstore-demo.hodi.ba">https://hodoo-playstore-demo.hodi.ba</a>
+        <br/>
+        <strong>Demo accounts:</strong> <code>user / user</code> · <code>admin / admin</code>
+        <br/>
+        <strong>Daily reset:</strong> 03:00 UTC. All changes you make during review are wiped at the next cycle.
+      </section>
+
+      <h2>What the app does</h2>
+      <p>
+        Hodoo Mobile is an HR attendance app for small/medium businesses in
+        Bosnia and Herzegovina (BiH). Employees check in/out from their phone
+        with optional GPS geolocation. Admins see live dashboards with
+        attendance state, bank journal balance (BAM/KM), customer receivables,
+        and supplier payables — all backed by an Odoo 16 backend customized
+        for the BiH chart-of-accounts (FBiH).
+      </p>
+      <p>
+        Each customer self-hosts their own Odoo backend; the app is a
+        thin client. For this review we run a public demo backend that's
+        restored to a known-good snapshot every 24 hours.
+      </p>
+
+      <h2>Two test accounts</h2>
+      <table style="border-collapse: collapse; width: 100%; margin: 0.8rem 0;">
+        <thead>
+          <tr style="background: #f5f5f5;">
+            <th style="padding: 0.6rem; text-align: left; border: 1px solid #ddd;">Account</th>
+            <th style="padding: 0.6rem; text-align: left; border: 1px solid #ddd;">Role</th>
+            <th style="padding: 0.6rem; text-align: left; border: 1px solid #ddd;">What you'll see in the app</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 0.6rem; border: 1px solid #ddd;"><code>user / user</code></td>
+            <td style="padding: 0.6rem; border: 1px solid #ddd;">Regular employee</td>
+            <td style="padding: 0.6rem; border: 1px solid #ddd;">Check-in / check-out kiosk only. No accounting access.</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.6rem; border: 1px solid #ddd;"><code>admin / admin</code></td>
+            <td style="padding: 0.6rem; border: 1px solid #ddd;">Full admin</td>
+            <td style="padding: 0.6rem; border: 1px solid #ddd;">
+              Attendance dashboard + bank balance (PST banka = 1000 KM) +
+              customer receivables (Kupac 1 = 100 KM, Kupac 2 = 200 KM) +
+              supplier payables (Dobavljač 1 = 10 KM, Dobavljač 2 = 20 KM).
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>How to set up the app (QR-code path — recommended)</h2>
+
+      <h3 style="margin-top: 1.2rem;">Step 1 — generate the QR code in a desktop browser</h3>
+      <ol>
+        <li>Open
+          <a href="https://hodoo-playstore-demo.hodi.ba">
+            https://hodoo-playstore-demo.hodi.ba
+          </a>
+          in your desktop browser.
+        </li>
+        <li>Log in with either <code>user / user</code> or <code>admin / admin</code>.</li>
+        <li>Click your <strong>avatar</strong> in the top-right corner (purple
+          navbar — shows the user initial in a colored circle next to your name).</li>
+        <li>In the dropdown menu, click <strong>Hodoo Mobile QR</strong>
+          (third item from the top). The dropdown looks like this:
+          <pre style="background:#f5f5f5; padding:0.5em; border-radius:4px; font-size:0.85em; margin-top:0.4em;">
+  Documentation
+  Support
+  <strong>Hodoo Mobile QR</strong>   &larr; click this
+  Shortcuts                CTRL+K
+  ─────────────────
+  My Profile
+  My Odoo.com account
+  Log out
+          </pre>
+        </li>
+        <li>Confirm <em>"Do you want to create QR code for Hodoo mobile?"</em>
+          if Odoo prompts (some versions skip the confirm and go straight
+          to the QR page).</li>
+        <li>The QR page <code>/hodoo/mobile/qr</code> opens, showing the
+          QR image plus the underlying connection details:
+          <ul>
+            <li><strong>URL:</strong> <code>https://hodoo-playstore-demo.hodi.ba</code></li>
+            <li><strong>Database:</strong> <code>hodi-hodoo-playstore-demo</code></li>
+            <li><strong>User:</strong> <code>admin</code> (or <code>user</code>,
+              depending on which account is logged in)</li>
+          </ul>
+          The QR itself encodes the URL + DB + user + a fresh API key bound
+          to your session — single-use, regenerated on every click.
+        </li>
+      </ol>
+
+      <h3 style="margin-top: 1.2rem;">Step 2 — scan the QR with hodoo-mobile</h3>
+      <ol>
+        <li>Launch the <strong>hodoo-mobile</strong> app on your test device.</li>
+        <li>Tap the gear icon (<em>Postavke</em> / Settings).</li>
+        <li>Tap <strong>Scan QR</strong> — the device camera opens.</li>
+        <li>Point the camera at the QR code shown on the desktop screen.</li>
+        <li>The app auto-fills URL, database, user, and API key fields.</li>
+        <li>Tap <strong>Save</strong>.</li>
+      </ol>
+
+      <h3 style="margin-top: 1.2rem;">Step 3 — use the app</h3>
+      <ol>
+        <li>From the main menu, tap <strong>Prijava</strong> (Login).</li>
+        <li>As <code>user</code>: tap the green check-in button. An
+          attendance record is created in the backend. Tap again to check out.</li>
+        <li>As <code>admin</code>: you see the full dashboard — attendance
+          summary, customer/supplier balance cards, bank journal.</li>
+      </ol>
+
+      <h2>Manual configuration (fallback if QR isn't practical)</h2>
+      <p>
+        If you can't run the desktop+phone setup simultaneously, you can
+        configure the app manually:
+      </p>
+      <table style="border-collapse: collapse; width: 100%; margin: 0.8rem 0;">
+        <tbody>
+          <tr>
+            <td style="padding: 0.5rem; border: 1px solid #ddd; width: 30%;"><strong>URL</strong></td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>https://hodoo-playstore-demo.hodi.ba</code></td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem; border: 1px solid #ddd;"><strong>Database</strong></td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>hodi-hodoo-playstore-demo</code></td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem; border: 1px solid #ddd;"><strong>User</strong></td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>user</code> or <code>admin</code></td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem; border: 1px solid #ddd;"><strong>API key</strong></td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd;">
+              <code>user</code> or <code>admin</code>
+              <br/><small style="color: #888;">(for this demo the password works as the API key)</small>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Data privacy &amp; the daily reset</h2>
+      <ul>
+        <li>All data shown (employees, customers, suppliers, balances) is
+          <strong>fictional</strong> — created at module install time.</li>
+        <li>The demo database is isolated from any production tenant.</li>
+        <li>Every 24 hours at 03:00 UTC the dashboard at
+          <code>dashboard.hodi.ba</code> restores this instance from a clean
+          <code>pg_dump</code> snapshot. Any check-ins, edits, or backend
+          changes made during review are wiped.</li>
+        <li>The hodoo-mobile app communicates with the backend over HTTPS.
+          GPS location is optional, sent only with check-in/check-out
+          actions and only when the user grants location permission at
+          runtime. It is stored against the attendance record on the
+          customer's own Odoo backend — not on any bring.out server beyond
+          the customer's tenant.</li>
+      </ul>
+
+      <h2>Architecture (for the curious)</h2>
+      <ul>
+        <li><strong>Backend:</strong> Odoo 16 + custom modules
+          <code>hodoo_mobile_attendance_api</code> (mobile-side JSON-RPC
+          helpers), <code>hodoo_mobile_qrcode</code> (QR pairing flow),
+          <code>l10n_ba_fbih_data</code> (FBiH chart of accounts),
+          <code>hodoo_playstore_demo</code> (seed data used for this
+          review).</li>
+        <li><strong>Mobile:</strong> Compose Multiplatform Kotlin
+          (Android + iOS targets; Android is what you're reviewing).</li>
+        <li><strong>Hosting:</strong> Hetzner / Frankfurt; backend deployed
+          via NixOS with daily snapshot lifecycle managed by an internal
+          dashboard.</li>
+      </ul>
+
+      <hr style="margin: 2rem 0; border: none; border-top: 1px solid #ddd;"/>
+
+      <p style="font-size: 0.85rem; color: #666;">
+        Maintained at
+        <a href="https://github.com/bringout/profile-hetzner">github.com/bringout/profile-hetzner</a>.
+        Page last updated: <FormattedDate date={new Date()} />
+      </p>
+
+    </main>
+    <Footer />
+  </body>
+</html>
+---
+
+<style>
+  h2 { margin-top: 1.6rem; }
+  h3 { margin-top: 1rem; font-size: 1.05rem; }
+  ol li, ul li { margin: 0.3em 0; }
+  code { background: #f3f3f3; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.9em; }
+</style>
