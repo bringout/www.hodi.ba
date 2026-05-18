@@ -141,13 +141,31 @@ import { SITE_TITLE } from '../consts';
       </ol>
 
       <h3 style="margin-top: 1.2rem;">Step 3 — use the app</h3>
-      <ol>
-        <li>From the main menu, tap <strong>Prijava</strong> (Login).</li>
-        <li>As <code>user</code>: tap the green check-in button. An
-          attendance record is created in the backend. Tap again to check out.</li>
-        <li>As <code>manager</code>: you see the full dashboard — attendance
-          summary, customer/supplier balance cards, bank journal.</li>
-      </ol>
+      <p>
+        Once paired, the home screen exposes four dashboard buttons +
+        diagnostics at the bottom:
+      </p>
+      <figure style="margin: 0.6em 0;">
+        <img
+          src="/playstore-review-step3-mobile-home.png"
+          alt="hodoo-mobile home screen — Current Balance, Suppliers Payable, Customers Receivable, Attendance"
+          style="max-width: 360px; width: 100%; border: 1px solid #ddd; border-radius: 4px;"
+        />
+      </figure>
+      <ul>
+        <li><strong>Current Balance</strong> — PST banka demo journal: <code>1000 KM</code>.</li>
+        <li><strong>Suppliers Payable</strong> — Dobavljač 1 (10 KM) + Dobavljač 2 (20 KM).</li>
+        <li><strong>Customers Receivable</strong> — Kupac 1 (100 KM) + Kupac 2 (200 KM).</li>
+        <li><strong>Attendance</strong> — Prijava/Odjava (check-in/check-out kiosk).</li>
+      </ul>
+      <p>
+        As <code>user</code>: only <em>Attendance</em> returns useful
+        data — the other three cards show <code>0</code> because the
+        regular employee role has no accounting access.
+        <br/>
+        As <code>manager</code>: all four cards populate with the demo
+        seed numbers above.
+      </p>
 
       <h2>Connection parameters encoded in the QR</h2>
       <p>
