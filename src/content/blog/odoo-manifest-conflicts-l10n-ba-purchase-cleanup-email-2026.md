@@ -1,5 +1,5 @@
 ---
-title: 'conflicts u Odoo manifestu — primjer modula l10n_ba_purchase_cleanup_email'
+title: 'Odoo manifest - "conflicts" sekcija primjer'
 description: 'Kako conflicts ključ u __manifest__.py sprečava instalaciju oba modula istovremeno — objašnjenje na primjeru preimenovanja l10n_purchase_cleanup_email u l10n_ba_purchase_cleanup_email.'
 pubDate: '2026-06-01T18:00:00'
 heroImage: '/odoo-manifest-conflicts-hero.svg'
