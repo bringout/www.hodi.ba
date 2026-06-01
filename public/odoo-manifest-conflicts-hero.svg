@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="Odoo __manifest__.py conflicts ključ — sprječava instalaciju dva međusobno ekskluzivna modula">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#58a6ff"/>
+      <stop offset="100%" stop-color="#3fb950"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+
+  <!-- Title -->
+  <g font-family="'DejaVu Sans', 'Inter', system-ui, sans-serif" fill="#f0f6fc">
+    <text x="60" y="70" font-size="38" font-weight="700">Odoo __manifest__.py</text>
+    <text x="60" y="112" font-size="24" fill="#8b949e" font-weight="400">
+      conflicts ključ — zaštita pri preimenovanju modula
+    </text>
+  </g>
+
+  <!-- LEFT box: stari modul -->
+  <rect x="60" y="150" width="480" height="340" rx="10"
+        fill="#161b22" stroke="#ef6f6c" stroke-width="2"/>
+  <text x="300" y="185" font-size="14" letter-spacing="3" fill="#ef6f6c"
+        font-family="'DejaVu Sans', system-ui, sans-serif" text-anchor="middle">STARI MODUL</text>
+
+  <g font-family="ui-monospace, 'JetBrains Mono', 'Courier New', monospace" font-size="16" fill="#c9d1d9">
+    <text x="80" y="225">l10n_purchase_cleanup_email</text>
+    <text x="80" y="255" fill="#8b949e">────────────────────────────</text>
+    <text x="80" y="285">"name": "Purchase: cleanup …"</text>
+    <text x="80" y="315">"version": "16.0.1.0.0"</text>
+    <text x="80" y="345">"depends": ["purchase"]</text>
+    <text x="80" y="395" fill="#ef6f6c">⚠ bez l10n_ba_ prefiksa</text>
+    <text x="80" y="425" fill="#8b949e">— instaliran u produkciji</text>
+    <text x="80" y="455" fill="#8b949e">— treba biti zamijenjen</text>
+  </g>
+
+  <!-- Arrow in middle -->
+  <g fill="#e2c781" opacity="0.85">
+    <path d="M 556 305 L 606 305 L 606 293 L 634 315 L 606 337 L 606 325 L 556 325 Z"/>
+  </g>
+  <text x="595" y="358" font-size="12" fill="#e2c781"
+        font-family="'DejaVu Sans', system-ui, sans-serif" text-anchor="middle">rename</text>
+
+  <!-- RIGHT box: novi modul -->
+  <rect x="648" y="150" width="504" height="340" rx="10"
+        fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="900" y="185" font-size="14" letter-spacing="3" fill="#3fb950"
+        font-family="'DejaVu Sans', system-ui, sans-serif" text-anchor="middle">NOVI MODUL</text>
+
+  <g font-family="ui-monospace, 'JetBrains Mono', 'Courier New', monospace" font-size="16" fill="#c9d1d9">
+    <text x="668" y="225">l10n_ba_purchase_cleanup_email</text>
+    <text x="668" y="255" fill="#8b949e">────────────────────────────────</text>
+    <text x="668" y="285">"name": "Purchase: cleanup …"</text>
+    <text x="668" y="315">"version": "16.0.1.1.0"</text>
+    <text x="668" y="345">"depends": ["purchase"]</text>
+    <rect x="668" y="365" width="460" height="36" rx="4" fill="#1a3a2a" stroke="#3fb950" stroke-width="1"/>
+    <text x="678" y="388" fill="#3fb950">"conflicts": ["l10n_purchase_cleanup_email"]</text>
+    <text x="668" y="425" fill="#3fb950">✓ ispravno imenovan (l10n_ba_)</text>
+    <text x="668" y="455" fill="#8b949e">— ne može koegzistirati sa starim</text>
+  </g>
+
+  <!-- Bottom explanation -->
+  <rect x="60" y="510" width="1080" height="90" rx="8"
+        fill="#1c2128" stroke="#30363d" stroke-width="1"/>
+  <g font-family="'DejaVu Sans', system-ui, sans-serif" font-size="14" fill="#8b949e">
+    <text x="80" y="535">Ako je stari modul instaliran → Odoo odbija instalaciju novog dok se stari ne ukloni.</text>
+    <text x="80" y="560">Sprječava duplu write() i action_rfq_send() override logiku na purchase.order.</text>
+    <text x="80" y="585" fill="#58a6ff">depends = "trebam ovo"   ·   conflicts = "ne mogu živjeti pored ovoga"</text>
+  </g>
+</svg>
