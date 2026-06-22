@@ -9,9 +9,9 @@ heroImage: '/bank-pdf-2pass-failover-hero.svg'
 
 Tri ranija posta o `l10n_ba_bank_pdf`-u:
 
-- [`vision-LLM mod za ProCredit`](/blog/l10n-ba-bank-pdf-vision-procredit-2026.md/) — rasterizujemo PDF u PNG, pošaljemo i tekst i sliku LLM-u. Storage: 62% manje.
-- [`LLM digit repair`](/blog/l10n-ba-bank-pdf-llm-digit-repair-2026.md/) — subsekvenca-snap fix kad LLM ispusti cifru iz dugog niza nula u 16-cifrenom računu.
-- [`Cross-check + POVRAT KREDITA`](/blog/l10n-ba-bank-pdf-cross-check-povrat-2026.md/) — per-bank ground-truth ekstrakcija i klasifikacija (confirmed/suspicious/snap/snap_long/unverifiable).
+- [`vision-LLM mod za ProCredit`](/blog/l10n-ba-bank-pdf-vision-procredit-2026/) — rasterizujemo PDF u PNG, pošaljemo i tekst i sliku LLM-u. Storage: 62% manje.
+- [`LLM digit repair`](/blog/l10n-ba-bank-pdf-llm-digit-repair-2026/) — subsekvenca-snap fix kad LLM ispusti cifru iz dugog niza nula u 16-cifrenom računu.
+- [`Cross-check + POVRAT KREDITA`](/blog/l10n-ba-bank-pdf-cross-check-povrat-2026/) — per-bank ground-truth ekstrakcija i klasifikacija (confirmed/suspicious/snap/snap_long/unverifiable).
 
 Ova iteracija — **`l10n_ba_bank_pdf 16.0.1.30.x`** + revidirani anonimizacijski pipeline — adresira tri praktična problema koja su izronila kad smo pokušali napraviti dovoljno realističan ali javno dijeljiv test set, i kad smo pokušali kvantifikovati koji LLM stvarno radi za koju banku.
 
@@ -464,7 +464,7 @@ chatterom za audit.
 
 ## 5. Per-bank deterministička provjera za ProCredit i Sparkasse
 
-[Prošli post](/blog/l10n-ba-bank-pdf-cross-check-povrat-2026.md/) je
+[Prošli post](/blog/l10n-ba-bank-pdf-cross-check-povrat-2026/) je
 opisao per-bank ground-truth ekstrakciju za **`partner_account`** —
 16-cifrene račune. To radi za sve banke. Ali **per-row**
 deterministička provjera (`_extract_ground_truth_rows`) postojala je

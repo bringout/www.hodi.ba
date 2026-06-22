@@ -6,21 +6,12 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 export async function getStaticPaths() {
-	// Preserve the pre-Astro-6 URL shape `/blog/<name>.md/`. Astro 4's
-	// content-collection `id` kept the file extension; the Astro 6 glob loader
-	// strips it, which would change every post URL and break the `.md/`-style
-	// cross-links inside existing posts. Re-append the source extension (glob's
-	// `filePath` is typed `string | undefined`, so guard it; all posts are .md).
-	// NOTE: defined INSIDE getStaticPaths — Astro runs it in an isolated scope
-	// where sibling frontmatter functions are not available.
-	const postExt = (filePath: string | undefined): string => {
-		if (!filePath) return '.md';
-		const dot = filePath.lastIndexOf('.');
-		return dot >= 0 ? filePath.slice(dot) : '.md';
-	};
+	// Clean `/blog/<name>/` URLs (unified with www.bring.out.ba). Old
+	// `/blog/<name>.md/` links are 301-redirected to these by nginx
+	// (infra-hodi www-hodi-ba vhost), so external/legacy links keep working.
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.id + postExt(post.filePath) },
+		params: { slug: post.id },
 		props: post,
 	}));
 }

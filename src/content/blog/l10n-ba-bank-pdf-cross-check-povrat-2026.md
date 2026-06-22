@@ -9,8 +9,8 @@ heroImage: '/bank-pdf-cross-check-hero.svg'
 
 Dva ranija posta:
 
-- [`l10n-ba-bank-pdf-vision-procredit-2026`](/blog/l10n-ba-bank-pdf-vision-procredit-2026.md/) — uveo *vision-LLM mod* (rasterizovati svaku stranicu PDF-a u PNG @ 150 DPI, poslati i tekst i sliku LLM-u) jer ProCredit tekstualni stream nosi `5DþXQEURM` umjesto `Račun broj` (CRT/iReport stari font subseti bez ToUnicode CMap-a). Plus *flat image-only PDF* koji zamjenjuje originalni attachment u Odoo — **62% storage uštede** (1.28 MB → 487 KB).
-- [`l10n-ba-bank-pdf-llm-digit-repair-2026`](/blog/l10n-ba-bank-pdf-llm-digit-repair-2026.md/) — pokazao da Qwen3-VL (i Claude, GPT-4o) tihi ispustaju jednu cifru iz duge sekvence nula u 16-cifrenom transakcijskom računu. Riješeno: regex `r"/(\d{16})"` nad PDF tekstom kao "ground-truth" set, pa subsekvenca-match snapuje 14- ili 15-cifrenu LLM grešku na jedinstvenog kandidata.
+- [`l10n-ba-bank-pdf-vision-procredit-2026`](/blog/l10n-ba-bank-pdf-vision-procredit-2026/) — uveo *vision-LLM mod* (rasterizovati svaku stranicu PDF-a u PNG @ 150 DPI, poslati i tekst i sliku LLM-u) jer ProCredit tekstualni stream nosi `5DþXQEURM` umjesto `Račun broj` (CRT/iReport stari font subseti bez ToUnicode CMap-a). Plus *flat image-only PDF* koji zamjenjuje originalni attachment u Odoo — **62% storage uštede** (1.28 MB → 487 KB).
+- [`l10n-ba-bank-pdf-llm-digit-repair-2026`](/blog/l10n-ba-bank-pdf-llm-digit-repair-2026/) — pokazao da Qwen3-VL (i Claude, GPT-4o) tihi ispustaju jednu cifru iz duge sekvence nula u 16-cifrenom transakcijskom računu. Riješeno: regex `r"/(\d{16})"` nad PDF tekstom kao "ground-truth" set, pa subsekvenca-match snapuje 14- ili 15-cifrenu LLM grešku na jedinstvenog kandidata.
 
 Ova iteracija — **`l10n_ba_bank_pdf 16.0.1.29.0`** — gradi tri sloja iznad toga.
 

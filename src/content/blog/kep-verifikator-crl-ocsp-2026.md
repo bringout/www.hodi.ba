@@ -117,7 +117,7 @@ Hero slika iznad pokazuje kompletan izlaz verifikatora — sedam provjera, svih 
 
 Pravna napomena: kada vam treba pisano vještačenje o validnosti potpisa za sud ili poreznu kontrolu, *naš servis nije pravna ekspertiza* — služi kao tehnička provjera. Za pravno obavezujuće mišljenje obratite se nadležnim institucijama (Ured za nadzor i akreditaciju ovjerilaca pri Ministarstvu komunikacija i prometa BiH).
 
-[^git-access]: Za pristup git repozitoriju na git.hodi.ba potrebno je da se registrujete prema uputama napisanim u [ovom članku](/blog/registracija-kep-hodi-v05-2026.md/).
+[^git-access]: Za pristup git repozitoriju na git.hodi.ba potrebno je da se registrujete prema uputama napisanim u [ovom članku](/blog/registracija-kep-hodi-v05-2026/).
 
 ---
 

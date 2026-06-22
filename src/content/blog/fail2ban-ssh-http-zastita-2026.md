@@ -5,7 +5,7 @@ pubDate: '2026-04-11T16:00:00'
 heroImage: '/fail2ban-hero.svg'
 ---
 
-Ovaj post je treći u seriji nastaloj nakon [incident reporta od 11. aprila 2026.](/blog/incident-report-nic-hang-2026.md/). Prva dva posta objašnjavaju sami incident i [network fix](/blog/e1000e-offloads-nixos-2026.md/) koji smo primijenili. Ovdje opisujemo drugu polovinu odgovora na incident — fail2ban zaštitu koju smo istog dana instalirali na perimetru naše infrastrukture.
+Ovaj post je treći u seriji nastaloj nakon [incident reporta od 11. aprila 2026.](/blog/incident-report-nic-hang-2026/). Prva dva posta objašnjavaju sami incident i [network fix](/blog/e1000e-offloads-nixos-2026/) koji smo primijenili. Ovdje opisujemo drugu polovinu odgovora na incident — fail2ban zaštitu koju smo istog dana instalirali na perimetru naše infrastrukture.
 
 ## Zašto fail2ban, i zašto baš sada
 

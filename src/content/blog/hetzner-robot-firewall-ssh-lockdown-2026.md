@@ -5,7 +5,7 @@ pubDate: '2026-04-11T18:00:00'
 heroImage: '/hetzner-firewall-hero.svg'
 ---
 
-Edge-firewall na `hetzner-1` do danas je bio postavljen kao "**Allow all**" — jedan input rule bez ikakvih restrikcija. Svako je mogao pokucati na port 22 sa interneta, i OS-level iptables (NixOS) je bila jedina linija odbrane. To je radilo, ali je značilo da svaki [fail2ban bruteforce pokušaj](/blog/fail2ban-ssh-http-zastita-2026.md/) troši ciklus na samom serveru prije nego što ga odbijemo.
+Edge-firewall na `hetzner-1` do danas je bio postavljen kao "**Allow all**" — jedan input rule bez ikakvih restrikcija. Svako je mogao pokucati na port 22 sa interneta, i OS-level iptables (NixOS) je bila jedina linija odbrane. To je radilo, ali je značilo da svaki [fail2ban bruteforce pokušaj](/blog/fail2ban-ssh-http-zastita-2026/) troši ciklus na samom serveru prije nego što ga odbijemo.
 
 Odlučili smo da premjestimo tu prvu liniju odbrane jedan korak uzbrdo — u Hetzner Robot firewall, koji radi na mrežnom edge-u prije nego što paket uopšte stigne do servera. Ovaj post opisuje dizajn, Python tooling koji smo napravili, i safety mehanizme koji garantuju da se ne zaključamo vani.
 
