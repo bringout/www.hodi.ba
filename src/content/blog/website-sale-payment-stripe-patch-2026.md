@@ -209,7 +209,7 @@ Za `website_payment`, opcija 2 je najbolja: Stripe **je** opcionalan, import je 
 ## Linkovi
 
 - **Commit diff**: [`git.hodi.ba/oca/oca-ocb-website` commit `18aac06`](https://git.hodi.ba/oca/oca-ocb-website/commit/18aac0667fea416b32983f052d93e5406dff551f)
-- **Prethodni povezani post**: [*Incident report: otkazivanje mrežnog interfejsa na glavnom serveru*](/blog/incident-report-nic-hang-2026.md/) — pokriva istoimeni dan i kako je incident prekinuo prvi pokušaj ove instalacije
+- **Prethodni povezani post**: [*Incident report: otkazivanje mrežnog interfejsa na glavnom serveru*](/blog/incident-report-nic-hang-2026/) — pokriva istoimeni dan i kako je incident prekinuo prvi pokušaj ove instalacije
 - **Odoo `website_sale` dokumentacija**: <https://www.odoo.com/documentation/16.0/applications/websites/ecommerce.html>
 - **Problem na `payment_stripe` i `website_payment` coupling**: poznat je u Odoo zajednici ali nije sistematski adresiran; ovaj patch je jedna od tačaka koje treba upstream-ati
 

@@ -7,7 +7,7 @@ heroImage: '/ba-payroll-hero.png'
 
 ## Uvod
 
-U [prethodnom postu o multi-company zaštiti](/blog/multi-company-protect-psql-payroll-2026.md/) i u [analizi Odoo licenci](https://www.bring.out.ba/blog/odoo-licence-analiza-2026/) razmatrali smo scenarij gdje se u jednoj Odoo bazi mora obračunati plata po **različitim pravilima po kompaniji** — npr. Bosna po lokalnim propisima (OCA payroll-style), Hrvatska i Slovenija po Odoo EE payroll-u. Odoo-ov moduli sistem učitava sav kôd na **nivou baze**, a ne po kompaniji — zbog toga dva payroll modula koji oba definišu iste modele (`hr.payslip`, `hr.contract`, `hr.salary.rule`) ne mogu istovremeno biti instalirana. MRO konflikt pri prvom `odoo -u` i sve puca.
+U [prethodnom postu o multi-company zaštiti](/blog/multi-company-protect-psql-payroll-2026/) i u [analizi Odoo licenci](https://www.bring.out.ba/blog/odoo-licence-analiza-2026/) razmatrali smo scenarij gdje se u jednoj Odoo bazi mora obračunati plata po **različitim pravilima po kompaniji** — npr. Bosna po lokalnim propisima (OCA payroll-style), Hrvatska i Slovenija po Odoo EE payroll-u. Odoo-ov moduli sistem učitava sav kôd na **nivou baze**, a ne po kompaniji — zbog toga dva payroll modula koji oba definišu iste modele (`hr.payslip`, `hr.contract`, `hr.salary.rule`) ne mogu istovremeno biti instalirana. MRO konflikt pri prvom `odoo -u` i sve puca.
 
 Ovaj post pokazuje konkretan pristup koji **mi je proradio**: forkanje OCA payroll-a kroz **rename-generator** — skriptu koja na ulazu uzima upstream OCA `payroll` i na izlazu generiše paralelni `ba_payroll` modul u kome je svaki OCA-owned model preimenovan sa `ba.` prefiksom. Oba stacka onda rade side-by-side u istoj bazi, svaki sa svojim tabelama, menijima, sekvencama i decimalnim preciznostima.
 
@@ -42,7 +42,7 @@ Ključno pravilo: **nikada se ne uređuje output ručno.** Bosna-specifična log
 
 ## Side-by-side demo
 
-Instalirano oba modula na [multi-test.hodi.ba](https://multi-test.hodi.ba) i dodali tri payroll operatera — po jedan po zemlji (BA, HR, SI), svaki zaključan na svoju kompaniju pomoću `psql_company_lock_id` polja iz [RLS modula](/blog/multi-company-protect-psql-payroll-2026.md/).
+Instalirano oba modula na [multi-test.hodi.ba](https://multi-test.hodi.ba) i dodali tri payroll operatera — po jedan po zemlji (BA, HR, SI), svaki zaključan na svoju kompaniju pomoću `psql_company_lock_id` polja iz [RLS modula](/blog/multi-company-protect-psql-payroll-2026/).
 
 **Bosanski payroll clerk** (`demo.payroll.ba@hodi.ba`) vidi **BA Payroll** menije — kompletan ba_payroll stack, prefiksiran sa "BA " za vizuelnu distinkciju:
 

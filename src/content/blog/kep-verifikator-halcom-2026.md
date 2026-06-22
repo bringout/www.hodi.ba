@@ -5,7 +5,7 @@ pubDate: '2026-05-20T16:56:45'
 heroImage: '/kep-halcom-hero.svg'
 ---
 
-Sa verzijom **v0.16.1** naš [Bosanski KEP verifikator](/blog/kep-verifikator-2026.md/) na [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba) pokriva sva četiri kvalifikovana ovjerioca čije certifikate susrećemo u praksi u BiH:
+Sa verzijom **v0.16.1** naš [Bosanski KEP verifikator](/blog/kep-verifikator-2026/) na [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba) pokriva sva četiri kvalifikovana ovjerioca čije certifikate susrećemo u praksi u BiH:
 
 - **IDDEEA** — Agencija za identifikaciona dokumenta, evidenciju i razmjenu podataka BiH (eID lična karta)
 - **UIO** — Uprava za indirektno-neizravno oporezivanje BiH (PDV certifikati)

@@ -8,7 +8,7 @@ heroImage: '/bank-pdf-original-date-oracle-hero.webp'
 ## Refactor koji briše posljedice pogrešne odluke
 
 Ovaj tekst je nastavak na prethodni zapis
-[`l10n-ba-bank-pdf-cross-check-povrat-2026`](/blog/l10n-ba-bank-pdf-cross-check-povrat-2026.md/),
+[`l10n-ba-bank-pdf-cross-check-povrat-2026`](/blog/l10n-ba-bank-pdf-cross-check-povrat-2026/),
 gdje su uvedeni per-bank ground-truth računi, `confirmed`/`suspicious`/`snap`
 klasifikacija i Raiffeisen POVRAT KREDITA fix. Taj post je tačno opisao
 tadašnje stanje: Odoo attachment je bio flat image-only PDF bez tekstualnog

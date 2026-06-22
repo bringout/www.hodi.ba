@@ -5,7 +5,7 @@ pubDate: '2026-04-11T14:00:00'
 heroImage: '/incident-report-hero.svg'
 ---
 
-Danas, 11. aprila 2026. godine, naš glavni fizički server (Hetzner dedicated, kernel 6.12.63, NixOS 25.05) doživio je kompletan gubitak mrežne konektivnosti koji je završio prinudnim restartom. Ovaj post opisuje šta se tačno desilo, kako smo to dijagnostikovali iz journal logova, i šta je bio stvarni uzrok. Kasnije u istoj sedmici objavljujemo dva popratna posta — jedan o [konkretnom fix-u za NixOS konfiguraciju](/blog/e1000e-offloads-nixos-2026.md/) i jedan o [fail2ban zaštiti](/blog/fail2ban-ssh-http-zastita-2026.md/) koju smo instalirali kao posljedicu ovog incidenta.
+Danas, 11. aprila 2026. godine, naš glavni fizički server (Hetzner dedicated, kernel 6.12.63, NixOS 25.05) doživio je kompletan gubitak mrežne konektivnosti koji je završio prinudnim restartom. Ovaj post opisuje šta se tačno desilo, kako smo to dijagnostikovali iz journal logova, i šta je bio stvarni uzrok. Kasnije u istoj sedmici objavljujemo dva popratna posta — jedan o [konkretnom fix-u za NixOS konfiguraciju](/blog/e1000e-offloads-nixos-2026/) i jedan o [fail2ban zaštiti](/blog/fail2ban-ssh-http-zastita-2026/) koju smo instalirali kao posljedicu ovog incidenta.
 
 ## Ukratko
 
@@ -60,7 +60,7 @@ Apr 11 11:45:54 kernel: e1000e 0000:00:1f.6 eno1: Detected Hardware Unit Hang:
 
 Vrijednosti `TDH=a2` i `TDT=ad` pokazuju da je transmit descriptor head zaostao za transmit tail-om — queue je popunjena paketima koje NIC nikada nije uspio poslati. `next_to_watch.status = 0` znači da driver čeka completion interrupt koji više nikad ne stiže.
 
-Ovaj bug se pojavljuje sporadično na Intel čipsetima iz PCH/LPC familije i postoji u kernelu već više od decenije. Postoji niz workaround-a koje zajednica primjenjuje, od kojih je najčešći **onemogućavanje hardverskih offload funkcija** (TSO, GSO, GRO) tako da sva segmentacija i coalescing pakete radi kernel u softver-u umjesto u hardver-u. Ovaj workaround je tema [narednog blog posta](/blog/e1000e-offloads-nixos-2026.md/).
+Ovaj bug se pojavljuje sporadično na Intel čipsetima iz PCH/LPC familije i postoji u kernelu već više od decenije. Postoji niz workaround-a koje zajednica primjenjuje, od kojih je najčešći **onemogućavanje hardverskih offload funkcija** (TSO, GSO, GRO) tako da sva segmentacija i coalescing pakete radi kernel u softver-u umjesto u hardver-u. Ovaj workaround je tema [narednog blog posta](/blog/e1000e-offloads-nixos-2026/).
 
 ## Kaskadni kvar — zašto je zastoj NIC-a srušio cijelu mašinu
 
@@ -90,15 +90,15 @@ Kao dio forenzičke analize, provjerili smo je li incident mogao biti posljedica
 - Pronašli smo scanner aktivnost (probe za `/.env`, `/.git/config`, `/wp-config.php` itd.) iz botnet /24 mreža — ali sve je vraćalo 404, nijedan scan nije uspio ništa dobiti, i scan se desio **77 minuta prije prvog hang eventa**, daleko izvan ikakve kauzalne veze
 - Najvažnije: scanner traffic koji smo pronašli ni približno nije dostigao volumen potreban da bi izazvao NIC hang — radi se o ~50 zahtjeva ukupno, dok hang dolazi zbog hardverskog bug-a pri potpuno normalnom opterećenju
 
-Zaključak: incident je **u potpunosti driver/hardware problem**, ne napad. Ali scan aktivnost koju smo zatekli u logovima je bila dovoljno indikativna da smo odlučili konfigurisati dodatnu zaštitu — i to je bio direktan razlog za [fail2ban setup](/blog/fail2ban-ssh-http-zastita-2026.md/) koji smo instalirali odmah nakon što smo zatvorili incident.
+Zaključak: incident je **u potpunosti driver/hardware problem**, ne napad. Ali scan aktivnost koju smo zatekli u logovima je bila dovoljno indikativna da smo odlučili konfigurisati dodatnu zaštitu — i to je bio direktan razlog za [fail2ban setup](/blog/fail2ban-ssh-http-zastita-2026/) koji smo instalirali odmah nakon što smo zatvorili incident.
 
 ## Šta se dalje dešavalo
 
 Odmah nakon podizanja servera, počeli smo dvije paralelne aktivnosti:
 
-1. **Workaround za e1000e bug**: napisali smo NixOS systemd oneshot servis koji na svaki boot poziva `ethtool -K eno1 tso off gso off gro off`. Ovaj fiks je testiran u runtime-u prije nego što je commit-ovan u konfiguraciju — detalji su u [narednom postu](/blog/e1000e-offloads-nixos-2026.md/).
+1. **Workaround za e1000e bug**: napisali smo NixOS systemd oneshot servis koji na svaki boot poziva `ethtool -K eno1 tso off gso off gro off`. Ovaj fiks je testiran u runtime-u prije nego što je commit-ovan u konfiguraciju — detalji su u [narednom postu](/blog/e1000e-offloads-nixos-2026/).
 
-2. **fail2ban zaštita**: konfigurisali smo fail2ban na dva nivoa — jedan na fizičkom serveru (za SSH brute force), drugi na reverse proxy VM-u (za HTTP bot skenere). Detalji su u [trećem postu](/blog/fail2ban-ssh-http-zastita-2026.md/).
+2. **fail2ban zaštita**: konfigurisali smo fail2ban na dva nivoa — jedan na fizičkom serveru (za SSH brute force), drugi na reverse proxy VM-u (za HTTP bot skenere). Detalji su u [trećem postu](/blog/fail2ban-ssh-http-zastita-2026/).
 
 Oba fiksa su uspješno deploy-ovana istog dana, test-pa-switch workflow-om, sa break-glass SSH putem iz dvije dodatne lokacije (Frankfurt i Paris AWS Light) kao sigurnosnom mrežom za slučaj da primarni put ikada otkaže.
 
@@ -114,8 +114,8 @@ Oba fiksa su uspješno deploy-ovana istog dana, test-pa-switch workflow-om, sa b
 
 ## Linkovi
 
-- [Onemogućavanje e1000e offload-a u NixOS konfiguraciji](/blog/e1000e-offloads-nixos-2026.md/) — konkretan fix
-- [fail2ban zaštita: SSH i HTTP na našoj infrastrukturi](/blog/fail2ban-ssh-http-zastita-2026.md/) — dodatna zaštita koju smo instalirali istog dana
+- [Onemogućavanje e1000e offload-a u NixOS konfiguraciji](/blog/e1000e-offloads-nixos-2026/) — konkretan fix
+- [fail2ban zaštita: SSH i HTTP na našoj infrastrukturi](/blog/fail2ban-ssh-http-zastita-2026/) — dodatna zaštita koju smo instalirali istog dana
 
 ## Napomena
 

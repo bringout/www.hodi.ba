@@ -15,7 +15,7 @@ Hero slika iznad je upravo to: korisnik prijavljen kao `hernad@bring.out.ba` vid
 
 ### 1. Registracija i KEP verifikator u glavnoj navigaciji
 
-Do sada su [registracija.kep.hodi.ba](https://registracija.kep.hodi.ba) (samoposlužni nalozi) i [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba) ([Bosanski KEP verifikator](/blog/kep-verifikator-2026.md/)) bili dostupni samo preko spoljnih linkova ili Google pretrage. Sada su **direktno u headeru** — uz Početna, O nama i Blog.
+Do sada su [registracija.kep.hodi.ba](https://registracija.kep.hodi.ba) (samoposlužni nalozi) i [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba) ([Bosanski KEP verifikator](/blog/kep-verifikator-2026/)) bili dostupni samo preko spoljnih linkova ili Google pretrage. Sada su **direktno u headeru** — uz Početna, O nama i Blog.
 
 Bonus: oba linka **otvaraju u istom tabu** (ne više `target="_blank"`). Razlog: previše tabova razbija tok, a postoji čist put nazad...
 
@@ -32,7 +32,7 @@ Klik vraća na www.hodi.ba u istom tabu. Tako se ne nakuplja "stranded tab" prob
 
 Najveća promjena. Header sada uvijek završava sa pill-button dugmetom desno:
 
-- **Anonimni korisnik:** vidi **`Prijava`** → klik vodi na [auth.hodi.ba](https://auth.hodi.ba) portal (naš [Authelia](/blog/authelia-sso-hodi-2026.md/) SSO). Nakon uspješne prijave, korisnik je vraćen na www.hodi.ba.
+- **Anonimni korisnik:** vidi **`Prijava`** → klik vodi na [auth.hodi.ba](https://auth.hodi.ba) portal (naš [Authelia](/blog/authelia-sso-hodi-2026/) SSO). Nakon uspješne prijave, korisnik je vraćen na www.hodi.ba.
 - **Prijavljen korisnik:** dugme se mijenja u **`Odjava`**, a pored njega se prikazuje **email** prijavljenog korisnika (npr. `hernad@bring.out.ba`).
 
 Bez prečaca, bez zaboravljanja "da li sam ulogovan ili ne".
@@ -67,8 +67,8 @@ Ova dvodjelna arhitektura (statički HTML + dinamička JS dekoracija) čuva brzi
 
 Velika slika je da hodi.ba postaje **integrirana platforma** umjesto skupa nezavisnih servisa. Imamo:
 
-- [registracija.kep.hodi.ba](https://registracija.kep.hodi.ba) — kako napraviti nalog ([detaljan opis](/blog/registracija-kep-hodi-v05-2026.md/))
-- [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba) — kako provjeriti KEP ([v0.15.0 sa CRL+OCSP](/blog/kep-verifikator-crl-ocsp-2026.md/))
+- [registracija.kep.hodi.ba](https://registracija.kep.hodi.ba) — kako napraviti nalog ([detaljan opis](/blog/registracija-kep-hodi-v05-2026/))
+- [provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba) — kako provjeriti KEP ([v0.15.0 sa CRL+OCSP](/blog/kep-verifikator-crl-ocsp-2026/))
 - [auth.hodi.ba](https://auth.hodi.ba) — Authelia portal, jedna prijava za sve
 - Webmail, Forgejo (git.hodi.ba), Odoo instance...
 
@@ -84,7 +84,7 @@ Sljedeće u redu:
 - **Status indikatori** — npr. badge na Odjava dugmetu ako je sesija pri kraju isteka
 - **Brzi pristup** — keyboard shortcut za skok između servisa bez klikanja po headeru
 
-Ako vam nedostaje neka funkcionalnost u headeru ili imate ideju, otvoreni smo za prijedloge — pošaljite mail na hernad@bring.out.ba ili otvorite issue na našem [git.hodi.ba/bringout/www.hodi.ba](https://git.hodi.ba/bringout/www.hodi.ba) (potrebna [registracija](/blog/registracija-kep-hodi-v05-2026.md/)).
+Ako vam nedostaje neka funkcionalnost u headeru ili imate ideju, otvoreni smo za prijedloge — pošaljite mail na hernad@bring.out.ba ili otvorite issue na našem [git.hodi.ba/bringout/www.hodi.ba](https://git.hodi.ba/bringout/www.hodi.ba) (potrebna [registracija](/blog/registracija-kep-hodi-v05-2026/)).
 
 ---
 

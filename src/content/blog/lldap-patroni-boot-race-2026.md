@@ -5,7 +5,7 @@ pubDate: '2026-04-11T17:00:00'
 heroImage: '/lldap-patroni-race-hero.svg'
 ---
 
-Kratki post-mortem drugog incidenta istog dana. Nakon što smo [vratili `www.hodi.ba` nakon e1000e hang-a](/blog/incident-report-nic-hang-2026.md/) i uradili [mobilni redesign header-a](/blog/mobile-hamburger-2026.md/), bacio nas je još jedan problem: `https://auth.hodi.ba` počeo je vraćati **502 Bad Gateway** na OIDC authorization endpoint. Svaka prijava na Roundcube (i potencijalno na Forgejo, Odoo, i druge OIDC klijente) je odmah pucala.
+Kratki post-mortem drugog incidenta istog dana. Nakon što smo [vratili `www.hodi.ba` nakon e1000e hang-a](/blog/incident-report-nic-hang-2026/) i uradili [mobilni redesign header-a](/blog/mobile-hamburger-2026/), bacio nas je još jedan problem: `https://auth.hodi.ba` počeo je vraćati **502 Bad Gateway** na OIDC authorization endpoint. Svaka prijava na Roundcube (i potencijalno na Forgejo, Odoo, i druge OIDC klijente) je odmah pucala.
 
 ## Simptom
 

@@ -9,14 +9,6 @@ import { SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
 );
-
-// Re-append the source extension so links keep the pre-Astro-6 `/blog/<name>.md/`
-// shape (matches src/pages/blog/[...slug].astro). `filePath` is `string | undefined`.
-function postExt(filePath: string | undefined): string {
-	if (!filePath) return '.md';
-	const dot = filePath.lastIndexOf('.');
-	return dot >= 0 ? filePath.slice(dot) : '.md';
-}
 ---
 
 <!doctype html>
@@ -101,7 +93,7 @@ function postExt(filePath: string | undefined): string {
 					{
 						posts.map((post) => (
 							<li>
-								<a href={`/blog/${post.id}${postExt(post.filePath)}/`}>
+								<a href={`/blog/${post.id}/`}>
 									{post.data.heroImage && (
 										<picture>
 											<source
