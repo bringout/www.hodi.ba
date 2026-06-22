@@ -1,11 +1,11 @@
 ---
-title: 'provjeri.kep.hodi.ba — besplatna provjera kvalifikovanog elektronskog potpisa'
+title: 'provjeri.kep.hodi.ba v0.17.1 — besplatna provjera kvalifikovanog elektronskog potpisa'
 description: 'Online servis koji provjerava da li PDF ili XML dokument nosi validan kvalifikovani elektronski potpis (KEP) — podrška za IDDEEA, UIO i BHP certifikate.'
 pubDate: '2026-06-22T10:52:00'
 heroImage: '/provjeri-kep-hodi-hero.png'
 ---
 
-Objavili smo **[provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba)** — besplatan online servis za provjeru kvalifikovanog elektronskog potpisa (KEP) na dokumentima. Učitate potpisani **PDF** ili **XML**, a servis vam odmah kaže da li dokument nosi **validan kvalifikovani elektronski potpis**, ko ga je potpisao i da li su svi uslovi za pravnu valjanost ispunjeni.
+Objavili smo novu verziju **[provjeri.kep.hodi.ba](https://provjeri.kep.hodi.ba)** v0.17.1 — besplatan online servis za provjeru kvalifikovanog elektronskog potpisa (KEP) na dokumentima. Učitate potpisani **PDF** ili **XML**, a servis vam odmah kaže da li dokument nosi **validan kvalifikovani elektronski potpis**, ko ga je potpisao i da li su svi uslovi za pravnu valjanost ispunjeni.
 
 ## Šta servis radi
 
@@ -28,11 +28,12 @@ Kvalifikovani elektronski potpis je elektronski potpis koji po Zakonu o elektron
 
 ## Podržani izdavači certifikata u BiH
 
-Servis prepoznaje i provjerava certifikate tri bosanskohercegovačka certifikaciona tijela:
+Nova verzija prepoznaje i provjerava certifikate **sva četiri** certifikaciona tijela koja se koriste u BiH:
 
 - **IDDEEA** — Agencija za identifikaciona dokumenta, evidenciju i razmjenu podataka BiH; izdaje kvalificirane certifikate građanima i pravnim licima.
 - **UIO (UINO)** — Uprava za indirektno-neizravno oporezivanje BiH; certifikati za potpisivanje dokumenata u sistemu indirektnog oporezivanja (npr. PDV prijave).
 - **BHP (BH Pošta)** — JP BH Pošta d.o.o.; certifikati za elektronsko potpisivanje dokumenata.
+- **Halcom** — Halcom CA; kvalificirani certifikati koji se u BiH koriste za elektronsko potpisivanje dokumenata.
 
 ## Šta sve servis provjeri za svaki potpis
 
@@ -53,6 +54,10 @@ Pored same ocjene, za svaki potpis se prikažu i podaci o potpisniku — ime, or
 2. Nakon što administrator odobri pristup, na email dobijete pristupni link.
 3. Učitate potpisani PDF ili XML i kliknete **Verifikuj potpis**.
 4. Servis prikaže rezultat za svaki potpis — zelena oznaka za validan KEP, uz sve detalje provjere.
+
+Pošto se pristupni link šalje na email, forma za registraciju provjerava da li email domena uopšte može primati poštu (ima li MX zapis). Ako unesete adresu sa nepostojećom domenom, zahtjev se odmah odbija:
+
+![Registracija: provjera MX zapisa email domene](/provjeri-kep-registracija-mx.png)
 
 Servis je besplatan i namijenjen svima koji u BiH primaju ili šalju elektronski potpisane dokumente i žele brzu, pouzdanu potvrdu da je potpis zaista valjan.
 

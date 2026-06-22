@@ -46,4 +46,9 @@
     <tspan x="60" dy="0">Provjera kvalifikovanog</tspan>
     <tspan x="60" dy="52">elektronskog potpisa (KEP)</tspan>
   </text>
+  <g transform="translate(60,432)">
+    <rect width="168" height="52" rx="26" fill="#10b981"/>
+    <text x="84" y="35" font-family="DejaVu Sans, Arial, sans-serif" font-size="28"
+          font-weight="700" fill="#ffffff" text-anchor="middle">v0.17.1</text>
+  </g>
 </svg>
