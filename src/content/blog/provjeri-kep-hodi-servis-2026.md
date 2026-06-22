@@ -55,11 +55,19 @@ Pored same ocjene, za svaki potpis se prikažu i podaci o potpisniku — ime, or
 3. Učitate potpisani PDF ili XML i kliknete **Verifikuj potpis**.
 4. Servis prikaže rezultat za svaki potpis — zelena oznaka za validan KEP, uz sve detalje provjere.
 
+## Šta je novo u verziji 0.17.1
+
+Glavna novost u ovoj verziji je **provjera email domene pri registraciji** — forma odmah odbija adrese čija domena ne može primati poštu, prije nego što se zahtjev uopšte pošalje.
+
 Pošto se pristupni link šalje na email, forma za registraciju provjerava da li email domena uopšte može primati poštu (ima li MX zapis). Ako unesete adresu sa nepostojećom domenom, zahtjev se odmah odbija:
 
 ![Registracija: provjera MX zapisa email domene](/provjeri-kep-registracija-mx.png)
 
 Servis je besplatan i namijenjen svima koji u BiH primaju ili šalju elektronski potpisane dokumente i žele brzu, pouzdanu potvrdu da je potpis zaista valjan.
+
+## Izvorni kod
+
+Izvorni kod je objavljen pod standardnom AGPL-3 opensource licencom. Svaki građanin Bosne i Hercegovine sa KEP potpisom može pristupiti izvornom kodu registracijom na [registracija.kep.hodi.ba](https://registracija.kep.hodi.ba/).
 
 ## Napomena
 
