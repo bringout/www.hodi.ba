@@ -1,17 +1,14 @@
 ---
 interface Props {
-	date: Date;
+	date: Date | string;
 }
 
 const { date } = Astro.props;
+// Astro's content layer can rehydrate date fields as ISO strings, so coerce.
+const d = date instanceof Date ? date : new Date(date);
+// Default Bosnian format: DD.MM.YYYY
+const pad = (n: number) => String(n).padStart(2, '0');
+const formatted = `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('bs-BA', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
-</time>
+<time datetime={d.toISOString()}>{formatted}</time>
