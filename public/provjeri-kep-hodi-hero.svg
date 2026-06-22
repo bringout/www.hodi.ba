@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a3d7a"/>
+      <stop offset="55%" stop-color="#002F6C"/>
+      <stop offset="100%" stop-color="#001d42"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.50"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="1040" cy="120" rx="520" ry="360" fill="url(#glowA)"/>
+  <ellipse cx="140" cy="600" rx="520" ry="340" fill="url(#glowB)"/>
+
+  <!-- TOPIC MOTIF: a signed document + a green verification seal/checkmark -->
+  <g transform="translate(900,165)">
+    <rect x="0" y="0" width="200" height="270" rx="14" fill="#ffffff" fill-opacity="0.96"/>
+    <rect x="0" y="0" width="200" height="270" rx="14" fill="none" stroke="#0a3d7a" stroke-opacity="0.15" stroke-width="2"/>
+    <rect x="26" y="32" width="116" height="12" rx="6" fill="#0a3d7a" opacity="0.55"/>
+    <rect x="26" y="62" width="148" height="9" rx="4.5" fill="#0a3d7a" opacity="0.28"/>
+    <rect x="26" y="82" width="148" height="9" rx="4.5" fill="#0a3d7a" opacity="0.28"/>
+    <rect x="26" y="102" width="116" height="9" rx="4.5" fill="#0a3d7a" opacity="0.28"/>
+    <rect x="26" y="134" width="148" height="9" rx="4.5" fill="#0a3d7a" opacity="0.18"/>
+    <rect x="26" y="154" width="132" height="9" rx="4.5" fill="#0a3d7a" opacity="0.18"/>
+    <path d="M28 224 q18 -34 36 -6 q12 20 28 -10 q14 -22 40 4" fill="none" stroke="#0a3d7a" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="178" cy="224" r="50" fill="#10b981"/>
+    <circle cx="178" cy="224" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="3"/>
+    <path d="M156 225 l15 16 l29 -34" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <rect x="60" y="60" width="120" height="8" rx="4" fill="#ffffff" opacity="0.9"/>
+  <text x="60" y="560" font-family="DejaVu Sans, Arial, sans-serif" font-size="30"
+        fill="#ffffff" opacity="0.85">www.hodi.ba</text>
+  <text x="60" y="250" font-family="DejaVu Sans, Arial, sans-serif" font-size="58"
+        font-weight="700" fill="#ffffff">
+    <tspan x="60" dy="0">provjeri.kep.hodi.ba</tspan>
+  </text>
+  <text x="60" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="40"
+        font-weight="400" fill="#cfe3ff">
+    <tspan x="60" dy="0">Provjera kvalifikovanog</tspan>
+    <tspan x="60" dy="52">elektronskog potpisa (KEP)</tspan>
+  </text>
+</svg>
