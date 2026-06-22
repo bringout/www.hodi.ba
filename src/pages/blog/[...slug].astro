@@ -8,7 +8,12 @@ import FormattedDate from '../../components/FormattedDate.astro';
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.id },
+		// Preserve the pre-Astro-6 URL shape `/blog/<name>.md/`. Astro 4's
+		// content-collection `id` kept the file extension; the Astro 6 glob
+		// loader strips it, which would change every post URL and break the
+		// `.md/`-style cross-links inside existing posts. Re-append the real
+		// extension so the URLs are unchanged.
+		params: { slug: post.id + post.filePath.slice(post.filePath.lastIndexOf('.')) },
 		props: post,
 	}));
 }
