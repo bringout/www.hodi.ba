@@ -140,6 +140,10 @@ Kada podrška i implementacija to tretiraju kao eksplicitno pravilo, ovakvi inci
 
 Ovaj konkretan slučaj je, gledano unazad, više trivijalan nego dramatičan. Ali jutarnja prijava nije izgledala trivijalno, niti je do rješenja bilo moguće doći bez ozbiljne istrage. Upravo zato vrijedi dokumentovati ga.
 
+## Preporuke za novu verziju modula
+
+Evo sada dok pišem, treba dodati da obični korisnik (koji nema visoke privilegije u accounting-u) jednostavno dobije poruku da ovo NE može raditi. To je mali zahvat na postojećem modulu. Međutim, već sada modul će prevenirati probleme kao što je bio ovaj.
+
 ## Napomena
 
 ---
