@@ -1,8 +1,8 @@
 ---
-title: 'Šta se dešava u Odoo bazi?! Novi Odoo modul bout_master_data_ne_cackaj'
+title: '"bring.out" sesija podrške: Od prijave problema do rješenja (modul bout_master_data_ne_cackaj)'
 description: 'Jutarnji debug incident u Odoo bazi: PITR je pokazao kada je artikal vraćen na stare postavke, Forgejo je dao trag do skripte, a završno rješenje je modul koji štiti predefinisane master podatke od ručnih izmjena.'
 pubDate: '2026-07-07T21:24:53'
-heroImage: '/blog-heroes/odoo-master-data-ne-cackaj-hero.png'
+heroImage: '/debug-pitr/debug_01-1.png'
 ---
 
 Ujutro stigne prijava koja ne izgleda ni malo bezazleno: korisnik tvrdi da mu se artikal vratio na stare postavke. U ERP sistemu je to odmah crveni alarm, jer pitanje nije samo "ko je šta kliknuo", nego da li je baza nekontrolisano promijenila ključni podatak.
